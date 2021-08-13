@@ -1,0 +1,9 @@
+.matchList {
+  display: flex;
+  flex-direction: column;
+}
+
+.matchRow {
+  align-items: center;
+  display: flex;
+}
