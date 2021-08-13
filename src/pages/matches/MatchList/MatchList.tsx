@@ -24,11 +24,10 @@ const MatchRow: React.FC<{ match: AggregatedMatchData }> = ({ match }) => {
 };
 
 export const MatchList: React.FC = () => {
-  const {
-    isLoading,
-    data: matchesData,
-    isError,
-  } = useQuery<Match[]>(["recent-matches"], StatsApi.Matches.Recent);
+  const { isLoading, data: matchesData } = useQuery<Match[]>(
+    ["recent-matches"],
+    StatsApi.Matches.Recent
+  );
 
   const matches = useMemo(() => {
     if (!matchesData) {

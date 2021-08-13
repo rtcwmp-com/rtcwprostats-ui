@@ -6,6 +6,7 @@ import { Nav } from "./components/Nav/Nav";
 import { MatchDetails } from "./pages/matches/MatchDetails/MatchDetails";
 import { MatchList } from "./pages/matches/MatchList/MatchList";
 import { PlayerList } from "./pages/players/PlayerList/PlayerList";
+import { ServerList } from "./pages/servers/ServerList/ServerList";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ export const App: React.FC = () => {
               <Route path="/matches" component={MatchList} />
               <Route path="/matches/:matchIds" component={MatchDetails} />
               <Route path="/players" component={PlayerList} />
+              <Route path="/servers" component={ServerList} />
             </Switch>
           </Content>
         </>

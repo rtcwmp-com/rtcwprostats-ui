@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import logoSrc from "../../assets/rtcwpro-logo.png";
 import styles from "./Nav.module.css";
-import { VscListFlat, VscAccount } from "react-icons/vsc";
+import { VscListFlat, VscAccount, VscServer } from "react-icons/vsc";
 
 export const Nav: React.FC = () => {
   return (
@@ -21,6 +21,12 @@ export const Nav: React.FC = () => {
           <NavLink className={styles.linkItem} to="/players">
             <VscAccount className={styles.linkIcon} />
             <span>Players</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink className={styles.linkItem} to="/servers">
+            <VscServer className={styles.linkIcon} />
+            <span>Servers</span>
           </NavLink>
         </li>
       </ul>
