@@ -1,0 +1,60 @@
+.nav {
+  display: flex;
+  flex-direction: column;
+  width: 222px;
+}
+
+.logoWrapper {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  height: 56px;
+}
+
+.linksList {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding: 0 24px;
+}
+
+.linkIcon {
+  opacity: 0.33;
+  height: 18px;
+  margin-right: 18px;
+  width: 18px;
+}
+
+.linkItem {
+  align-items: center;
+  display: flex;
+  border-radius: 6px;
+  height: 34px;
+  padding: 0 12px;
+}
+
+.linkItem > span {
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  opacity: 85%;
+}
+
+.linkItem:global(.active) {
+  background-color: var(--background-light);
+}
+
+.linkItem:global(.active) > svg {
+  fill: #ff0007;
+  opacity: 1;
+}
+
+.linkItem:global(.active) > span {
+  opacity: 1;
+}
