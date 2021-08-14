@@ -1,7 +1,72 @@
 import React from "react";
+import { useMemo } from "react";
+import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
+import { StatsApi } from "../../../api";
+import { StatsResponse } from "../../../api/matches/types";
+import { PageTitle } from "../../../components/PageTitle/PageTitle";
+import {
+  TeamOverview,
+  TeamOverviewData,
+} from "../../../components/TeamOverview/TeamOverview";
+import styles from "./MatchDetails.module.css";
 
 export const MatchDetails: React.FC = () => {
-  const matchIds = useParams<{ matchIds: string }>();
-  return <div>{matchIds}</div>;
+  const { matchId, map } = useParams<{ matchId: string; map: string }>();
+  const { data, isLoading } = useQuery<StatsResponse>(
+    ["match-stats", matchId],
+    () => StatsApi.Matches.MatchStats(matchId)
+  );
+
+  const actualData = useMemo(() => {
+    if (!data) {
+      return null;
+    }
+
+    return data.statsall.reduce(
+      (acc, item) => {
+        const player = item[Object.keys(item)[0]];
+
+        if (player.team === "Allied") {
+          acc.a.push(player);
+        } else {
+          acc.b.push(player);
+        }
+
+        return acc;
+      },
+      { a: [], b: [] } as TeamOverviewData
+    );
+  }, [data]);
+
+  if (isLoading) {
+    return (
+      <>
+        <PageTitle>Match Report</PageTitle>
+        <span className={styles.matchId}>{matchId}</span>
+        <div>Loading...</div>
+      </>
+    );
+  }
+
+  if (actualData) {
+    return (
+      <>
+        <PageTitle>Match Report</PageTitle>
+        <div className={styles.subHeader}>
+          <span className={styles.matchId}>{map}</span>
+          <span className={styles.matchId}>{matchId}</span>
+        </div>
+        <TeamOverview map={map} data={actualData} />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <PageTitle>Match Report</PageTitle>
+      <span className={styles.matchId}>{matchId}</span>
+      <div>Error while fetching match details</div>
+    </>
+  );
 };

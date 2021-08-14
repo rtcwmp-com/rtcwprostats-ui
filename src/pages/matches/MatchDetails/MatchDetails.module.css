@@ -1,0 +1,11 @@
+.matchId {
+  font-size: 13px;
+  margin-top: 8px;
+  margin-right: 8px;
+  opacity: 0.85;
+}
+
+.subHeader {
+  align-items: center;
+  display: flex;
+}

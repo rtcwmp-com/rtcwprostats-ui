@@ -18,8 +18,8 @@ export const App: React.FC = () => {
           <Nav />
           <Content>
             <Switch>
+              <Route path="/matches/:matchId/:map" component={MatchDetails} />
               <Route path="/matches" component={MatchList} />
-              <Route path="/matches/:matchIds" component={MatchDetails} />
               <Route path="/players" component={PlayerList} />
               <Route path="/servers" component={ServerList} />
             </Switch>

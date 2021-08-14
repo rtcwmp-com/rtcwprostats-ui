@@ -1,3 +1,4 @@
+import { formatDistance } from "date-fns";
 import React from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
@@ -8,8 +9,15 @@ import styles from "./MatchList.module.css";
 
 const MatchRow: React.FC<{ match: Match }> = ({ match }) => {
   return (
-    <Link to={`/matches/${match.match_round_id}`} className={styles.matchRow}>
-      {match.date_time_human} - {match.match_id}
+    <Link
+      to={`/matches/${match.match_id}/${match.map}`}
+      className={styles.matchRow}
+    >
+      <span className={styles.map}>{match.map}</span>
+      <span>{match.server_name}</span>
+      <span className={styles.timestamp}>
+        {formatDistance(new Date(match.date_time_human), new Date())} ago
+      </span>
     </Link>
   );
 };
@@ -28,10 +36,17 @@ export const MatchList: React.FC = () => {
     return (
       <>
         <PageTitle>Recent matches</PageTitle>
-        <div>
-          {matches.map((match) => (
-            <MatchRow key={match.match_id} match={match} />
-          ))}
+        <div className={styles.wrapper}>
+          {matches
+            .filter(
+              (item, idx, arr) =>
+                arr.findIndex(
+                  (idxItem) => idxItem.match_id === item.match_id
+                ) === idx
+            )
+            .map((match) => (
+              <MatchRow key={match.match_id} match={match} />
+            ))}
         </div>
       </>
     );
