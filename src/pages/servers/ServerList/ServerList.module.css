@@ -1,5 +1,4 @@
 .wrapper {
-  display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-gap: 32px;
   align-items: stretch;
@@ -21,7 +20,6 @@
 }
 
 .region {
-  position: absolute;
   top: 12px;
   right: 12px;
   height: 24px;
@@ -30,14 +28,13 @@
 
 .infoContainer {
   background-color: var(--background-light);
-  display: flex;
   flex-direction: column;
   padding: 12px;
   font-size: 13px;
 }
 
 .serverName {
-  font-size: 16px;
+  font-size: 13px;
 }
 
 .gameVersion {
