@@ -11,6 +11,8 @@ import euSrc from "../../../assets/eu-flag.svg";
 const imageSources = {
   na: naSrc,
   eu: euSrc,
+  sa: naSrc,
+  unk: euSrc,
 };
 
 export const ServerList: React.FC = () => {
