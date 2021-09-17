@@ -30,6 +30,15 @@ export const ServerList: React.FC = () => {
       <>
         <PageTitle>Servers</PageTitle>
         <table>
+		  <thead className={styles.header}>
+			<tr>
+			  <th>Region</th>
+			  <th>Server Name</th>
+			  <th>IP</th>
+			  <th>Activity</th>
+			</tr>
+		  </thead>
+		  <tbody>
           {data
             .sort((a, b) => {
               return (
@@ -38,23 +47,23 @@ export const ServerList: React.FC = () => {
               );
             })
             .map((server, idx) => (
-			<tr>
-              <td className={styles.infoContainer} key={idx}>
+			<tr key={idx} className={styles.infoContainer}>
+              <td>
                 <img
                   className={styles.region}
                   src={imageSources[server.region]}
                   alt="Region flag"
                 />
 			  </td>
-			  <td className={styles.infoContainer}>
+			  <td>
 			    <span className={styles.serverName}>
 				  {server.server_name}
 			    </span>
 			  </td>
-			  <td className={styles.infoContainer}>
+			  <td>
 				{server.IP.trim() && <span>{server.IP}</span>}
 			  </td>
-              <td className={styles.infoContainer}>
+              <td>
                 <span>
                   Last active{" "}
                   {formatDistance(
@@ -66,6 +75,7 @@ export const ServerList: React.FC = () => {
               </td>
             </tr>
 			))}
+		</tbody>
         </table>
       </>
     );
