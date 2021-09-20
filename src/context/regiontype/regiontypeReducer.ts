@@ -1,0 +1,60 @@
+import {
+  SEARCH_USERS,
+  SET_LOADING,
+  CLEAR_USERS,
+  GET_USER,
+  GET_REPOS,
+  SET_REGION, 
+  SET_GAMETYPE
+} from '../types';
+
+export default (state, action) => {
+  switch (action.type) {
+    case SEARCH_USERS:
+      return {
+        ...state,
+        users: action.payload,
+        loading: false
+      };
+    case GET_USER:
+      return {
+        ...state,
+        user: action.payload,
+        loading: false
+      };
+    case CLEAR_USERS:
+      return {
+        ...state,
+        users: [],
+        loading: false
+      };
+    case GET_REPOS: {
+      return {
+        ...state,
+        repos: action.payload,
+        loading: false
+      };
+    }
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: true
+      };
+	case SET_REGION:
+	  // console.log("in SET_REGION REDUCER:" + action.payload);
+	  // console.log("current state.region is :" + state.region);
+      return {
+        ...state,
+        region: action.payload
+      };
+	case SET_GAMETYPE:
+	  // console.log("in SET_GAMETYPE REDUCER:" + action.payload);
+	  // console.log("current state.gametype is :" + state.gametype);
+      return {
+        ...state,
+        gametype: action.payload
+      };
+    default:
+      return state;
+  }
+};

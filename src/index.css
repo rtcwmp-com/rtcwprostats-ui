@@ -22,8 +22,19 @@ body,
   padding: 0;
 }
 
+
+
 #root {
   display: flex;
+}
+
+.horizontal {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.filter {
+  margin-bottom: 50px;
 }
 
 a,
@@ -35,5 +46,58 @@ a:visited {
 :root {
   --background: #12161d;
   --background-light: #1c222d;
+  --background-dark: #1c222f;
+  --background-darker: #0c1529;
   --font-color: #fff;
+  --primary-color: #003699;
+  --dark-color: #333333;
+  --danger-color: #dc3545;
+  --success-color: #28a745;
+}
+
+.btn-light
+{
+  background: var(--background-light);
+  color: #333;
+  border: none;
+}
+
+.btn-dark
+{
+  background: var(--background-dark);
+  color: #fff;
+  border: none;
+}
+
+.regiongametype
+{
+  margin-bottom: 2px;
+}
+
+.btn-highlight
+{
+  background: var(--background-darker);
+  color: #fff;
+  border-color: #888888;
+  border-width: thin;
+  font-weight: bold;
+}
+
+
+
+.btn {
+  font-family: Roboto, sans-serif;
+  display: inline-block;
+  color: var(--font-color);
+  padding: 0.4rem 1.3rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: opacity 0.2s ease-in;
+  outline: none;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
 }
