@@ -8,38 +8,8 @@ import {
   SET_GAMETYPE
 } from '../types';
 
-export default (state, action) => {
+export default (state: Object, action: Object) => {
   switch (action.type) {
-    case SEARCH_USERS:
-      return {
-        ...state,
-        users: action.payload,
-        loading: false
-      };
-    case GET_USER:
-      return {
-        ...state,
-        user: action.payload,
-        loading: false
-      };
-    case CLEAR_USERS:
-      return {
-        ...state,
-        users: [],
-        loading: false
-      };
-    case GET_REPOS: {
-      return {
-        ...state,
-        repos: action.payload,
-        loading: false
-      };
-    }
-    case SET_LOADING:
-      return {
-        ...state,
-        loading: true
-      };
 	case SET_REGION:
 	  // console.log("in SET_REGION REDUCER:" + action.payload);
 	  // console.log("current state.region is :" + state.region);
