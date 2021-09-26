@@ -22,7 +22,7 @@
   margin-left: auto;
 }
 
-.serverRow {
+.leaderRow {
   align-items: center;
   background-color: var(--background-light);
   border-bottom: 1px solid var(--background);
@@ -31,7 +31,7 @@
   padding: 12px;
 }
 
-.serverCell {
+.leaderCell {
   background-color: var(--background-light);
   display: flex;
   flex: 1;
