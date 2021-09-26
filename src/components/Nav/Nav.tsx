@@ -31,6 +31,12 @@ export const Nav: React.FC = () => {
             <span>Servers</span>
           </NavLink>
         </li>
+		<li>
+          <NavLink className={styles.linkItem} to="/leaders">
+            <VscServer className={styles.linkIcon} />
+            <span>Leaders</span>
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
