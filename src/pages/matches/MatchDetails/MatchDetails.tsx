@@ -4,8 +4,9 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { StatsApi } from "../../../api";
 import { IStatsResponse, ITeamOverviewData } from "../../../api/types";
+import { Loading } from "../../../components/Loading";
+import { MatchDetailsContent } from "./MatchDetailsContent";
 import { PageTitle } from "../../../components/PageTitle";
-import { TeamOverview } from "../../../components/TeamOverview/TeamOverview";
 import styles from "./MatchDetails.module.css";
 
 export const MatchDetails: React.FC = () => {
@@ -36,34 +37,15 @@ export const MatchDetails: React.FC = () => {
     );
   }, [data]);
 
-  if (isLoading) {
-    return (
-      <>
-        <PageTitle>Match Report</PageTitle>
-        <span className={styles.matchId}>{matchId}</span>
-        <div>Loading...</div>
-      </>
-    );
-  }
-
-  if (actualData) {
-    return (
-      <>
-        <PageTitle>Match Report</PageTitle>
-        <div className={styles.subHeader}>
-          <span className={styles.matchId}>{map}</span>
-          <span className={styles.matchId}>{matchId}</span>
-        </div>
-        <TeamOverview map={map} data={actualData} />
-      </>
-    );
-  }
-
   return (
     <>
       <PageTitle>Match Report</PageTitle>
-      <span className={styles.matchId}>{matchId}</span>
-      <div>Error while fetching match details</div>
+      <div className={styles.wrapper}>
+        {isLoading && <Loading />}
+        {data && (
+          <MatchDetailsContent data={actualData} map={map} matchId={matchId} />
+        )}
+      </div>
     </>
   );
 };

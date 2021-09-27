@@ -5,6 +5,9 @@ import unkSrc from "../assets/unk-flag.svg";
 
 import frostbiteSrc from "../assets/maps/te_frostbite.png";
 import beachSrc from "../assets/maps/mp_beach.png";
+import iceSrc from "../assets/maps/mp_ice.png";
+import ufoSrc from "../assets/maps/te_ufo.png";
+import subSrc from "../assets/maps/mp_sub.png";
 
 export const COLORS = {
   background: "#12161D",
@@ -20,6 +23,9 @@ export const COUNTRY_IMAGE_SOURCES = {
 export const MAP_SOURCES = {
   mp_beach: beachSrc,
   te_frostbite: frostbiteSrc,
+  mp_ice: iceSrc,
+  mp_sub: subSrc,
+  te_ufo: ufoSrc,
 };
 
 export const SET_REGION = "SET_REGION";
