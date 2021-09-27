@@ -1,6 +1,6 @@
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import { Content } from "./components/Content/Content";
 import { Nav } from "./components/Nav/Nav";
 import { MatchDetails } from "./pages/matches/MatchDetails/MatchDetails";
@@ -21,6 +21,9 @@ export const App: React.FC = () => {
             <Nav />
             <Content>
               <Switch>
+                <Route exact path="/">
+                  <Redirect to="/servers" />
+                </Route>{" "}
                 <Route exact path="/matches" component={MatchList} />
                 <Route path="/matches/server/:serverId" component={MatchList} />
                 <Route path="/matches/:matchId/:map" component={MatchDetails} />
