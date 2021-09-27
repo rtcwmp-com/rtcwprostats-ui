@@ -1,0 +1,13 @@
+.headerRow {
+  background-color: rgba(10, 0, 69, 0.55);
+  border-bottom: 1px solid var(--background);
+  display: flex;
+  flex: 1;
+  padding: 12px;
+}
+
+.headerCell {
+  background-color: rgba(10, 0, 69, 0.55);
+  display: flex;
+  flex: 1;
+}

@@ -1,0 +1,52 @@
+.serverInfo {
+  position: relative;
+}
+
+.colorBg {
+  background-color: rgba(0, 0, 0, 0.15);
+  height: 75px;
+  padding: 12px 24px 12px 12px;
+}
+
+.region {
+  height: 24px;
+  width: 24px;
+  padding-right: 30px;
+}
+
+.serverName {
+  font-size: 13px;
+}
+
+.timestamp {
+  margin-left: auto;
+}
+
+.serverRow {
+  align-items: center;
+  background-color: var(--background-light);
+  border-bottom: 1px solid var(--background);
+  display: flex;
+  flex: 1;
+  padding: 12px;
+}
+
+.serverCell {
+  background-color: var(--background-light);
+  display: flex;
+  flex: 1;
+}
+
+.headerRow {
+  background-color: rgba(10, 0, 69, 0.55);
+  border-bottom: 1px solid var(--background);
+  display: flex;
+  flex: 1;
+  padding: 12px;
+}
+
+.headerCell {
+  background-color: rgba(10, 0, 69, 0.55);
+  display: flex;
+  flex: 1;
+}

@@ -3,8 +3,8 @@ import { useMemo } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { StatsApi } from "../../../api";
-import { StatsResponse } from "../../../api/matches/types";
-import { PageTitle } from "../../../components/PageTitle/PageTitle";
+import { IStatsResponse } from "../../../api/types";
+import { PageTitle } from "../../../components/PageTitle";
 import {
   TeamOverview,
   TeamOverviewData,
@@ -13,7 +13,7 @@ import styles from "./MatchDetails.module.css";
 
 export const MatchDetails: React.FC = () => {
   const { matchId, map } = useParams<{ matchId: string; map: string }>();
-  const { data, isLoading } = useQuery<StatsResponse>(
+  const { data, isLoading } = useQuery<IStatsResponse>(
     ["match-stats", matchId],
     () => StatsApi.Matches.MatchStats(matchId)
   );

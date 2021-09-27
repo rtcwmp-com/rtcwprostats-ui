@@ -1,11 +1,11 @@
 import { AxiosInstance } from "axios";
 import { pickData } from "../util";
-import { PlayerDetails } from "./types";
+import { IPlayerDetails } from "../types";
 
 export const createPlayersApi = (agent: AxiosInstance) => {
   return {
     ById: async (playerId: string) => {
-      return agent.get<PlayerDetails[]>(`/player/${playerId}`).then(pickData);
+      return agent.get<IPlayerDetails[]>(`/player/${playerId}`).then(pickData);
     },
   };
 };
