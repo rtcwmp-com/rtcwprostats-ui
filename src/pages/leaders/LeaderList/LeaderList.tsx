@@ -1,58 +1,29 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext } from "react";
 import { useQuery } from "react-query";
 import { StatsApi } from "../../../api";
-import { LeaderItem } from "../../../api/leaders/types";
-import { PageTitle } from "../../../components/PageTitle/PageTitle";
-import styles from "./LeaderList.module.css";
-import { Link } from 'react-router-dom';
-import RegiontypeContext from '../../../context/regiontype/regiontypeContext';
-
-const LeaderRow: React.FC<{ leaderItem: LeaderItem }> = ({ leaderItem }) => {
-	
-  return (
-  <div className={styles.leaderRow}>
-	<Link to={`/player/${leaderItem.guid}`} className={styles.leaderCell}><span>{leaderItem.real_name}</span></Link>
-	<div className={styles.leaderCell}>{leaderItem.value}</div>
-	<div className={styles.leaderCell}>{leaderItem.games}</div>
-  </div>
-  );
-};
+import { ILeaderItem } from "../../../api/types";
+import { LeaderListContent } from "./LeaderListContent";
+import { Loading } from "../../../components/Loading";
+import { PageTitle } from "../../../components/PageTitle";
+import styles from "./Leaderlist.module.css";
+import { RegionTypeContext } from "../../../context/regionType";
 
 export const LeaderList: React.FC = () => {
-  const regiontypeContext = useContext(RegiontypeContext);
-  const { region, gametype } = regiontypeContext;
-  
-  const { isLoading, data } = useQuery<LeaderItem[]>(
+  const rTypeContext = useContext(RegionTypeContext);
+  const { region, gametype } = rTypeContext;
+
+  const { isLoading, data } = useQuery<ILeaderItem[]>(
     ["leaders", "elo", region, gametype, "30"],
     StatsApi.Leaders.GetLeaders
   );
 
-  if (isLoading) {
-    return <div>Loading</div>;
-  }
-
-  if (data && !("error" in data)) {
-	
-    return (
-      <>
-        <PageTitle>Leaders</PageTitle>
-		   <div className={styles.wrapper}>
-			<div className={styles.headerRow}>
-				<div className={styles.headerCell}>Player</div>
-				<div className={styles.headerCell}>Elo</div>
-				<div className={styles.headerCell}>Games</div>
-			</div>
-			   
-          {data
-            .sort((a, b) => {return (b.value - a.value);})
-            .map((leaderItem) => (
-			//.map((leaderItem, idx) => (
-				<LeaderRow key={leaderItem.guid} leaderItem={leaderItem} />
-			))}
-			</div>
-      </>
-    );
-  }
-
-  return <div>Error while fetching leaderboard.</div>;
+  return (
+    <>
+      <PageTitle>Leaders</PageTitle>
+      <div className={styles.wrapper}>
+        {isLoading && <Loading />}
+        {data && <LeaderListContent data={data} />}
+      </div>
+    </>
+  );
 };

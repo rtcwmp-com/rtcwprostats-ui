@@ -1,30 +1,21 @@
 import React from "react";
-import { PlayerStats } from "../../api/matches/types";
+import { ITeamOverviewData } from "../../api/types";
+import { MAP_SOURCES } from "../../constants";
 import styles from "./TeamOverview.module.css";
-import frostbiteSrc from "../../assets/maps/te_frostbite.png";
-import beachSrc from "../../assets/maps/mp_beach.png";
-import { useMemo } from "react";
-
-const mapsObj = {
-  mp_beach: beachSrc,
-  te_frostbite: frostbiteSrc,
-} as Record<string, string>;
-
-export type TeamOverviewData = { a: PlayerStats[]; b: PlayerStats[] };
 
 export type TeamOverviewProps = {
-  data: TeamOverviewData;
+  data: ITeamOverviewData;
   map: string;
 };
 
 export const TeamOverview: React.FC<TeamOverviewProps> = ({ data, map }) => {
-  const wrapperStyles = useMemo(() => {
-    const backgroundImage = `url(${mapsObj[map]})`;
-    return { backgroundImage };
-  }, [map]);
-
   return (
-    <div className={styles.wrapper} style={wrapperStyles}>
+    <div
+      className={styles.wrapper}
+      style={{
+        backgroundImage: `url(${(MAP_SOURCES as Record<string, string>)[map]})`,
+      }}
+    >
       <div className={styles.overlay} />
       <div className={styles.side}>
         <div className={styles.textWrapper}>

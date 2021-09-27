@@ -1,5 +1,11 @@
-import { createContext } from 'react';
+import { createContext } from "react";
+import { IRegionTypeContext } from "../types";
 
-const regiontypeContext = createContext();
+const RegionTypeContext = createContext({
+  region: "na",
+  gametype: "6",
+  setRegion: () => {},
+  setGametype: () => {},
+} as IRegionTypeContext);
 
-export default regiontypeContext;
+export default RegionTypeContext;

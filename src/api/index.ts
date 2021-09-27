@@ -12,7 +12,7 @@ const createStatsApi = () => {
     Matches: createMatchesApi(agent),
     Players: createPlayersApi(agent),
     Servers: createServersApi(agent),
-	Leaders: createLeadersApi(agent),
+    Leaders: createLeadersApi(agent),
   };
 };
 

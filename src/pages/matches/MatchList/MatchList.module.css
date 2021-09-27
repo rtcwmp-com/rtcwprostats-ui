@@ -2,27 +2,3 @@
   display: flex;
   flex-direction: column;
 }
-
-.matchRow {
-  align-items: center;
-  background-color: var(--background-light);
-  border-bottom: 1px solid var(--background);
-  display: flex;
-  flex: 1;
-  padding: 12px;
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  padding: 24px 24px 24px 0;
-}
-
-.map {
-  width: 150px;
-}
-
-.timestamp {
-  margin-left: auto;
-}

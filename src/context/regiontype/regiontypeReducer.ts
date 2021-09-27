@@ -1,30 +1,29 @@
-import {
-  SEARCH_USERS,
-  SET_LOADING,
-  CLEAR_USERS,
-  GET_USER,
-  GET_REPOS,
-  SET_REGION, 
-  SET_GAMETYPE
-} from '../types';
+import { SET_REGION, SET_GAMETYPE } from "../../constants";
 
-export default (state: Object, action: Object) => {
+import { IRegionTypeReducerAction, IRegionTypeState } from "../types";
+
+const regionTypeReducer = (
+  state: IRegionTypeState,
+  action: IRegionTypeReducerAction
+) => {
   switch (action.type) {
-	case SET_REGION:
-	  // console.log("in SET_REGION REDUCER:" + action.payload);
-	  // console.log("current state.region is :" + state.region);
+    case SET_REGION:
+      // console.log("in SET_REGION REDUCER:" + action.payload);
+      // console.log("current state.region is :" + state.region);
       return {
         ...state,
-        region: action.payload
+        region: action.payload,
       };
-	case SET_GAMETYPE:
-	  // console.log("in SET_GAMETYPE REDUCER:" + action.payload);
-	  // console.log("current state.gametype is :" + state.gametype);
+    case SET_GAMETYPE:
+      // console.log("in SET_GAMETYPE REDUCER:" + action.payload);
+      // console.log("current state.gametype is :" + state.gametype);
       return {
         ...state,
-        gametype: action.payload
+        gametype: action.payload,
       };
     default:
       return state;
   }
 };
+
+export default regionTypeReducer;

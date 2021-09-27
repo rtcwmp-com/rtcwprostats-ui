@@ -11,10 +11,10 @@ export const Nav: React.FC = () => {
       <div className={styles.logoWrapper}>
         <img src={logoSrc} alt="RTCWPRO Logo" />
       </div>
-	  <RegionTypePicker/>
+      <RegionTypePicker />
       <ul className={styles.linksList}>
         <li>
-          <NavLink className={styles.linkItem} to="/matches/all">
+          <NavLink className={styles.linkItem} to="/matches">
             <VscListFlat className={styles.linkIcon} />
             <span>Matches</span>
           </NavLink>
@@ -31,7 +31,7 @@ export const Nav: React.FC = () => {
             <span>Servers</span>
           </NavLink>
         </li>
-		<li>
+        <li>
           <NavLink className={styles.linkItem} to="/leaders">
             <VscServer className={styles.linkIcon} />
             <span>Leaders</span>

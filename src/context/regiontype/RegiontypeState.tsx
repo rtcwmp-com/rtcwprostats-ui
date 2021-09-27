@@ -1,46 +1,39 @@
-import React, { useReducer } from 'react';
-import axios from 'axios';
-import RegiontypeContext from './regiontypeContext';
-import RegiontypeReducer from './regiontypeReducer';
-import {
-  SET_REGION,
-  SET_GAMETYPE
-} from '../types';
+import React, { useReducer } from "react";
+import { RegionTypeContext, regionTypeReducer } from ".";
+import { SET_REGION, SET_GAMETYPE } from "../../constants";
 
-const RegiontypeState = props => {
+const RegionTypeState = ({ children }: { children: JSX.Element }) => {
   const initialState = {
-    users: [],
-    user: {},
-    repos: [],
-    loading: false,
-	region: 'na',
-	gametype: '6'
+    region: "na",
+    gametype: "6",
   };
 
-  const [state, dispatch] = useReducer(RegiontypeReducer, initialState);
-  
+  const [state, dispatch] = useReducer(regionTypeReducer, initialState);
+
   // Set Region
   const setRegion = (text: string) => {
-	  // console.log("State setRegion function got param: " + text);
-	  dispatch({ type: SET_REGION, payload: text });
-  }
-  
+    // console.log("State setRegion function got param: " + text);
+    dispatch({ type: SET_REGION, payload: text });
+  };
+
   // Set Gametype
   const setGametype = (text: string) => {
-	  // console.log("State setGametype function got param: " + text);
-	  dispatch({ type: SET_GAMETYPE, payload: text });
-  }
+    // console.log("State setGametype function got param: " + text);
+    dispatch({ type: SET_GAMETYPE, payload: text });
+  };
 
   return (
-    <RegiontypeContext.Provider value={ {
-		region: state.region,
-		setRegion,
-		gametype: state.gametype,
-		setGametype
-      } }>
-      {props.children}
-    </RegiontypeContext.Provider>
+    <RegionTypeContext.Provider
+      value={{
+        region: state.region,
+        setRegion,
+        gametype: state.gametype,
+        setGametype,
+      }}
+    >
+      {children}
+    </RegionTypeContext.Provider>
   );
 };
 
-export default RegiontypeState;
+export default RegionTypeState;
