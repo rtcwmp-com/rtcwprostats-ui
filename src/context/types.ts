@@ -1,7 +1,13 @@
 export interface IRegionTypeReducerAction {
   type: string;
-  payload: object;
+  payload: string;
 }
+
+export interface IRegionTypeState {
+  region: string;
+  gametype: string;
+}
+
 export interface IRegionTypeContext {
   region: string;
   gametype: string;

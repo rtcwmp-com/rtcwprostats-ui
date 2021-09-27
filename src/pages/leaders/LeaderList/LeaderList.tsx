@@ -5,7 +5,7 @@ import { ILeaderItem } from "../../../api/types";
 import { LeaderListContent } from "./LeaderListContent";
 import { Loading } from "../../../components/Loading";
 import { PageTitle } from "../../../components/PageTitle";
-import styles from "./LeaderList.module.css";
+import styles from "./Leaderlist.module.css";
 import { RegionTypeContext } from "../../../context/regionType";
 
 export const LeaderList: React.FC = () => {

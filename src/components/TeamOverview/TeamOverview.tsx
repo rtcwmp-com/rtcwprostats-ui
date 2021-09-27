@@ -1,12 +1,10 @@
 import React from "react";
-import { IPlayerStats } from "../../api/types";
+import { ITeamOverviewData } from "../../api/types";
 import { MAP_SOURCES } from "../../constants";
 import styles from "./TeamOverview.module.css";
 
-export type TeamOverviewData = { a: IPlayerStats[]; b: IPlayerStats[] };
-
 export type TeamOverviewProps = {
-  data: TeamOverviewData;
+  data: ITeamOverviewData;
   map: string;
 };
 

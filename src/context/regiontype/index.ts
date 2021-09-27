@@ -1,3 +1,3 @@
 export { default as RegionTypeContext } from "./RegionTypeContext";
-export { default as RegionTypeReducer } from "./RegionTypeReducer";
+export { default as regionTypeReducer } from "./regionTypeReducer";
 export { default as RegionTypeState } from "./RegionTypeState";

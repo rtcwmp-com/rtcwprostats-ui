@@ -1,18 +1,14 @@
 import React, { useReducer } from "react";
-import { RegionTypeContext, RegionTypeReducer } from ".";
+import { RegionTypeContext, regionTypeReducer } from ".";
 import { SET_REGION, SET_GAMETYPE } from "../constants";
 
 const RegionTypeState = ({ children }: { children: JSX.Element }) => {
   const initialState = {
-    users: [],
-    user: {},
-    repos: [],
-    loading: false,
     region: "na",
     gametype: "6",
   };
 
-  const [state, dispatch] = useReducer(RegionTypeReducer, initialState);
+  const [state, dispatch] = useReducer(regionTypeReducer, initialState);
 
   // Set Region
   const setRegion = (text: string) => {

@@ -172,7 +172,7 @@ export interface IPlayerStats {
 }
 
 interface IPlayerStatsDictionary {
-  [playerId: string]: PlayerStats;
+  [playerId: string]: IPlayerStats;
 }
 
 export interface IServersAPIParams {
@@ -219,4 +219,9 @@ export interface IStatsResponse {
   statsall: IPlayerStatsDictionary[];
   match_id: string;
   type: string;
+}
+
+export interface ITeamOverviewData {
+  a: IPlayerStats[];
+  b: IPlayerStats[];
 }

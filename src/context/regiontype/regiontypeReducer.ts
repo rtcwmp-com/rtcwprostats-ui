@@ -1,16 +1,11 @@
-import {
-  // SEARCH_USERS,
-  // SET_LOADING,
-  // CLEAR_USERS,
-  // GET_USER,
-  // GET_REPOS,
-  SET_REGION,
-  SET_GAMETYPE,
-} from "../constants";
+import { SET_REGION, SET_GAMETYPE } from "../constants";
 
-import { IRegionTypeReducerAction } from "../types";
+import { IRegionTypeReducerAction, IRegionTypeState } from "../types";
 
-const RegionTypeReducer = (state: Object, action: IRegionTypeReducerAction) => {
+const regionTypeReducer = (
+  state: IRegionTypeState,
+  action: IRegionTypeReducerAction
+) => {
   switch (action.type) {
     case SET_REGION:
       // console.log("in SET_REGION REDUCER:" + action.payload);
@@ -31,4 +26,4 @@ const RegionTypeReducer = (state: Object, action: IRegionTypeReducerAction) => {
   }
 };
 
-export default RegionTypeReducer;
+export default regionTypeReducer;
