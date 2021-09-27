@@ -1,4 +1,4 @@
-import { SET_REGION, SET_GAMETYPE } from "../constants";
+import { SET_REGION, SET_GAMETYPE } from "../../constants";
 
 import { IRegionTypeReducerAction, IRegionTypeState } from "../types";
 

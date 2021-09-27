@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 import { RegionTypeContext, regionTypeReducer } from ".";
-import { SET_REGION, SET_GAMETYPE } from "../constants";
+import { SET_REGION, SET_GAMETYPE } from "../../constants";
 
 const RegionTypeState = ({ children }: { children: JSX.Element }) => {
   const initialState = {

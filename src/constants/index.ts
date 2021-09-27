@@ -22,4 +22,7 @@ export const MAP_SOURCES = {
   te_frostbite: frostbiteSrc,
 };
 
+export const SET_REGION = "SET_REGION";
+export const SET_GAMETYPE = "SET_GAMETYPE";
+
 export const API_BASE_URL = "https://rtcwproapi.donkanator.com";
