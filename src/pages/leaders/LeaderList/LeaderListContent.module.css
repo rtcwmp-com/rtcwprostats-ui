@@ -3,11 +3,11 @@
   border-bottom: 1px solid var(--background);
   display: flex;
   flex: 1;
-  padding: 12px;
+  padding: 0px 0px 1px 0px;
 }
 
 .headerCell {
-  background-color: rgba(10, 0, 69, 0.55);
   display: flex;
   flex: 1;
+  padding: 12px;
 }
