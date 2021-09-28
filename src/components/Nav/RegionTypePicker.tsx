@@ -8,17 +8,12 @@ export const RegionTypePicker: React.FC = () => {
   const onClickRegion = (e: React.MouseEvent<HTMLButtonElement>) => {
     const element = e.currentTarget as HTMLButtonElement;
     rTypeContext.setRegion(element.value);
-    //console.log("Clicked " + e.target.value);
   };
 
   const onClickGametype = (e: React.MouseEvent<HTMLButtonElement>) => {
     const element = e.currentTarget as HTMLButtonElement;
     rTypeContext.setGametype(element.value);
-    // console.log("Clicked " + e.target.value);
   };
-
-  // console.log("From context - region   " + region);
-  // console.log("From context - gametype " + gametype);
 
   return (
     <div className="filter">

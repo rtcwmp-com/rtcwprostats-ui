@@ -6,7 +6,6 @@ export const createMatchesApi = (agent: AxiosInstance) => {
   return {
     Recent: async (params: IServersAPIParams) => {
       let dict_ = params["queryKey"][1];
-      // console.log(dict_);
 
       if (dict_["serverId"]) {
         return agent

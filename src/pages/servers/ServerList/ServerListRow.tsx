@@ -3,6 +3,7 @@ import React from "react";
 import { formatDistance } from "date-fns";
 import { Link } from "react-router-dom";
 import { IServerSimple } from "../../../api/types";
+import { dateStringToDate } from "../../../util";
 import { COUNTRY_IMAGE_SOURCES } from "../../../constants";
 import styles from "./ServerListContents.module.css";
 
@@ -29,7 +30,8 @@ export const ServerListRow: React.FC<{ server: IServerSimple }> = ({
         {" "}
         <span className={styles.timestamp}>
           Last active{" "}
-          {formatDistance(new Date(server.last_submission), new Date())} ago
+          {formatDistance(dateStringToDate(server.last_submission), new Date())}{" "}
+          ago
         </span>
       </div>
     </div>
