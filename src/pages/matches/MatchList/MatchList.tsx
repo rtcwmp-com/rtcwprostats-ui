@@ -7,7 +7,7 @@ import { MatchListContent } from "./MatchListContent";
 import { PageTitle } from "../../../components/PageTitle";
 import styles from "./MatchList.module.css";
 import { useParams } from "react-router-dom";
-import { RegionTypeContext } from "../../../context/regionType";
+import { RegionTypeContext } from "../../../context";
 
 export const MatchList: React.FC = () => {
   const { serverId } = useParams<{ serverId: string }>();

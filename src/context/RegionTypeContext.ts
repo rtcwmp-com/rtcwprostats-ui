@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { IRegionTypeContext } from "../types";
+import { IRegionTypeContext } from "./types";
 
 const RegionTypeContext = createContext({
   region: "na",

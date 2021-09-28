@@ -8,7 +8,7 @@ import { MatchList } from "./pages/matches/MatchList/MatchList";
 import { PlayerList } from "./pages/players/PlayerList/PlayerList";
 import { ServerList } from "./pages/servers/ServerList/ServerList";
 import { LeaderList } from "./pages/leaders/LeaderList/LeaderList";
-import RegionTypeState from "./context/regionType/RegionTypeState";
+import RegionTypeState from "./context/RegionTypeState";
 
 const queryClient = new QueryClient();
 
