@@ -1,6 +1,7 @@
 import React from "react";
 
 import { ServerListRow } from "./ServerListRow";
+import { dateStringToDate } from "../../../util";
 import { IServerSimple } from "../../../api/types";
 
 export const ServerListContents = ({ data }: { data: IServerSimple[] }) => {
@@ -10,8 +11,8 @@ export const ServerListContents = ({ data }: { data: IServerSimple[] }) => {
       {data
         .sort((a, b) => {
           return (
-            new Date(b.last_submission).getTime() -
-            new Date(a.last_submission).getTime()
+            dateStringToDate(b.last_submission).getTime() -
+            dateStringToDate(a.last_submission).getTime()
           );
         })
         .map((server, idx) => (

@@ -12,13 +12,11 @@ const RegionTypeState = ({ children }: { children: JSX.Element }) => {
 
   // Set Region
   const setRegion = (text: string) => {
-    // console.log("State setRegion function got param: " + text);
     dispatch({ type: SET_REGION, payload: text });
   };
 
   // Set Gametype
   const setGametype = (text: string) => {
-    // console.log("State setGametype function got param: " + text);
     dispatch({ type: SET_GAMETYPE, payload: text });
   };
 
