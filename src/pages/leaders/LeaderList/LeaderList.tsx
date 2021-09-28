@@ -6,7 +6,7 @@ import { LeaderListContent } from "./LeaderListContent";
 import { Loading } from "../../../components/Loading";
 import { PageTitle } from "../../../components/PageTitle";
 import styles from "./Leaderlist.module.css";
-import { RegionTypeContext } from "../../../context/regionType";
+import { RegionTypeContext } from "../../../context";
 
 export const LeaderList: React.FC = () => {
   const rTypeContext = useContext(RegionTypeContext);

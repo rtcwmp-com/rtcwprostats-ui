@@ -7,7 +7,7 @@ import { PageTitle } from "../../../components/PageTitle";
 import { ServerListContents } from "./ServerListContents";
 import styles from "./ServerList.module.css";
 
-import { RegionTypeContext } from "../../../context/regionType";
+import { RegionTypeContext } from "../../../context";
 
 export const ServerList: React.FC = () => {
   const rTypeContext = useContext(RegionTypeContext);

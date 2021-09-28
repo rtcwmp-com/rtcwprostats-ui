@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { RegionTypeContext } from "../../context/regionType";
+import { RegionTypeContext } from "../../context";
 
 export const RegionTypePicker: React.FC = () => {
   const rTypeContext = useContext(RegionTypeContext);

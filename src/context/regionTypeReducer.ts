@@ -1,6 +1,6 @@
-import { SET_REGION, SET_GAMETYPE } from "../../constants";
+import { SET_REGION, SET_GAMETYPE } from "../constants";
 
-import { IRegionTypeReducerAction, IRegionTypeState } from "../types";
+import { IRegionTypeReducerAction, IRegionTypeState } from "./types";
 
 const regionTypeReducer = (
   state: IRegionTypeState,
