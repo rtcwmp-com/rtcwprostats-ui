@@ -101,3 +101,9 @@ a:visited {
   display: block;
   width: 100%;
 }
+
+.btn-catselector {
+  display: block;
+  width: 100%;
+  max-width: 90px;
+}

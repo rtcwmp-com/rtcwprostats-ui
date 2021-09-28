@@ -12,10 +12,10 @@ export const createLeadersApi = (agent: AxiosInstance) => {
       let item_limit_string = "";
 
       // TODO - Not sure what this is suppose to do atm
-      category ? (category = "elo") : (category = category);
-      region ? (region = "na") : (region = region);
-      match_type ? (match_type = "6") : (match_type = match_type);
-      item_limit
+      category == null ? (category = "elo") : (category = category);
+      region == null ? (region = "na") : (region = region);
+      match_type == null ? (match_type = "6") : (match_type = match_type);
+      item_limit == null 
         ? (item_limit_string = "")
         : (item_limit_string = "/limit/" + item_limit);
 
