@@ -1,0 +1,8 @@
+.filter {
+  margin: 10px 0;
+}
+
+.filterRow {
+  display: flex;
+  margin-bottom: 5px;
+}

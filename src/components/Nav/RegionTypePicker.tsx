@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
-import { RegionTypeContext } from "../../context";
+import { RegionTypeContext, RegionTypeState } from "../../context";
+import { GAME_TYPES, REGIONS } from "../../constants";
+import styles from "./RegionTypePicker.module.css";
 
 export const RegionTypePicker: React.FC = () => {
   const rTypeContext = useContext(RegionTypeContext);
@@ -16,55 +18,33 @@ export const RegionTypePicker: React.FC = () => {
   };
 
   return (
-    <div className="filter">
-      <div className="horizontal">
-        <button
-          className={`btn ${
-            region === "na" ? "btn-highlight" : "btn-dark"
-          } btn-block btn-regiongametype`}
-          value="na"
-          onClick={onClickRegion}
-        >
-          NA
-        </button>
-        <button
-          className={`btn ${
-            region === "eu" ? "btn-highlight" : "btn-dark"
-          } btn-block btn-regiongametype`}
-          value="eu"
-          onClick={onClickRegion}
-        >
-          EU
-        </button>
-        <button
-          className={`btn ${
-            region === "sa" ? "btn-highlight" : "btn-dark"
-          } btn-block btn-regiongametype`}
-          value="sa"
-          onClick={onClickRegion}
-        >
-          SA
-        </button>
+    <div className={styles.filter}>
+      <div className={styles.filterRow}>
+        {REGIONS.map((item) => (
+          <button
+            key={item.id}
+            className={`btn ${
+              region === item.id ? "btn-highlight" : "btn-dark"
+            } btn-block btn-regiongametype`}
+            value={item.id}
+            onClick={onClickRegion}
+          >
+            {item.name}
+          </button>
+        ))}
       </div>
-      <div className="horizontal">
-        <button
-          className={`btn ${
-            gametype === "3" ? "btn-highlight" : "btn-dark"
-          } btn-block btn-regiongametype`}
-          value="3"
-          onClick={onClickGametype}
-        >
-          3v3
-        </button>
-        <button
-          className={`btn ${
-            gametype === "6" ? "btn-highlight" : "btn-dark"
-          } btn-block btn-regiongametype`}
-          value="6"
-          onClick={onClickGametype}
-        >
-          6v6
-        </button>
+      <div className={styles.filterRow}>
+        {GAME_TYPES.map((item) => (
+          <button
+            className={`btn ${
+              gametype === item.id ? "btn-highlight" : "btn-dark"
+            } btn-block btn-regiongametype`}
+            value={item.id}
+            onClick={onClickGametype}
+          >
+            {item.name}
+          </button>
+        ))}
       </div>
     </div>
   );
