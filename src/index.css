@@ -22,8 +22,6 @@ body,
   padding: 0;
 }
 
-
-
 #root {
   display: flex;
 }
@@ -31,10 +29,6 @@ body,
 .horizontal {
   display: flex;
   margin-bottom: 5px;
-}
-
-.filter {
-  margin-bottom: 50px;
 }
 
 a,
@@ -55,35 +49,29 @@ a:visited {
   --success-color: #28a745;
 }
 
-.btn-light
-{
+.btn-light {
   background: var(--background-light);
   color: #333;
   border: none;
 }
 
-.btn-dark
-{
+.btn-dark {
   background: var(--background-dark);
   color: #fff;
   border: none;
 }
 
-.regiongametype
-{
+.regiongametype {
   margin-bottom: 2px;
 }
 
-.btn-highlight
-{
+.btn-highlight {
   background: var(--background-darker);
   color: #fff;
   border-color: #888888;
   border-width: thin;
   font-weight: bold;
 }
-
-
 
 .btn {
   font-family: Roboto, sans-serif;
@@ -95,6 +83,10 @@ a:visited {
   margin-right: 0.5rem;
   transition: opacity 0.2s ease-in;
   outline: none;
+}
+
+.btn:last-child {
+  margin-right: 0;
 }
 
 .btn-block {

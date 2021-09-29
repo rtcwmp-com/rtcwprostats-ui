@@ -2,8 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import logoSrc from "../../assets/rtcwpro-logo.png";
 import styles from "./Nav.module.css";
-import { VscListFlat, VscAccount, VscServer } from "react-icons/vsc";
+
 import { RegionTypePicker } from "./RegionTypePicker";
+import { NAV_LINKS } from "../../constants";
 
 export const Nav: React.FC = () => {
   return (
@@ -13,30 +14,17 @@ export const Nav: React.FC = () => {
       </div>
       <RegionTypePicker />
       <ul className={styles.linksList}>
-        <li>
-          <NavLink className={styles.linkItem} to="/matches">
-            <VscListFlat className={styles.linkIcon} />
-            <span>Matches</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink className={styles.linkItem} to="/players">
-            <VscAccount className={styles.linkIcon} />
-            <span>Players</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink className={styles.linkItem} to="/servers">
-            <VscServer className={styles.linkIcon} />
-            <span>Servers</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink className={styles.linkItem} to="/leaders">
-            <VscServer className={styles.linkIcon} />
-            <span>Leaders</span>
-          </NavLink>
-        </li>
+        {NAV_LINKS.map((item) => {
+          const NavIcon = item.component;
+          return (
+            <li key={item.id}>
+              <NavLink className={styles.linkItem} to={`${item.id}`}>
+                <NavIcon className={styles.linkIcon} />
+                <span>{item.name}</span>
+              </NavLink>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
