@@ -47,6 +47,7 @@ export const CATEGORIES = [
   { id: "elo", name: "ELO" },
   { id: "kdr", name: "KDR" },
   { id: "acc", name: "ACC" },
+  { id: "killpeak", name: "KILLPEAK" },
 ];
 
 export const NAV_LINKS = [

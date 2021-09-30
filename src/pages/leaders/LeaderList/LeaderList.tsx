@@ -46,7 +46,7 @@ export const LeaderList: React.FC = () => {
 
       <div className={styles.wrapper}>
         {isLoading && <Loading />}
-        {data && <LeaderListContent data={data} />}
+        {data && !("error" in data) && <LeaderListContent data={data} />}
       </div>
     </>
   );
