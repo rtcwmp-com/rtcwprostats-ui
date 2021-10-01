@@ -20,6 +20,7 @@ export const RegionTypePicker: React.FC = () => {
   return (
     <div className={styles.filter}>
       <div className={styles.filterRow}>
+        {console.log("REGIONS: \n", REGIONS)}
         {REGIONS.map((item) => (
           <button
             key={item.id}
@@ -36,6 +37,7 @@ export const RegionTypePicker: React.FC = () => {
       <div className={styles.filterRow}>
         {GAME_TYPES.map((item) => (
           <button
+            key={item.id}
             className={`btn ${
               gametype === item.id ? "btn-highlight" : "btn-dark"
             } btn-block btn-regiongametype`}
