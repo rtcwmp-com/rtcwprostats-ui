@@ -11,7 +11,7 @@ import subSrc from "../assets/maps/mp_sub.png";
 
 import { AiOutlineTrophy } from "react-icons/ai";
 import { IoLogoGameControllerB } from "react-icons/io";
-import { VscListFlat, VscAccount, VscServer } from "react-icons/vsc";
+import { VscAccount, VscServer } from "react-icons/vsc";
 
 export const COLORS = {
   background: "#12161D",
@@ -33,9 +33,9 @@ export const MAP_SOURCES = {
 };
 
 export const REGIONS = [
-  { id: "na", name: "NA" },
-  { id: "eu", name: "EU" },
-  { id: "sa", name: "SA" },
+  { id: "na", name: "NA", longName: "North America" },
+  { id: "eu", name: "EU", longName: "Europe" },
+  { id: "sa", name: "SA", longName: "South America" },
 ];
 
 export const GAME_TYPES = [
@@ -56,6 +56,36 @@ export const NAV_LINKS = [
   { id: "servers", name: "Servers", component: VscServer },
   { id: "leaders", name: "Leaders", component: AiOutlineTrophy },
 ];
+
+export const STAT_KEYS: Record<string, string> = {
+  kills: "Kills",
+  killpeak: "Kill Peak",
+  gibs: "Gibs",
+  obj_returned: "Objective Returned",
+  accuracy: "Accuracy",
+  obj_captured: "Objective Captured",
+  damageteam: "Team Damage",
+  knifekills: "Knife Kills",
+  score: "Score",
+  headshots: "Headshots",
+  healthgiven: "Health Given",
+  dyn_planted: "Dynamite Planted",
+  games: "Games Played",
+  damagegiven: "Damage Given",
+  dyn_defused: "Dynamite Defused",
+  deaths: "Total Deaths",
+  obj_taken: "Objective Taken",
+  efficiency: "Efficiency",
+  poisoned: "Poisoned",
+  revives: "Revives",
+  hits: "Shots hit",
+  teamkills: "Team kills",
+  ammogiven: "Ammo Given",
+  suicides: "Suicides",
+  damagereceived: "Damage Received",
+  shots: "Shots Fired",
+  obj_destroyed: "Objective Destroyed",
+};
 
 export const SET_REGION = "SET_REGION";
 export const SET_GAMETYPE = "SET_GAMETYPE";
