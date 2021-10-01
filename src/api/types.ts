@@ -55,39 +55,48 @@ export interface IMatchesAPIParams {
   queryKey: any;
 }
 
+interface IElo {
+  elo: number;
+  games: number;
+}
+
+interface IAggStats {
+  kills: number;
+  killpeak: number;
+  gibs: number;
+  obj_returned: number;
+  accuracy: number;
+  obj_captured: number;
+  damageteam: number;
+  knifekills: number;
+  score: number;
+  headshots: number;
+  healthgiven: number;
+  dyn_planted: number;
+  games: number;
+  damagegiven: number;
+  dyn_defused: number;
+  deaths: number;
+  obj_taken: number;
+  efficiency: number;
+  poisoned: number;
+  revives: number;
+  hits: number;
+  teamkills: number;
+  ammogiven: number;
+  suicides: number;
+  damagereceived: number;
+  shots: number;
+  obj_destroyed: number;
+}
+
 export interface IPlayerDetails {
-  elos: Record<string, number>;
-  real_name: string;
-  stats_sum: {
-    kills: number;
-    killpeak: number;
-    gibs: number;
-    obj_returned: number;
-    accuracy: number;
-    obj_captured: number;
-    damageteam: number;
-    knifekills: number;
-    score: number;
-    headshots: number;
-    healthgiven: number;
-    dyn_planted: number;
-    games: number;
-    damagegiven: number;
-    dyn_defused: number;
-    deaths: number;
-    obj_taken: number;
-    efficiency: number;
-    poisoned: number;
-    revives: number;
-    hits: number;
-    teamkills: number;
-    ammogiven: number;
-    suicides: number;
-    damagereceived: number;
-    shots: number;
-    obj_destroyed: number;
-  };
-  wstats_sum: {
+  elos: Record<string, IElo>;
+  kdr: Record<string, number>;
+  acc: Record<string, number>;
+  realname: string;
+  aggstats: Record<string, Record<string, number>>;
+  aggwstats: {
     Knife: {
       kills: number;
       hits: number;

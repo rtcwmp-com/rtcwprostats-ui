@@ -5,6 +5,7 @@ import { Content } from "./components/Content/Content";
 import { Nav } from "./components/Nav/Nav";
 import { MatchDetails } from "./pages/matches/MatchDetails/MatchDetails";
 import { MatchList } from "./pages/matches/MatchList/MatchList";
+import { Player } from "./pages/players/PlayerList/Player";
 import { PlayerList } from "./pages/players/PlayerList/PlayerList";
 import { ServerList } from "./pages/servers/ServerList/ServerList";
 import { LeaderList } from "./pages/leaders/LeaderList/LeaderList";
@@ -28,6 +29,7 @@ export const App: React.FC = () => {
                 <Route path="/matches/server/:serverId" component={MatchList} />
                 <Route path="/matches/:matchId/:map" component={MatchDetails} />
                 <Route exact path="/players" component={PlayerList} />
+                <Route path="/player/:playerId" component={Player} />
                 <Route exact path="/servers" component={ServerList} />
                 <Route exact path="/leaders" component={LeaderList} />
               </Switch>

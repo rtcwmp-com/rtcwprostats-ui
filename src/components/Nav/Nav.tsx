@@ -18,7 +18,7 @@ export const Nav: React.FC = () => {
           const NavIcon = item.component;
           return (
             <li key={item.id}>
-              <NavLink className={styles.linkItem} to={`${item.id}`}>
+              <NavLink className={styles.linkItem} to={`/${item.id}`}>
                 <NavIcon className={styles.linkIcon} />
                 <span>{item.name}</span>
               </NavLink>

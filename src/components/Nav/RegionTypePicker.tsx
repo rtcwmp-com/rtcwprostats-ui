@@ -20,7 +20,6 @@ export const RegionTypePicker: React.FC = () => {
   return (
     <div className={styles.filter}>
       <div className={styles.filterRow}>
-        {console.log("REGIONS: \n", REGIONS)}
         {REGIONS.map((item) => (
           <button
             key={item.id}
