@@ -7,7 +7,7 @@ export const createPlayersApi = (agent: AxiosInstance) => {
     ById: async (playerId: string) => {
       return agent.get<IPlayerDetails>(`/player/${playerId}`).then(pickData);
     },
-    RecentThirty: async (limit: number) => {
+    RecentPlayers: async (limit: number) => {
       return agent
         .get<IRecentPlayer[]>(`/aliases/recent/limit/${limit}`)
         .then(pickData);
