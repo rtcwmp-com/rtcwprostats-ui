@@ -1,11 +1,10 @@
 import React from "react";
 import { IMatch } from "../../../api/types";
 import { MatchListRow } from "./MatchListRow";
-import styles from "./MatchList.module.css";
 
 export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
   return (
-    <div className={styles.wrapper}>
+    <div>
       {data
         .filter(
           (item, idx, arr) =>

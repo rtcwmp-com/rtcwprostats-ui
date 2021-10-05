@@ -5,7 +5,6 @@ import { IMatch } from "../../../api/types";
 import { Loading } from "../../../components/Loading";
 import { MatchListContent } from "./MatchListContent";
 import { PageTitle } from "../../../components/PageTitle";
-import styles from "./MatchList.module.css";
 import { useParams } from "react-router-dom";
 import { RegionTypeContext } from "../../../context";
 
@@ -23,10 +22,8 @@ export const MatchList: React.FC = () => {
   return (
     <>
       <PageTitle>Recent Matches</PageTitle>
-      <div className={styles.wrapper}>
-        {isLoading && <Loading />}
-        {data && <MatchListContent data={data} />}
-      </div>
+      {isLoading && <Loading />}
+      {data && <MatchListContent data={data} />}
     </>
   );
 };

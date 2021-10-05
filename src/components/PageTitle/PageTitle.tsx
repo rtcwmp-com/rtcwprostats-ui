@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./PageTitle.module.css";
+import { Heading } from "@chakra-ui/react";
 
 const PageTitle: React.FC = ({ children }) => {
-  return <h1 className={styles.pageTitle}>{children}</h1>;
+  return <Heading my="10px">{children}</Heading>;
 };
 
 export default PageTitle;

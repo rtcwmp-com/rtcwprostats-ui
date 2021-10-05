@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./Loading.module.css";
+import { Spinner } from "@chakra-ui/react";
 
 const Loading: React.FC = ({ children }) => {
-  return <div className={styles.ldsDualRing}>{children}</div>;
+  return <Spinner color="red.500">{children}</Spinner>;
 };
 
 export default Loading;

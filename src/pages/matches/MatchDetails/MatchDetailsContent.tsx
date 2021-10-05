@@ -2,7 +2,7 @@ import React from "react";
 
 import { TeamOverview } from "../../../components/TeamOverview/TeamOverview";
 import { ITeamOverviewData } from "../../../api/types";
-import styles from "./MatchDetails.module.css";
+import styles from "./MatchDetailsContent.module.css";
 
 export const MatchDetailsContent = ({
   data,
