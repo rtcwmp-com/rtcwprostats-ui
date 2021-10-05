@@ -10,7 +10,7 @@ import { LAST_RECENT_PLAYERS_NUM } from "../../../constants";
 export const PlayerList: React.FC = () => {
   const { isLoading, data } = useQuery<IRecentPlayer[]>(
     ["players-recent-thirty"],
-    () => StatsApi.Players.RecentThirty(LAST_RECENT_PLAYERS_NUM)
+    () => StatsApi.Players.RecentPlayers(LAST_RECENT_PLAYERS_NUM)
   );
 
   return (

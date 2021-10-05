@@ -30,7 +30,11 @@ export const PlayerSearch: React.FC = () => {
     return new Promise<void>(async (resolve, reject) => {
       try {
         const result = await StatsApi.Players.Search(values.search);
-        setPlayerSearchResult(result);
+        if (!("error" in result)) {
+          setPlayerSearchResult(result);
+        } else {
+          setPlayerSearchResult([]);
+        }
       } catch (err) {
         reject(err);
       }
@@ -78,10 +82,12 @@ export const PlayerSearch: React.FC = () => {
             key={item.guid}
           >
             <LinkOverlay as={reactLink} to={`/player/${item.guid}`}>
-              {item.real_name} 
-              { item.frequent_region && 
-                <Tag mx={1} color="white" bgColor="red.800">{item.frequent_region}</Tag>
-              }
+              {item.real_name}
+              {item.frequent_region && (
+                <Tag mx={1} color="white" bgColor="red.800">
+                  {item.frequent_region}
+                </Tag>
+              )}
             </LinkOverlay>
             <Text fontSize={10} color="grey">
               GUID: {item.guid}
