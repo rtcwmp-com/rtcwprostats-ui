@@ -7,6 +7,7 @@ import { MatchDetails } from "./pages/matches/MatchDetails/MatchDetails";
 import { MatchList } from "./pages/matches/MatchList/MatchList";
 import { Player } from "./pages/players/PlayerList/Player";
 import { PlayerList } from "./pages/players/PlayerList/PlayerList";
+import { PlayerSearch } from "./pages/players/PlayerSearch/PlayerSearch";
 import { ServerList } from "./pages/servers/ServerList/ServerList";
 import { LeaderList } from "./pages/leaders/LeaderList/LeaderList";
 import RegionTypeState from "./context/RegionTypeState";
@@ -42,6 +43,7 @@ export const App: React.FC = () => {
                     component={MatchDetails}
                   />
                   <Route exact path="/players" component={PlayerList} />
+                  <Route exact path="/search" component={PlayerSearch} />
                   <Route path="/player/:playerId" component={Player} />
                   <Route exact path="/servers" component={ServerList} />
                   <Route exact path="/leaders" component={LeaderList} />

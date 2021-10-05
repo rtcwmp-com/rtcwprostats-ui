@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import { pickData } from "../util";
-import { IRecentPlayer, IPlayerDetails } from "../types";
+import { IRecentPlayer, IPlayerDetails, IPlayerSearchResult } from "../types";
 
 export const createPlayersApi = (agent: AxiosInstance) => {
   return {
@@ -12,5 +12,8 @@ export const createPlayersApi = (agent: AxiosInstance) => {
         .get<IRecentPlayer[]>(`/aliases/recent/limit/${limit}`)
         .then(pickData);
     },
+    Search: async (partialName: string) => {
+      return agent.get<IPlayerSearchResult[]>(`player/search/${partialName}`).then(pickData);
+    }
   };
 };
