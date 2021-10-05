@@ -7,7 +7,6 @@ import { IStatsResponse, ITeamOverviewData } from "../../../api/types";
 import { Loading } from "../../../components/Loading";
 import { MatchDetailsContent } from "./MatchDetailsContent";
 import { PageTitle } from "../../../components/PageTitle";
-import styles from "./MatchDetails.module.css";
 
 export const MatchDetails: React.FC = () => {
   const { matchId, map } = useParams<{ matchId: string; map: string }>();
@@ -40,12 +39,10 @@ export const MatchDetails: React.FC = () => {
   return (
     <>
       <PageTitle>Match Report</PageTitle>
-      <div className={styles.wrapper}>
-        {isLoading && <Loading />}
-        {data && (
-          <MatchDetailsContent data={actualData} map={map} matchId={matchId} />
-        )}
-      </div>
+      {isLoading && <Loading />}
+      {data && (
+        <MatchDetailsContent data={actualData} map={map} matchId={matchId} />
+      )}
     </>
   );
 };
