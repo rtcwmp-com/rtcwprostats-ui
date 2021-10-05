@@ -1,20 +1,23 @@
 import React from "react";
 import { useQuery } from "react-query";
+import { Loading } from "../../../components/Loading";
 import { PageTitle } from "../../../components/PageTitle";
+import { RecentPlayerTable } from "../../../components/RecentPlayerTable";
 import { StatsApi } from "../../../api";
-import { IPlayerDetails } from "../../../api/types";
+import { IRecentPlayer } from "../../../api/types";
+import { LAST_RECENT_PLAYERS_NUM } from "../../../constants";
 
 export const PlayerList: React.FC = () => {
-  // const { isLoading, data } = useQuery<IPlayerDetails[]>(
-  //   ["players-recent-thirty"],
-  //   StatsApi.Players.RecentThirty
-  // );
-
-  // console.log(isLoading, data);
+  const { isLoading, data } = useQuery<IRecentPlayer[]>(
+    ["players-recent-thirty"],
+    () => StatsApi.Players.RecentThirty(LAST_RECENT_PLAYERS_NUM)
+  );
 
   return (
     <>
-      <PageTitle>Players</PageTitle>
+      <PageTitle>Recent Players</PageTitle>
+      {isLoading && <Loading />}
+      {data && <RecentPlayerTable data={data} />}
     </>
   );
 };

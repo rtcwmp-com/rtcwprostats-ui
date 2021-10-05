@@ -17,6 +17,8 @@ export const COLORS = {
   background: "#12161D",
 };
 
+export const LAST_RECENT_PLAYERS_NUM = 50;
+
 export const COUNTRY_IMAGE_SOURCES = {
   na: naSrc,
   eu: euSrc,

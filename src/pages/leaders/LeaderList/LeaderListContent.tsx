@@ -29,7 +29,7 @@ export const LeaderListContent: React.FC<{
             <Tr key={leaderItem.guid}>
               <Td>
                 <Link as={reactLink} to={`/player/${leaderItem.guid}`}>
-                  <span>{leaderItem.real_name}</span>
+                  <span>{leaderItem.real_name || leaderItem.guid}</span>
                 </Link>
               </Td>
               <Td isNumeric>{leaderItem.value}</Td>

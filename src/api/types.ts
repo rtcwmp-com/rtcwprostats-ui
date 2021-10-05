@@ -90,6 +90,14 @@ interface IAggStats {
   obj_destroyed: number;
 }
 
+export interface IRecentPlayer {
+  last_seen: string;
+  real_name: string;
+  alias: string;
+  last_match: number;
+  guid: string;
+}
+
 export interface IPlayerDetails {
   elos: Record<string, IElo>;
   kdr: Record<string, number>;
