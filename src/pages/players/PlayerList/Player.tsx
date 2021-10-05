@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { Loading } from "../../../components/Loading";
 import { PageTitle } from "../../../components/PageTitle";
-import { PlayerWrapper } from "../../../components/PlayerWrapper";
+import { PlayerStats } from "../../../components/PlayerStats";
 import { StatsApi } from "../../../api";
 import { IPlayerDetails } from "../../../api/types";
 
@@ -19,7 +19,7 @@ export const Player: React.FC = () => {
     <>
       <PageTitle>{data?.realname ? data.realname : "Player"}</PageTitle>
       {isLoading && <Loading />}
-      {data && <PlayerWrapper data={data} />}
+      {data && <PlayerStats data={data} />}
     </>
   );
 };
