@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { RegionTypeContext, RegionTypeState } from "../../context";
+import { Box, Button } from "@chakra-ui/react";
+import { RegionTypeContext } from "../../context";
 import { GAME_TYPES, REGIONS } from "../../constants";
-import styles from "./RegionTypePicker.module.css";
 
 export const RegionTypePicker: React.FC = () => {
   const rTypeContext = useContext(RegionTypeContext);
@@ -18,35 +18,47 @@ export const RegionTypePicker: React.FC = () => {
   };
 
   return (
-    <div className={styles.filter}>
-      <div className={styles.filterRow}>
+    <Box my="5px">
+      <Box
+        display="inline-block"
+        borderWidth="1px"
+        borderRadius="lg"
+        overflow="hidden"
+        mr="10px"
+      >
         {REGIONS.map((item) => (
-          <button
+          <Button
             key={item.id}
-            className={`btn ${
-              region === item.id ? "btn-highlight" : "btn-dark"
-            } btn-block btn-regiongametype`}
+            variant="ghost"
+            isActive={region === item.id}
             value={item.id}
             onClick={onClickRegion}
+            m="5px"
           >
             {item.name}
-          </button>
+          </Button>
         ))}
-      </div>
-      <div className={styles.filterRow}>
+      </Box>
+      <Box
+        display="inline-block"
+        borderWidth="1px"
+        borderRadius="lg"
+        overflow="hidden"
+        mr="10px"
+      >
         {GAME_TYPES.map((item) => (
-          <button
+          <Button
             key={item.id}
-            className={`btn ${
-              gametype === item.id ? "btn-highlight" : "btn-dark"
-            } btn-block btn-regiongametype`}
+            variant="ghost"
+            isActive={gametype === item.id}
             value={item.id}
             onClick={onClickGametype}
+            m="5px"
           >
             {item.name}
-          </button>
+          </Button>
         ))}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };

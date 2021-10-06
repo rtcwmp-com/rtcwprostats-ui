@@ -12,7 +12,7 @@ export const LeaderListContent: React.FC<{
   const categoryTitle =
     CATEGORIES.find((item) => item.id === category)?.name || "Value";
   return (
-    <Box overflowX="auto">
+    <Box overflowX="auto" my="10px">
       <Table variant="simple">
         <Thead>
           <Tr>

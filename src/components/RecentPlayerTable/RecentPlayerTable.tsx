@@ -38,7 +38,7 @@ const RecentPlayerTable: React.FC<{ data: IRecentPlayer[] }> = ({ data }) => {
   }, [data]);
 
   return (
-    <Box overflowX="auto">
+    <Box overflowX="auto" my="10px">
       <Table variant="simple">
         <TableCaption>{`Last ${LAST_RECENT_PLAYERS_NUM} Recent Players Across All Regions`}</TableCaption>
         <Thead>
