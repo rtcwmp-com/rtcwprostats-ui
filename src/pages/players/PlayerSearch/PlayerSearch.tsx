@@ -44,7 +44,6 @@ const PlayerSearch: React.FC = () => {
               mr="5px"
               size="sm"
               h="1.75rem"
-              colorScheme="teal"
               isLoading={isSubmitting}
               type="submit"
             >

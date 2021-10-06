@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { useQuery } from "react-query";
+import { Box } from "@chakra-ui/layout";
 import { StatsApi } from "../../../api";
 import { IMatch } from "../../../api/types";
 import { Loading } from "../../../components/Loading";
 import { MatchListContent } from "./MatchListContent";
 import { PageTitle } from "../../../components/PageTitle";
+import { RegionTypePicker } from "../../../components/Nav/RegionTypePicker";
 import { useParams } from "react-router-dom";
 import { RegionTypeContext } from "../../../context";
 
@@ -22,6 +24,9 @@ export const MatchList: React.FC = () => {
   return (
     <>
       <PageTitle>Recent Matches</PageTitle>
+      <Box w="100%">
+        <RegionTypePicker />
+      </Box>
       {isLoading && <Loading />}
       {data && <MatchListContent data={data} />}
     </>

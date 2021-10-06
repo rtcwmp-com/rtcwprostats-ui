@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup } from "@chakra-ui/react";
 import { useQuery } from "react-query";
 import { StatsApi } from "../../../api";
 import { ILeaderItem } from "../../../api/types";
 import { LeaderListContent } from "./LeaderListContent";
 import { Loading } from "../../../components/Loading";
 import { PageTitle } from "../../../components/PageTitle";
+import { RegionTypePicker } from "../../../components/Nav/RegionTypePicker";
 import { RegionTypeContext } from "../../../context";
 import { CATEGORIES } from "../../../constants";
 
@@ -27,20 +28,23 @@ export const LeaderList: React.FC = () => {
   return (
     <>
       <PageTitle>Leaders</PageTitle>
-      <ButtonGroup>
+      <Box w="100%">
+        <RegionTypePicker />
+      </Box>
+      <Box my="10px">
         {CATEGORIES.map((item) => (
           <Button
             key={item.id}
-            colorScheme="teal"
             size="sm"
             isActive={category === item.id}
             value={item.id}
             onClick={onClickCategory}
+            mx="5px"
           >
             {item.name}
           </Button>
         ))}
-      </ButtonGroup>
+      </Box>
 
       <div>
         {isLoading && <Loading />}

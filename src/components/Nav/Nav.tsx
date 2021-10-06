@@ -4,7 +4,6 @@ import logoSrc from "../../assets/rtcwpro-logo.png";
 import { Box, Image, Link } from "@chakra-ui/react";
 import styles from "./Nav.module.css";
 
-import { RegionTypePicker } from "./RegionTypePicker";
 import { NAV_LINKS } from "../../constants";
 
 export const Nav: React.FC = () => {
@@ -15,7 +14,6 @@ export const Nav: React.FC = () => {
           <Image maxH="120px" m="auto" src={logoSrc} alt="RTCWPRO Logo" />
         </Link>
       </Box>
-      <RegionTypePicker />
       <ul className={styles.linksList}>
         {NAV_LINKS.map((item) => {
           const NavIcon = item.component;

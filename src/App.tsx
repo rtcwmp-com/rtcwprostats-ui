@@ -15,11 +15,13 @@ import { ServerList } from "./pages/servers/ServerList/ServerList";
 import { LeaderList } from "./pages/leaders/LeaderList/LeaderList";
 import RegionTypeState from "./context/RegionTypeState";
 
+import theme from "./theme";
+
 const queryClient = new QueryClient();
 
 export const App: React.FC = () => {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <RegionTypeState>
         <QueryClientProvider client={queryClient}>
           <BrowserRouter>
@@ -29,10 +31,10 @@ export const App: React.FC = () => {
               spacing={["4px", "12px"]}
               p={"10px"}
             >
-              <Box w={["100%", "40%", "300px"]}>
+              <Box w={["100%", "30%", "250px"]}>
                 <Nav />
               </Box>
-              <Box w="100%">
+              <Box w={["100%", "70%", "100%"]}>
                 <Flex justifyContent="flex-end">
                   <Box maxWidth={["100%", "350px"]} width="100%">
                     <PlayerSearch />

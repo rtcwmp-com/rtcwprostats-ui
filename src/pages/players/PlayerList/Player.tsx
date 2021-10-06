@@ -11,7 +11,7 @@ export const Player: React.FC = () => {
   const { playerId } = useParams<{ playerId: string }>();
 
   const { data, isLoading } = useQuery<IPlayerDetails>(
-    ["players-recent-thirty", playerId],
+    ["players", playerId],
     () => StatsApi.Players.ById(playerId)
   );
 

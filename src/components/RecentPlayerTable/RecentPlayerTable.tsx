@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import { formatDistance } from "date-fns";
 import {
+  Box,
   Link,
   Table,
   TableCaption,
@@ -37,33 +38,35 @@ const RecentPlayerTable: React.FC<{ data: IRecentPlayer[] }> = ({ data }) => {
   }, [data]);
 
   return (
-    <Table variant="simple">
-      <TableCaption>{`Last ${LAST_RECENT_PLAYERS_NUM} Recent Players Across All Regions`}</TableCaption>
-      <Thead>
-        <Tr>
-          <Th>Name</Th>
-          <Th>Last Played As</Th>
-          <Th>Last Seen</Th>
-        </Tr>
-      </Thead>
-      <Tbody>
-        {tableData.map((item, idx) => (
-          <Tr key={`item.guid-${idx}`}>
-            <Td>
-              <Link as={reactLink} to={`/player/${item.guid}`}>
-                {item.real_name}
-              </Link>
-            </Td>
-            <Td>
-              <Link as={reactLink} to={`/player/${item.guid}`}>
-                {item.alias}
-              </Link>
-            </Td>
-            <Td>{item.lastSeenRelative}</Td>
+    <Box overflowX="auto" my="10px">
+      <Table variant="simple">
+        <TableCaption>{`Last ${LAST_RECENT_PLAYERS_NUM} Recent Players Across All Regions`}</TableCaption>
+        <Thead>
+          <Tr>
+            <Th>Name</Th>
+            <Th>Last Played As</Th>
+            <Th>Last Seen</Th>
           </Tr>
-        ))}
-      </Tbody>
-    </Table>
+        </Thead>
+        <Tbody>
+          {tableData.map((item, idx) => (
+            <Tr key={`item.guid-${idx}`}>
+              <Td>
+                <Link as={reactLink} to={`/player/${item.guid}`}>
+                  {item.real_name}
+                </Link>
+              </Td>
+              <Td>
+                <Link as={reactLink} to={`/player/${item.guid}`}>
+                  {item.alias}
+                </Link>
+              </Td>
+              <Td>{item.lastSeenRelative}</Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+    </Box>
   );
 };
 
