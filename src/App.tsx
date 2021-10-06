@@ -1,5 +1,5 @@
 import React from "react";
-import { ChakraProvider, Box, Stack } from "@chakra-ui/react";
+import { ChakraProvider, Box, Flex, Stack } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import { Nav } from "./components/Nav/Nav";
@@ -7,7 +7,10 @@ import { MatchDetails } from "./pages/matches/MatchDetails/MatchDetails";
 import { MatchList } from "./pages/matches/MatchList/MatchList";
 import { Player } from "./pages/players/PlayerList/Player";
 import { PlayerList } from "./pages/players/PlayerList/PlayerList";
-import { PlayerSearch } from "./pages/players/PlayerSearch/PlayerSearch";
+import {
+  PlayerSearch,
+  PlayerSearchResults,
+} from "./pages/players/PlayerSearch";
 import { ServerList } from "./pages/servers/ServerList/ServerList";
 import { LeaderList } from "./pages/leaders/LeaderList/LeaderList";
 import RegionTypeState from "./context/RegionTypeState";
@@ -24,14 +27,20 @@ export const App: React.FC = () => {
               direction={["column", "row"]}
               w="100%"
               spacing={["4px", "12px"]}
+              p={"10px"}
             >
               <Box w={["100%", "40%", "300px"]}>
                 <Nav />
               </Box>
               <Box w="100%">
+                <Flex justifyContent="flex-end">
+                  <Box maxWidth={["100%", "350px"]} width="100%">
+                    <PlayerSearch />
+                  </Box>
+                </Flex>
                 <Switch>
                   <Route exact path="/">
-                    <Redirect to="/servers" />
+                    <Redirect to="/leaders" />
                   </Route>{" "}
                   <Route exact path="/matches" component={MatchList} />
                   <Route
@@ -43,7 +52,11 @@ export const App: React.FC = () => {
                     component={MatchDetails}
                   />
                   <Route exact path="/players" component={PlayerList} />
-                  <Route exact path="/search" component={PlayerSearch} />
+                  <Route
+                    exact
+                    path="/search/:searchTerm"
+                    component={PlayerSearchResults}
+                  />
                   <Route path="/player/:playerId" component={Player} />
                   <Route exact path="/servers" component={ServerList} />
                   <Route exact path="/leaders" component={LeaderList} />

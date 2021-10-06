@@ -1,6 +1,7 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link as reactLink } from "react-router-dom";
 import logoSrc from "../../assets/rtcwpro-logo.png";
+import { Box, Image, Link } from "@chakra-ui/react";
 import styles from "./Nav.module.css";
 
 import { RegionTypePicker } from "./RegionTypePicker";
@@ -8,10 +9,12 @@ import { NAV_LINKS } from "../../constants";
 
 export const Nav: React.FC = () => {
   return (
-    <nav className={styles.nav}>
-      <div className={styles.logoWrapper}>
-        <img src={logoSrc} alt="RTCWPRO Logo" />
-      </div>
+    <nav>
+      <Box p="10px">
+        <Link as={reactLink} to="/">
+          <Image maxH="120px" m="auto" src={logoSrc} alt="RTCWPRO Logo" />
+        </Link>
+      </Box>
       <RegionTypePicker />
       <ul className={styles.linksList}>
         {NAV_LINKS.map((item) => {

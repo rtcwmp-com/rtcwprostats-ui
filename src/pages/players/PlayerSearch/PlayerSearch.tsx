@@ -1,100 +1,63 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
-import { Link as reactLink } from "react-router-dom";
-import { PageTitle } from "../../../components/PageTitle";
-import { StatsApi } from "../../../api";
-import { IPlayerSearchResult } from "../../../api/types";
+import { useHistory } from "react-router-dom";
 
-import { LinkBox, LinkOverlay, Tag } from "@chakra-ui/react";
-import {
-  Button,
-  List,
-  FormControl,
-  FormErrorMessage,
-  Input,
-  Text,
-} from "@chakra-ui/react";
+import { InputGroup, InputRightElement } from "@chakra-ui/react";
+import { Button, FormControl, FormErrorMessage, Input } from "@chakra-ui/react";
 
-export const PlayerSearch: React.FC = () => {
-  const [playerSearchResult, setPlayerSearchResult] = useState<
-    IPlayerSearchResult[]
-  >([]);
-
+const PlayerSearch: React.FC = () => {
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
   } = useForm();
+  const history = useHistory();
 
   function onSubmit(values: any) {
-    return new Promise<void>(async (resolve, reject) => {
-      try {
-        const result = await StatsApi.Players.Search(values.search);
-        if (!("error" in result)) {
-          setPlayerSearchResult(result);
-        } else {
-          setPlayerSearchResult([]);
-        }
-      } catch (err) {
-        reject(err);
-      }
-      resolve();
-    });
+    let { search }: { search: string } = values;
+    if (search) {
+      search = search.trim();
+    }
+    history.push(`/search/${search}`);
   }
 
   return (
-    <>
-      <PageTitle>Player Search</PageTitle>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <FormControl isInvalid={errors.name}>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <FormControl
+        onSubmit={handleSubmit(onSubmit)}
+        w={"100%"}
+        isInvalid={errors.name}
+      >
+        <InputGroup size="md">
           <Input
-            maxWidth={200}
+            pr="4.5rem"
+            type="text"
             id="search"
-            placeholder="Search"
+            placeholder="Search player"
             {...register("search", {
               required: "This is required",
               minLength: { value: 2, message: "Insert at least 2 letter" },
             })}
           />
-          <FormErrorMessage>
-            {errors.name && errors.name.message}
-          </FormErrorMessage>
-        </FormControl>
-        <Button
-          mt={4}
-          colorScheme="teal"
-          isLoading={isSubmitting}
-          type="submit"
-        >
-          Search
-        </Button>
-      </form>
-      <List>
-        {playerSearchResult.map((item) => (
-          <LinkBox
-            as="article"
-            maxW="sm"
-            px="5"
-            py="1"
-            borderWidth="1px"
-            rounded="md"
-            marginTop={2}
-            key={item.guid}
-          >
-            <LinkOverlay as={reactLink} to={`/player/${item.guid}`}>
-              {item.real_name}
-              {item.frequent_region && (
-                <Tag mx={1} color="white" bgColor="red.800">
-                  {item.frequent_region}
-                </Tag>
-              )}
-            </LinkOverlay>
-            <Text fontSize={10} color="grey">
-              GUID: {item.guid}
-            </Text>
-          </LinkBox>
-        ))}
-      </List>
-    </>
+          <InputRightElement width="4.5rem">
+            <Button
+              mr="5px"
+              size="sm"
+              h="1.75rem"
+              colorScheme="teal"
+              isLoading={isSubmitting}
+              type="submit"
+            >
+              Search
+            </Button>
+          </InputRightElement>
+        </InputGroup>
+        <FormErrorMessage>
+          {errors.name && errors.name.message}
+        </FormErrorMessage>
+      </FormControl>
+    </form>
   );
 };
+
+export default PlayerSearch;

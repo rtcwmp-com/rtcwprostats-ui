@@ -53,11 +53,10 @@ export const CATEGORIES = [
 ];
 
 export const NAV_LINKS = [
-  { id: "matches", name: "Matches", component: IoLogoGameControllerB },
-  { id: "players", name: "Players", component: VscAccount },
-  { id: "search", name: "Search Player", component: VscSearch },
-  { id: "servers", name: "Servers", component: VscServer },
   { id: "leaders", name: "Leaders", component: AiOutlineTrophy },
+  { id: "players", name: "Players", component: VscAccount },
+  { id: "matches", name: "Matches", component: IoLogoGameControllerB },
+  { id: "servers", name: "Servers", component: VscServer },
 ];
 
 export const STAT_KEYS: Record<string, string> = {
