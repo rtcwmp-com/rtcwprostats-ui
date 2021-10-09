@@ -67,6 +67,9 @@ const PlayerSearchResults: React.FC = () => {
             <Text fontSize={10} color="grey">
               GUID: {item.guid}
             </Text>
+            <Text fontSize={10} color="grey">
+              Last seen: {item.last_seen}
+            </Text>
           </LinkBox>
         ))}
       </List>
