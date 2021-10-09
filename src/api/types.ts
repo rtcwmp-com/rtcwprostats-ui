@@ -102,7 +102,8 @@ export interface IPlayerDetails {
   elos: Record<string, IElo>;
   kdr: Record<string, number>;
   acc: Record<string, number>;
-  realname: string;
+  real_name: string;
+  last_seen: string;
   aggstats: Record<string, Record<string, number>>;
   aggwstats: {
     Knife: {
@@ -175,6 +176,7 @@ export interface IPlayerDetails {
 
 export interface IPlayerSearchResult {
   real_name: string;
+  last_seen: string;
   guid: string;
   frequent_region: string;
 }

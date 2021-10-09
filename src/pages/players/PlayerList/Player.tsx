@@ -17,7 +17,7 @@ export const Player: React.FC = () => {
 
   return (
     <>
-      <PageTitle>{data?.realname ? data.realname : "Player"}</PageTitle>
+      <PageTitle>{data?.real_name ? data.real_name : "Player"}</PageTitle>
       {isLoading && <Loading />}
       {data && <PlayerStats data={data} />}
     </>
