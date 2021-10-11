@@ -9,6 +9,7 @@ const PlayerSearch: React.FC = () => {
   const {
     handleSubmit,
     register,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm();
   const history = useHistory();
@@ -16,8 +17,9 @@ const PlayerSearch: React.FC = () => {
   function onSubmit(values: any) {
     let { search }: { search: string } = values;
     if (search) {
-      search = search.trim();
+      search = search.trim().toLowerCase();
     }
+    reset();
     history.push(`/search/${search}`);
   }
 

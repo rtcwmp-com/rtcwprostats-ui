@@ -1,9 +1,11 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
+import { Box } from "@chakra-ui/layout";
 import { Loading } from "../../../components/Loading";
 import { PageTitle } from "../../../components/PageTitle";
 import { PlayerStats } from "../../../components/PlayerStats";
+import { RegionTypePicker } from "../../../components/Nav/RegionTypePicker";
 import { StatsApi } from "../../../api";
 import { IPlayerDetails } from "../../../api/types";
 
@@ -18,6 +20,9 @@ export const Player: React.FC = () => {
   return (
     <>
       <PageTitle>{data?.real_name ? data.real_name : "Player"}</PageTitle>
+      <Box w="100%">
+        <RegionTypePicker />
+      </Box>
       {isLoading && <Loading />}
       {data && <PlayerStats data={data} />}
     </>
