@@ -44,35 +44,37 @@ const PlayerSearchResults: React.FC = () => {
       {!isLoading && playerSearchResult.length === 0 && (
         <Box textStyle="p">No search results</Box>
       )}
-      <List>
-        {playerSearchResult.map((item) => (
-          <LinkBox
-            as="article"
-            maxW="sm"
-            px="5"
-            py="1"
-            borderWidth="1px"
-            rounded="md"
-            marginTop={2}
-            key={item.guid}
-          >
-            <LinkOverlay as={reactLink} to={`/player/${item.guid}`}>
-              {item.real_name}
-              {item.frequent_region && (
-                <Tag mx={1} color="white" bgColor="red.800">
-                  {item.frequent_region}
-                </Tag>
-              )}
-            </LinkOverlay>
-            <Text fontSize={10} color="grey">
-              GUID: {item.guid}
-            </Text>
-            <Text fontSize={10} color="grey">
-              Last seen: {item.last_seen}
-            </Text>
-          </LinkBox>
-        ))}
-      </List>
+      <Box my="10px">
+        <List>
+          {playerSearchResult.map((item) => (
+            <LinkBox
+              as="article"
+              maxW="sm"
+              px="5"
+              py="1"
+              borderWidth="1px"
+              rounded="md"
+              marginTop={2}
+              key={item.guid}
+            >
+              <LinkOverlay as={reactLink} to={`/player/${item.guid}`}>
+                {item.real_name}
+                {item.frequent_region && (
+                  <Tag mx={1} color="white" bgColor="red.800">
+                    {item.frequent_region}
+                  </Tag>
+                )}
+              </LinkOverlay>
+              <Text fontSize={10} color="grey">
+                GUID: {item.guid}
+              </Text>
+              <Text fontSize={10} color="grey">
+                Last seen: {item.last_seen?.split("T")[0]}
+              </Text>
+            </LinkBox>
+          ))}
+        </List>
+      </Box>
     </>
   );
 };

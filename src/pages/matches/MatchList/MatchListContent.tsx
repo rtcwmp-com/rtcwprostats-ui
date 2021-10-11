@@ -19,7 +19,6 @@ import { IMatch } from "../../../api/types";
 import { REGIONS, GAME_TYPES } from "../../../constants";
 
 export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
-  console.log(data);
   const rTypeContext = useContext(RegionTypeContext);
   const { region, gametype } = rTypeContext; //region: 'na', gametype: '6'
   const regionTitle = REGIONS.find((item) => item.id === region)?.longName;
