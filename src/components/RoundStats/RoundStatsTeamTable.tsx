@@ -27,9 +27,7 @@ const RoundStatsTeamTable: React.FC<{ teamName: string; teamData: any[] }> = ({
           deaths: player.categories.deaths,
           gibs: player.categories.gibs,
           suicides: player.categories.suicides,
-          accurancy: `${player.categories.accuracy.toFixed(2)} % (${
-            player.categories.hits
-          }/${player.categories.shots})`,
+          accuracy: `${player.categories.accuracy.toFixed(2)}% (${player.categories.hits}/${player.categories.shots})`,
           headshots: player.categories.headshots,
           damagegiven: player.categories.damagegiven,
           damagereceived: player.categories.damagereceived,
@@ -73,8 +71,8 @@ const RoundStatsTeamTable: React.FC<{ teamName: string; teamData: any[] }> = ({
         isNumeric: true,
       },
       {
-        Header: "Accurancy",
-        accessor: "accurancy",
+        Header: "Accuracy",
+        accessor: "accuracy",
         isNumeric: true,
       },
       {
