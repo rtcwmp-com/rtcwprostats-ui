@@ -7,6 +7,7 @@ import { IStatsResponse, ITeamOverviewData } from "../../../api/types";
 import { Loading } from "../../../components/Loading";
 import { MatchDetailsContent } from "./MatchDetailsContent";
 import { PageTitle } from "../../../components/PageTitle";
+import { RoundStats } from "../../../components/RoundStats";
 
 export const MatchDetails: React.FC = () => {
   const { matchId, map } = useParams<{ matchId: string; map: string }>();
@@ -41,7 +42,10 @@ export const MatchDetails: React.FC = () => {
       <PageTitle>Match Report</PageTitle>
       {isLoading && <Loading />}
       {data && (
-        <MatchDetailsContent data={actualData} map={map} matchId={matchId} />
+        <>
+          <MatchDetailsContent data={actualData} map={map} matchId={matchId} />
+          <RoundStats data={actualData} />
+        </>
       )}
     </>
   );
