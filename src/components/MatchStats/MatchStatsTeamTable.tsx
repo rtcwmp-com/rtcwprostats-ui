@@ -27,7 +27,9 @@ const MatchStatsTeamTable: React.FC<{ teamName: string; teamData: any[] }> = ({
           deaths: player.categories.deaths,
           gibs: player.categories.gibs,
           suicides: player.categories.suicides,
-          accuracy: `${player.categories.accuracy.toFixed(2)}% (${player.categories.hits}/${player.categories.shots})`,
+          accuracy: `${player.categories.accuracy.toFixed(2)}% (${
+            player.categories.hits
+          }/${player.categories.shots})`,
           headshots: player.categories.headshots,
           damagegiven: player.categories.damagegiven,
           damagereceived: player.categories.damagereceived,
@@ -43,7 +45,6 @@ const MatchStatsTeamTable: React.FC<{ teamName: string; teamData: any[] }> = ({
       {
         Header: "Name",
         accessor: "name",
-        isSorted: true,
       },
       {
         Header: "Efficiency",
@@ -94,8 +95,10 @@ const MatchStatsTeamTable: React.FC<{ teamName: string; teamData: any[] }> = ({
     []
   );
 
+  const sortBy = React.useMemo(() => [{ id: "efficiency", desc: true }], []);
+
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data }, useSortBy);
+    useTable({ columns, data, initialState: { sortBy } }, useSortBy);
 
   return (
     <>
