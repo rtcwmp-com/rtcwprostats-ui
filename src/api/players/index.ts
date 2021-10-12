@@ -1,6 +1,11 @@
 import { AxiosInstance } from "axios";
 import { pickData } from "../util";
-import { IRecentPlayer, IPlayerDetails, IPlayerSearchResult } from "../types";
+import {
+  IRecentPlayer,
+  IPlayerDetails,
+  IPlayerSearchResult,
+  IPlayerStats,
+} from "../types";
 
 export const createPlayersApi = (agent: AxiosInstance) => {
   return {
@@ -13,7 +18,14 @@ export const createPlayersApi = (agent: AxiosInstance) => {
         .then(pickData);
     },
     Search: async (partialName: string) => {
-      return agent.get<IPlayerSearchResult[]>(`player/search/${partialName}`).then(pickData);
-    }
+      return agent
+        .get<IPlayerSearchResult[]>(`/player/search/${partialName}`)
+        .then(pickData);
+    },
+    Stats: async (playerId: string) => {
+      return agent
+        .get<IPlayerStats[]>(`/stats/player/${playerId}`)
+        .then(pickData);
+    },
   };
 };

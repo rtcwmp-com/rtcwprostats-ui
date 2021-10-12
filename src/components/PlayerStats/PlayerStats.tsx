@@ -1,90 +1,121 @@
 import React, { useContext } from "react";
+import { Link as reactLink } from "react-router-dom";
 import {
   Box,
   Heading,
+  Link,
   SimpleGrid,
   Stack,
   Stat,
   StatLabel,
   StatNumber,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
 } from "@chakra-ui/react";
 import { RegionTypeContext } from "../../context";
+import { MatchStatsPlayerTable } from "../MatchStats";
 
-import { IPlayerDetails } from "../../api/types";
-import { REGIONS, GAME_TYPES, STAT_KEYS } from "../../constants";
+import { IPlayerDetails, IPlayerStats } from "../../api/types";
+import { REGIONS, GAME_TYPES } from "../../constants";
 
-const PlayerWrapper: React.FC<{ data: IPlayerDetails }> = ({ data }) => {
+const PlayerStats: React.FC<{
+  data: IPlayerDetails;
+  playerId: string;
+}> = ({ data, playerId }) => {
   const rTypeContext = useContext(RegionTypeContext);
   const { region, gametype } = rTypeContext; //region: 'na', gametype: '6'
   const regionKey = `${region}#${gametype}`;
 
   const { elos = {}, aggstats = {}, kdr = {} } = data;
   const { [regionKey]: eloRegion } = elos;
-  const { [regionKey]: aggStatsRegion } = aggstats;
+  const { [regionKey]: aggStatsRegion = {} } = aggstats;
   const { [regionKey]: kdrRegion } = kdr;
 
-  const regionTitle = REGIONS.find((item) => item.id === region)?.longName;
+  const regionTitle = REGIONS.find((item) => item.id === region)?.name;
   const gameTypeTitle = GAME_TYPES.find((item) => item.id === gametype)?.name;
+
+  const headshotRatio = aggStatsRegion["headshots"]
+    ? `${((aggStatsRegion["headshots"] / aggStatsRegion["hits"]) * 100).toFixed(
+        2
+      )}%`
+    : "N/A";
+
+  const objectivePerGame = aggStatsRegion["obj_captured"]
+    ? `${(
+        (aggStatsRegion["obj_captured"] / aggStatsRegion["games"]) *
+        100
+      ).toFixed(2)}%`
+    : "N/A";
+
+  const damagePerGame = aggStatsRegion["damagegiven"]
+    ? (aggStatsRegion["damagegiven"] / aggStatsRegion["games"]).toFixed(2)
+    : "N/A";
+
+  const gibsPerGame = aggStatsRegion["gibs"]
+    ? (aggStatsRegion["gibs"] / aggStatsRegion["games"]).toFixed(2)
+    : "N/A";
 
   console.log(data);
 
   // TODO: Need to figure out how/what to actually display
   return (
     <Box my="10px">
-      <Stack direction={["column", "row"]} w="100%">
-        <Box w={["100%", "400px"]} p="10px" rounded={{ md: "lg" }}>
-          <Heading as="h5" size="sm" mb="10px">
-            {`Lifetime - ${regionTitle} ${gameTypeTitle}`}
-          </Heading>
-          <SimpleGrid columns={2} spacing={10}>
-            <Stat>
-              <StatLabel>ELO</StatLabel>
-              <StatNumber>{(eloRegion && eloRegion.elo) || "N/A"}</StatNumber>
-            </Stat>
-            <Stat>
-              <StatLabel>Games</StatLabel>
-              <StatNumber>
-                {(aggStatsRegion && aggStatsRegion["games"]) || "N/A"}
-              </StatNumber>
-            </Stat>
-            <Stat>
-              <StatLabel>KDR</StatLabel>
-              <StatNumber>{(kdrRegion && kdrRegion) || "N/A"}</StatNumber>
-            </Stat>
-            <Stat>
-              <StatLabel>Accuracy</StatLabel>
-              <StatNumber>
-                {(aggStatsRegion &&
-                  aggStatsRegion["accuracy"] &&
-                  `${aggStatsRegion["accuracy"] / 100}%`) ||
-                  "N/A"}
-              </StatNumber>
-            </Stat>
-            <Stat>
-              <StatLabel>Headshots</StatLabel>
-              <StatNumber>
-                {(aggStatsRegion && aggStatsRegion["headshots"]) || "N/A"}
-              </StatNumber>
-            </Stat>
-            <Stat>
-              <StatLabel>Objectives Captured</StatLabel>
-              <StatNumber>
-                {(aggStatsRegion && aggStatsRegion["obj_captured"]) || "N/A"}
-              </StatNumber>
-            </Stat>
-          </SimpleGrid>
-        </Box>
-        <Box w={["100%"]} p="10px" rounded={{ md: "lg" }}>
-          {/* {aggStatsRegion &&
-            Object.keys(aggStatsRegion).map((item) => {
-              const keyName = STAT_KEYS[item];
-              const val = aggStatsRegion[item];
-              return <p key={item}>{`${keyName}: ${val}`}</p>;
-            })} */}
-        </Box>
-      </Stack>
+      <Box w="100%">
+        <Heading as="h4" size="md" mb="10px">
+          {`Lifetime - ${regionTitle} ${gameTypeTitle}`}
+        </Heading>
+        <SimpleGrid columns={[2, 2, 3]} spacing={10}>
+          <Stat>
+            <StatLabel>ELO</StatLabel>
+            <StatNumber>{(eloRegion && eloRegion.elo) || "N/A"}</StatNumber>
+          </Stat>
+          <Stat>
+            <StatLabel>Games</StatLabel>
+            <StatNumber>{aggStatsRegion["games"] || "N/A"}</StatNumber>
+          </Stat>
+          <Stat>
+            <StatLabel>KDR</StatLabel>
+            <StatNumber>{(kdrRegion && kdrRegion) || "N/A"}</StatNumber>
+          </Stat>
+          <Stat>
+            <StatLabel>Accuracy</StatLabel>
+            <StatNumber>
+              {(aggStatsRegion &&
+                aggStatsRegion["accuracy"] &&
+                `${aggStatsRegion["accuracy"] / 100}%`) ||
+                "N/A"}
+            </StatNumber>
+          </Stat>
+          <Stat>
+            <StatLabel>Headshot %</StatLabel>
+            <StatNumber>{headshotRatio}</StatNumber>
+          </Stat>
+          <Stat>
+            <StatLabel>Obj/Game</StatLabel>
+            <StatNumber>{objectivePerGame}</StatNumber>
+          </Stat>
+          <Stat>
+            <StatLabel>Dmg/Game</StatLabel>
+            <StatNumber>{damagePerGame}</StatNumber>
+          </Stat>
+          <Stat>
+            <StatLabel>Gibs/Game</StatLabel>
+            <StatNumber>{gibsPerGame}</StatNumber>
+          </Stat>
+        </SimpleGrid>
+      </Box>
+      <Box w="100%">
+        <Heading as="h4" size="md" mt="20px" mb="10px">
+          Match History
+        </Heading>
+        <MatchStatsPlayerTable playerId={playerId} />
+      </Box>
     </Box>
   );
 };
 
-export default PlayerWrapper;
+export default PlayerStats;
