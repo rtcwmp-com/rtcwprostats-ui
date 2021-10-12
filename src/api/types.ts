@@ -183,7 +183,9 @@ export interface IPlayerSearchResult {
 
 export interface IPlayerStats {
   alias: string;
+  match_id: string;
   team: string;
+  type: string;
   start_time: number;
   num_rounds: number;
   categories: ICategories;

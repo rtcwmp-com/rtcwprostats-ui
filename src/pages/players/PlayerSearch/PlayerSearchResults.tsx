@@ -75,6 +75,8 @@ const PlayerSearchResults: React.FC = () => {
           ))}
         </List>
       </Box>
+
+      {/* Recent matches */}
     </>
   );
 };
