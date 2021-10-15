@@ -5,6 +5,7 @@ import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import { Nav } from "./components/Nav/Nav";
 import { MatchDetails } from "./pages/matches/MatchDetails/MatchDetails";
 import { MatchList } from "./pages/matches/MatchList/MatchList";
+import { GroupList } from "./pages/groups/GroupList/GroupList";
 import { Player } from "./pages/players/PlayerList/Player";
 import { PlayerList } from "./pages/players/PlayerList/PlayerList";
 import {
@@ -45,6 +46,7 @@ export const App: React.FC = () => {
                     <Redirect to="/leaders" />
                   </Route>{" "}
                   <Route exact path="/matches" component={MatchList} />
+                  <Route exact path="/groups" component={GroupList} />
                   <Route
                     path="/matches/server/:serverId"
                     component={MatchList}
