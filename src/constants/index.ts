@@ -11,6 +11,7 @@ import subSrc from "../assets/maps/mp_sub.png";
 
 import { AiOutlineTrophy } from "react-icons/ai";
 import { IoLogoGameControllerB } from "react-icons/io";
+import { MdViewList } from 'react-icons/md';
 import { VscAccount, VscServer } from "react-icons/vsc";
 
 export const COLORS = {
@@ -56,6 +57,7 @@ export const NAV_LINKS = [
   { id: "leaders", name: "Leaders", component: AiOutlineTrophy },
   { id: "players", name: "Players", component: VscAccount },
   { id: "matches", name: "Matches", component: IoLogoGameControllerB },
+  { id: "groups", name: "Groups", component: MdViewList },
   { id: "servers", name: "Servers", component: VscServer },
 ];
 

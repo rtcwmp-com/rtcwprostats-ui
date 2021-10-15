@@ -254,3 +254,16 @@ export interface ITeamOverviewData {
   a: IPlayerStats[];
   b: IPlayerStats[];
 }
+
+export interface IGroup {
+  matches: number[];
+  cached: string;
+  teams: string;
+  games: number;
+  finish_human: string;
+  duration_nice: string;
+}
+
+export interface IGroupResponse {
+  [index:string]: IGroup;
+}
