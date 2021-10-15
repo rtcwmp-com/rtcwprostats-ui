@@ -8,6 +8,7 @@ import { PlayerStats } from "../../../components/PlayerStats";
 import { RegionTypePicker } from "../../../components/Nav/RegionTypePicker";
 import { StatsApi } from "../../../api";
 import { IPlayerDetails } from "../../../api/types";
+import { PlayerAliasesPopover } from "../../../components/PlayerAliases";
 
 export const Player: React.FC = () => {
   const { playerId } = useParams<{ playerId: string }>();
@@ -19,7 +20,10 @@ export const Player: React.FC = () => {
 
   return (
     <>
-      <PageTitle>{data?.real_name ? data.real_name : "Player"}</PageTitle>
+      <PageTitle>
+        {data?.real_name ? data.real_name : "Player"}
+        <PlayerAliasesPopover playerId={playerId} />
+      </PageTitle>
       <Box w="100%">
         <RegionTypePicker />
       </Box>
