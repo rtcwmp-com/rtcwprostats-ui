@@ -181,6 +181,14 @@ export interface IPlayerSearchResult {
   frequent_region: string;
 }
 
+export interface IPlayerAlias {
+  guid: string;
+  real_name: string;
+  alias: string;
+  last_match: string;
+  last_seen: string;
+}
+
 export interface IPlayerStats {
   alias: string;
   match_id: string;
