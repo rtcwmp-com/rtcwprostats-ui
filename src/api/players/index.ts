@@ -5,6 +5,7 @@ import {
   IPlayerDetails,
   IPlayerSearchResult,
   IPlayerStats,
+  IPlayerAlias,
 } from "../types";
 
 export const createPlayersApi = (agent: AxiosInstance) => {
@@ -15,6 +16,11 @@ export const createPlayersApi = (agent: AxiosInstance) => {
     RecentPlayers: async (limit: number) => {
       return agent
         .get<IRecentPlayer[]>(`/aliases/recent/limit/${limit}`)
+        .then(pickData);
+    },
+    Aliases: async (playerId: string) => {
+      return agent
+        .get<IPlayerAlias[]>(`/aliases/player/${playerId}`)
         .then(pickData);
     },
     Search: async (partialName: string) => {

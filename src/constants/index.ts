@@ -11,7 +11,7 @@ import subSrc from "../assets/maps/mp_sub.png";
 
 import { AiOutlineTrophy } from "react-icons/ai";
 import { IoLogoGameControllerB } from "react-icons/io";
-import { VscAccount, VscServer, VscSearch } from "react-icons/vsc";
+import { VscAccount, VscServer } from "react-icons/vsc";
 
 export const COLORS = {
   background: "#12161D",
