@@ -28,7 +28,9 @@ export const Player: React.FC = () => {
         <RegionTypePicker />
       </Box>
       {isLoading && <Loading />}
-      {data && <PlayerStats data={data} playerId={playerId} />}
+      {data && !("error" in data) && (
+        <PlayerStats data={data} playerId={playerId} />
+      )}
     </>
   );
 };

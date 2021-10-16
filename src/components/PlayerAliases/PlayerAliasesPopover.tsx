@@ -5,7 +5,7 @@ import { StatsApi } from "../../api";
 import { IPlayerAlias } from "../../api/types";
 
 import {
-  Button,
+  IconButton,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -27,26 +27,37 @@ const PlayerAliasesPopover: React.FC<{ playerId: string }> = ({ playerId }) => {
   return (
     <Popover
       arrowShadowColor="greyBrand.400"
-      placement="right"
+      placement="bottom"
       closeOnBlur={true}
       trigger="hover"
+      strategy="fixed"
     >
       <PopoverTrigger>
-        <Button marginX={3}>
+        <IconButton
+          aria-label="Alias button popover"
+          marginX={3}
+          onClick={() => {}}
+        >
           <VscVersions />
-        </Button>
+        </IconButton>
       </PopoverTrigger>
-      <PopoverContent color="white" bg="greyBrand.500" borderColor="greyBrand.400">
+      <PopoverContent
+        color="white"
+        bg="greyBrand.500"
+        borderColor="greyBrand.400"
+      >
         <PopoverHeader pt={3} fontWeight="bold" border="0" fontSize={14}>
-          This user has also played as:
+          This player has also aliased as:
         </PopoverHeader>
-        <PopoverArrow bg="greyBrand.500"/>
+        <PopoverArrow bg="greyBrand.500" />
         <PopoverBody fontSize={12}>
           {isLoading && <Loading />}
-          {data && (
+          {data && !("error" in data) && (
             <UnorderedList spacing={2}>
-              {data.map((item: any) => (
-                <ListItem listStyleType="none">{item.alias}</ListItem>
+              {data.map((item: any, idx: number) => (
+                <ListItem key={idx} listStyleType="none">
+                  {item.alias}
+                </ListItem>
               ))}
             </UnorderedList>
           )}
