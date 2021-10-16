@@ -41,7 +41,7 @@ export const MatchDetails: React.FC = () => {
     <>
       <PageTitle>Match Report</PageTitle>
       {isLoading && <Loading />}
-      {data && (
+      {data && !("error" in data) && (
         <>
           <MatchDetailsContent data={actualData} map={map} matchId={matchId} />
           <MatchStats data={actualData} />

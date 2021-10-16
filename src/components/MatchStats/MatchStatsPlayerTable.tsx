@@ -1,17 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, MouseEvent } from "react";
 import { useQuery } from "react-query";
-import {
-  Box,
-  LinkBox,
-  LinkOverlay,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-} from "@chakra-ui/react";
-import { Link as reactLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { Box, Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
 
 import { Loading } from "../Loading";
 import { RegionTypeContext } from "../../context";
@@ -21,6 +11,7 @@ import { IPlayerStats } from "../../api/types";
 export const MatchStatsPlayerTable: React.FC<{
   playerId: string;
 }> = ({ playerId }) => {
+  const history = useHistory();
   const rTypeContext = useContext(RegionTypeContext);
   const { region, gametype } = rTypeContext; //region: 'na', gametype: '6'
 
@@ -32,6 +23,11 @@ export const MatchStatsPlayerTable: React.FC<{
   const matchData = data?.filter(
     (item) => item.type === `${region}#${gametype}`
   );
+
+  const fetchMatchDetails = (e: MouseEvent) => {
+    const matchId = e.currentTarget.getAttribute("data-match-id");
+    history.push(`/matches/${matchId}/unknown`);
+  };
 
   return (
     <Box w="100%" overflowX="auto">
@@ -48,19 +44,19 @@ export const MatchStatsPlayerTable: React.FC<{
           </Thead>
           <Tbody>
             {matchData.map((item) => (
-              <LinkBox as="tr" key={item.match_id}>
+              <Tr
+                key={item.match_id}
+                cursor="pointer"
+                onClick={fetchMatchDetails}
+                data-match-id={item.match_id}
+              >
                 <Td>{item.alias}</Td>
                 <Td>
-                  <LinkOverlay
-                    as={reactLink}
-                    to={`/matches/${item.match_id}/unknown`}
-                  >
-                    <span>{item.match_id}</span>
-                  </LinkOverlay>
+                  <span>{item.match_id}</span>
                 </Td>
                 <Td isNumeric>{item.team}</Td>
                 <Td isNumeric>{item.num_rounds}</Td>
-              </LinkBox>
+              </Tr>
             ))}
           </Tbody>
         </Table>
