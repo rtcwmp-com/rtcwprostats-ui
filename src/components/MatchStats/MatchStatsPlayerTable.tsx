@@ -26,7 +26,7 @@ export const MatchStatsPlayerTable: React.FC<{
 
   const fetchMatchDetails = (e: MouseEvent) => {
     const matchId = e.currentTarget.getAttribute("data-match-id");
-    history.push(`/matches/${matchId}/unknown`);
+    history.push(`/matches/${matchId}`);
   };
 
   return (

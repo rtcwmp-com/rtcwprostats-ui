@@ -47,7 +47,7 @@ export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
                 <Td>
                   <Link
                     as={reactLink}
-                    to={`/matches/${match.match_id}/${match.map}`}
+                    to={`/matches/${match.match_id}`}
                   >
                     {match.map}
                   </Link>
@@ -55,7 +55,7 @@ export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
                 <Td>
                   <Link
                     as={reactLink}
-                    to={`/matches/${match.match_id}/${match.map}`}
+                    to={`/matches/${match.match_id}`}
                   >
                     {match.server_name}
                   </Link>
