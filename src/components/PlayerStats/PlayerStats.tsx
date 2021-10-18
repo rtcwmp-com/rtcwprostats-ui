@@ -44,6 +44,12 @@ const PlayerStats: React.FC<{
       )}%`
     : "N/A";
 
+  const accuracy = aggStatsRegion["hits"]
+    ? `${((aggStatsRegion["hits"] / aggStatsRegion["shots"]) * 100).toFixed(
+        2
+      )}%`
+    : "N/A";
+
   const objectivePerGame = aggStatsRegion["obj_captured"]
     ? `${(
         (aggStatsRegion["obj_captured"] / aggStatsRegion["games"]) *
@@ -85,8 +91,8 @@ const PlayerStats: React.FC<{
             <StatLabel>Accuracy</StatLabel>
             <StatNumber>
               {(aggStatsRegion &&
-                aggStatsRegion["accuracy"] &&
-                `${aggStatsRegion["accuracy"] / 100}%`) ||
+                accuracy &&
+                `${accuracy}`) ||
                 "N/A"}
             </StatNumber>
           </Stat>
