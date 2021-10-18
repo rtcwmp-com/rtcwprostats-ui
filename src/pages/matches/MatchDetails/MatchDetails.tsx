@@ -10,11 +10,16 @@ import { PageTitle } from "../../../components/PageTitle";
 import { MatchStats } from "../../../components/MatchStats";
 
 export const MatchDetails: React.FC = () => {
-  const { matchId, map } = useParams<{ matchId: string; map: string }>();
+  const { matchId } = useParams<{ matchId: string }>();
   const { data, isLoading } = useQuery<IStatsResponse>(
     ["match-stats", matchId],
     () => StatsApi.Matches.MatchStats(matchId)
   );
+  
+  let map = "unknown";
+  if (data && "match_summary" in data) {
+    map = data?.match_summary.results[Object.keys(data.match_summary.results)[0]].map;
+  }
 
   const actualData = useMemo(() => {
     if (!data) {

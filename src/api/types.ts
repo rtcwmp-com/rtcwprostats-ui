@@ -248,6 +248,33 @@ export interface IStatsResponse {
   statsall: IPlayerStatsDictionary[];
   match_id: string;
   type: string;
+  match_summary: iMatchSummary;
+}
+
+export interface iMatchSummary {
+  duration: number;
+  duration_nice: string;
+  finish_human: string;
+  games: number;
+  results: iGameResultsObject;
+}
+
+export interface iGameResultsObject {
+  [match_id: string]: iGameResult;
+}
+
+export interface iGameResult {
+  map: string;
+  winner: string;
+  winnerAB: string;
+  round1: {
+    duration: number;
+    duration_nice: string;
+  };
+  round2: {
+    duration: number;
+    duration_nice: string;
+  }
 }
 
 export interface ITeamOverviewData {

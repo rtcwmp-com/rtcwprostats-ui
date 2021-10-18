@@ -52,7 +52,7 @@ export const App: React.FC = () => {
                     component={MatchList}
                   />
                   <Route
-                    path="/matches/:matchId/:map"
+                    path="/matches/:matchId"
                     component={MatchDetails}
                   />
                   <Route exact path="/players" component={PlayerList} />
