@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { useTable, useSortBy } from "react-table";
 import { VscTriangleDown, VscTriangleUp } from "react-icons/vsc";
 
@@ -9,9 +9,9 @@ import {
   Tbody,
   Tr,
   Th,
-  Td,
-  chakra,
+  Td 
 } from "@chakra-ui/react";
+import { IPlayerStats } from "../../api/types";
 
 const MatchStatsTeamTable: React.FC<{ teamName: string; teamData: any[] }> = ({
   teamName,
@@ -19,17 +19,22 @@ const MatchStatsTeamTable: React.FC<{ teamName: string; teamData: any[] }> = ({
 }) => {
   const data = React.useMemo(
     () =>
-      teamData.map((player: any) => {
+      teamData.map((player: IPlayerStats) => {
         const d: any = {
           name: player.alias,
-          efficiency: player.categories.efficiency,
+          kdr: (player.categories.kills / player.categories.deaths).toFixed(2),
           kills: player.categories.kills,
           deaths: player.categories.deaths,
           gibs: player.categories.gibs,
           suicides: player.categories.suicides,
-          accuracy: `${player.categories.accuracy.toFixed(2)}% (${
-            player.categories.hits
-          }/${player.categories.shots})`,
+          revives: player.categories.revives,
+          accuracy: ( 
+            <>
+              {player.categories.accuracy.toFixed(2)}%
+              <br />
+              ({player.categories.hits}/{player.categories.shots})
+            </>
+          ),
           headshots: player.categories.headshots,
           damagegiven: player.categories.damagegiven,
           damagereceived: player.categories.damagereceived,
@@ -47,8 +52,8 @@ const MatchStatsTeamTable: React.FC<{ teamName: string; teamData: any[] }> = ({
         accessor: "name",
       },
       {
-        Header: "Efficiency",
-        accessor: "efficiency",
+        Header: "KDR",
+        accessor: "kdr",
         isNumeric: true,
       },
       {
@@ -67,8 +72,18 @@ const MatchStatsTeamTable: React.FC<{ teamName: string; teamData: any[] }> = ({
         isNumeric: true,
       },
       {
+        Header: "HS",
+        accessor: "headshots",
+        isNumeric: true,
+      },
+      {
         Header: "Suicides",
         accessor: "suicides",
+        isNumeric: true,
+      },
+      {
+        Header: "Revives",
+        accessor: "revives",
         isNumeric: true,
       },
       {
@@ -95,7 +110,7 @@ const MatchStatsTeamTable: React.FC<{ teamName: string; teamData: any[] }> = ({
     []
   );
 
-  const sortBy = React.useMemo(() => [{ id: "efficiency", desc: true }], []);
+  const sortBy = React.useMemo(() => [{ id: "kdr", desc: true }], []);
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data, initialState: { sortBy } }, useSortBy);
@@ -147,8 +162,19 @@ const MatchStatsTeamTable: React.FC<{ teamName: string; teamData: any[] }> = ({
                   <Td
                     {...cell.getCellProps()}
                     isNumeric={cell.column.isNumeric}
+                    width={cell.column.width}
                   >
-                    {cell.render("Cell")}
+                    {cell.column.id === "kdr" ? (
+                      cell.value < 1 ? (
+                        <Text color="red.500">{cell.value}</Text>
+                      ) : (
+                        <Text color="green.500">{cell.value}</Text>
+                      )
+                    ) : (
+                      cell.render("Cell")
+                    )}
+
+                    {console.log(cell)}
                   </Td>
                 ))}
               </Tr>
