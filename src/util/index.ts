@@ -5,7 +5,7 @@ export const toList = <T>(obj: Record<string, T>) => {
 };
 
 export const dateStringToDate = (input: string) => {
-  const d = parse(input, "yyyy-MM-dd HH:mm:ss", new Date());
+  const d = parse(input + '+00', "yyyy-MM-dd HH:mm:ssX", new Date());
   return d;
 };
 

@@ -9,6 +9,7 @@ import {
   Tr,
   Th,
   Td,
+  Text,
 } from "@chakra-ui/react";
 import { Link as reactLink } from "react-router-dom";
 import { formatDistance } from "date-fns";
@@ -45,18 +46,12 @@ export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
             .map((match) => (
               <Tr key={match.match_id}>
                 <Td>
-                  <Link
-                    as={reactLink}
-                    to={`/matches/${match.match_id}`}
-                  >
+                  <Link as={reactLink} to={`/matches/${match.match_id}`}>
                     {match.map}
                   </Link>
                 </Td>
                 <Td>
-                  <Link
-                    as={reactLink}
-                    to={`/matches/${match.match_id}`}
-                  >
+                  <Link as={reactLink} to={`/matches/${match.match_id}`}>
                     {match.server_name}
                   </Link>
                 </Td>
@@ -66,6 +61,19 @@ export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
                     new Date()
                   )}{" "}
                   ago
+                  <br />
+                  <Text color="gray.500" fontSize="xs">
+                    {dateStringToDate(match.date_time_human).toLocaleString(
+                      [],
+                      {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      }
+                    )}
+                  </Text>
                 </Td>
               </Tr>
             ))}
