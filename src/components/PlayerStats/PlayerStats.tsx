@@ -21,6 +21,7 @@ import { MatchStatsPlayerTable } from "../MatchStats";
 
 import { IPlayerDetails, IPlayerStats } from "../../api/types";
 import { REGIONS, GAME_TYPES } from "../../constants";
+import { EloProgress } from "../EloProgress";
 
 const PlayerStats: React.FC<{
   data: IPlayerDetails;
@@ -113,6 +114,12 @@ const PlayerStats: React.FC<{
             <StatNumber>{gibsPerGame}</StatNumber>
           </Stat>
         </SimpleGrid>
+      </Box>
+      <Box w="100%">
+        <Heading as="h4" size="md" mt="20px" mb="10px">
+          Elo Progression
+        </Heading>
+        <EloProgress playerId={playerId} region={region} gametype={gametype}/>
       </Box>
       <Box w="100%">
         <Heading as="h4" size="md" mt="20px" mb="10px">

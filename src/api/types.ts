@@ -204,6 +204,13 @@ interface IPlayerStatsDictionary {
   [playerId: string]: IPlayerStats;
 }
 
+export interface IEloProgress {
+  value: number;
+  elo: number;
+  match_id: number;
+  real_name: string;
+}
+
 export interface IServersAPIParams {
   queryKey: any;
 }
