@@ -31,7 +31,7 @@ const RecentPlayerTable: React.FC<{ data: IRecentPlayer[] }> = ({ data }) => {
       .map((item) => {
         const myDate = new Date();
         const d: RecentPlayerTableExtendedType = Object.assign({}, item, {
-          lastSeenRelative: formatDistance(myDate, new Date(item.last_seen)),
+          lastSeenRelative: formatDistance(myDate, new Date(item.last_seen + "Z")),
         });
         return d;
       });

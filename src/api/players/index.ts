@@ -6,6 +6,7 @@ import {
   IPlayerSearchResult,
   IPlayerStats,
   IPlayerAlias,
+  IEloProgress
 } from "../types";
 
 export const createPlayersApi = (agent: AxiosInstance) => {
@@ -33,5 +34,11 @@ export const createPlayersApi = (agent: AxiosInstance) => {
         .get<IPlayerStats[]>(`/stats/player/${playerId}`)
         .then(pickData);
     },
+    EloProgress: async (playerId: string, region: string, gametype: string) => {
+      return agent
+        .get<IEloProgress[]>(`/eloprogress/player/${playerId}/region/${region}/type/${gametype}`)
+        .then(pickData)
+        .then((eloProgress: IEloProgress[]) => !("error" in eloProgress) ? eloProgress.reverse() : eloProgress );
+    }
   };
 };
