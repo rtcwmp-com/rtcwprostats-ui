@@ -1,12 +1,13 @@
 import React, { useContext, MouseEvent } from "react";
 import { useQuery } from "react-query";
 import { useHistory } from "react-router-dom";
-import { Box, Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
+import { Box, Table, Thead, Tbody, Tr, Th, Td ,Text } from "@chakra-ui/react";
 
 import { Loading } from "../Loading";
 import { RegionTypeContext } from "../../context";
 import { StatsApi } from "../../api";
 import { IPlayerStats } from "../../api/types";
+import { unixToDate } from "../../util";
 
 export const MatchStatsPlayerTable: React.FC<{
   playerId: string;
@@ -29,6 +30,17 @@ export const MatchStatsPlayerTable: React.FC<{
     history.push(`/matches/${matchId}`);
   };
 
+  const getKDR = (item: IPlayerStats) => {
+     let deaths = item["categories"].deaths;
+     deaths = deaths == 0 ? 1 : deaths;
+     const kdr = (item["categories"].kills / deaths)
+     return kdr;
+  };
+
+  const getKDRcolor = (kdr: number) => {
+    return kdr < 1 ? "red.500" : "green.500";
+  };
+
   return (
     <Box w="100%" overflowX="auto">
       {isLoading && <Loading />}
@@ -38,7 +50,9 @@ export const MatchStatsPlayerTable: React.FC<{
             <Tr>
               <Th>Alias</Th>
               <Th>Match ID</Th>
-              <Th>Team</Th>
+              <Th>Date</Th>
+              <Th>K/D</Th>
+              <Th>Ratio</Th>
               <Th># Rnds</Th>
             </Tr>
           </Thead>
@@ -54,8 +68,19 @@ export const MatchStatsPlayerTable: React.FC<{
                 <Td>
                   <span>{item.match_id}</span>
                 </Td>
-                <Td isNumeric>{item.team}</Td>
-                <Td isNumeric>{item.num_rounds}</Td>
+                <Td><span>{unixToDate(item.match_id).toLocaleString(
+                      [],
+                      {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      }
+                    )}</span></Td>
+                <Td>{ item["categories"].kills + "/" + item["categories"].deaths }</Td>
+                <Td>{ <Text color={getKDRcolor(getKDR(item))}>{getKDR(item).toFixed(1)}</Text> } </Td>
+                <Td>{item.num_rounds}</Td>
               </Tr>
             ))}
           </Tbody>

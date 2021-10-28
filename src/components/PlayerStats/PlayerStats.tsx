@@ -66,8 +66,6 @@ const PlayerStats: React.FC<{
     ? (aggStatsRegion["gibs"] / aggStatsRegion["games"]).toFixed(2)
     : "N/A";
 
-  console.log(data);
-
   // TODO: Need to figure out how/what to actually display
   return (
     <Box my="10px">
