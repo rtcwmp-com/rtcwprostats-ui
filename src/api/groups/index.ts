@@ -1,6 +1,6 @@
-import { AxiosInstance } from "axios";
+import { AxiosInstance, AxiosRequestConfig } from "axios";
 import { pickData } from "../util";
-import { IGroupResponse, IServersAPIParams, IStatsResponse } from "../types";
+import { IGroupInput, IGroupResponse, IServersAPIParams, IStatsResponse } from "../types";
 
 export const createGroupsApi = (agent: AxiosInstance) => {
   return {
@@ -25,5 +25,13 @@ export const createGroupsApi = (agent: AxiosInstance) => {
     GroupStats: async (groupName: string) => {
       return agent.get<IStatsResponse>(`/stats/${groupName}`).then(pickData);
     },
+    CreateGroup: async (input: IGroupInput) => {
+      const config: AxiosRequestConfig = {
+        headers: {
+          "x-api-key": "rtcwproapikeythatisjustforbasicauthorization"
+        }
+      };
+      return agent.post<any>(`/groups/add`, input, config).then(pickData);
+    }
   };
 };

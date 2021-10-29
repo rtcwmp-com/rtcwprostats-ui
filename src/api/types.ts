@@ -289,6 +289,13 @@ export interface ITeamOverviewData {
   b: IPlayerStats[];
 }
 
+export interface IGroupInput {
+  group_name: string;
+  matches: number[];
+  region: string,
+  type: string, 
+}
+
 export interface IGroup {
   matches: number[];
   cached: string;
