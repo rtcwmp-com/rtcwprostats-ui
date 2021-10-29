@@ -1,6 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   Box,
+  Button,
+  Checkbox,
   Link,
   Table,
   TableCaption,
@@ -18,12 +20,49 @@ import { dateStringToDate } from "../../../util";
 import { IMatch } from "../../../api/types";
 
 import { REGIONS, GAME_TYPES } from "../../../constants";
+import { MatchListContentModal } from "./MatchListModal";
+
+interface IMatchCheckbox {
+  id: string;
+  status: boolean;
+}
 
 export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
+  const [checkboxes, setCheckBoxes] = React.useState<IMatchCheckbox[]>([]);
+  const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
+
   const rTypeContext = useContext(RegionTypeContext);
   const { region, gametype } = rTypeContext; //region: 'na', gametype: '6'
   const regionTitle = REGIONS.find((item) => item.id === region)?.longName;
   const gameTypeTitle = GAME_TYPES.find((item) => item.id === gametype)?.name;
+
+  let modalKey: number = Math.random() * 100;
+
+  const onCheckBoxChange = (id: string) => {
+    const cbs = checkboxes.filter((item) => item.id === id);
+    if (cbs.length) {
+      setCheckBoxes(
+        checkboxes.map((item) =>
+          item.id == id ? { ...item, status: !item.status } : item
+        )
+      );
+    } else {
+      setCheckBoxes([...checkboxes, { id, status: true }]);
+    }
+  };
+
+  const onCreateGroupClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalOnClose = (reset: boolean = false) => {
+    if (reset) {
+      setCheckBoxes([]);
+      modalKey++;
+    }
+    setIsModalOpen(false);
+  };
+
   return (
     <Box overflowX="auto" my="10px">
       <Table variant="simple">
@@ -33,6 +72,19 @@ export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
             <Th>Map</Th>
             <Th>Server Name</Th>
             <Th>Active</Th>
+            <Th isNumeric={true}>
+              <Button size="xs" onClick={onCreateGroupClick}>
+                Create group
+              </Button>
+              <MatchListContentModal
+                key={`modal-${modalKey}`}
+                matches={checkboxes.filter((item) => item.status).flatMap((item) => parseInt(item.id))}
+                region={region}
+                gametype={gametype}
+                isOpen={isModalOpen}
+                handleModalOnClose={handleModalOnClose}
+              />
+            </Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -43,7 +95,7 @@ export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
                   (idxItem) => idxItem.match_id === item.match_id
                 ) === idx
             )
-            .map((match) => (
+            .map((match, idx) => (
               <Tr key={match.match_id}>
                 <Td>
                   <Link as={reactLink} to={`/matches/${match.match_id}`}>
@@ -74,6 +126,17 @@ export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
                       }
                     )}
                   </Text>
+                </Td>
+                <Td isNumeric={true}>
+                  <Checkbox
+                    size="lg"
+                    colorScheme="gray"
+                    onChange={() => onCheckBoxChange(match.match_id)}
+                    isChecked={
+                      checkboxes.filter((item) => item.id === match.match_id)[0]
+                        ?.status || false
+                    }
+                  />
                 </Td>
               </Tr>
             ))}
