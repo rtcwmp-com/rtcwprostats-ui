@@ -69,9 +69,11 @@ export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
         <TableCaption>{`${regionTitle} - ${gameTypeTitle} - Recent Matches`}</TableCaption>
         <Thead>
           <Tr>
-            <Th>Map</Th>
             <Th>Server Name</Th>
-            <Th>Active</Th>
+            <Th>Match ID</Th>
+            <Th>Map</Th>
+            <Th>Started</Th>
+            <Th>Teams</Th>
             <Th isNumeric={true}>
               <Button size="xs" onClick={onCreateGroupClick}>
                 Create group
@@ -99,12 +101,17 @@ export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
               <Tr key={match.match_id}>
                 <Td>
                   <Link as={reactLink} to={`/matches/${match.match_id}`}>
-                    {match.map}
+                    {match.server_name}
                   </Link>
                 </Td>
                 <Td>
                   <Link as={reactLink} to={`/matches/${match.match_id}`}>
-                    {match.server_name}
+                    {match.match_id}
+                  </Link>
+                </Td>
+                <Td>
+                  <Link as={reactLink} to={`/matches/${match.match_id}`}>
+                    {match.map}
                   </Link>
                 </Td>
                 <Td>
@@ -126,6 +133,11 @@ export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
                       }
                     )}
                   </Text>
+                </Td>
+                <Td>
+                    <span>{ match.teams ? match.teams.split(";")[0] : "" }</span>
+                    <br/>
+                    <span>{ match.teams ? match.teams.split(";")[1] : "" }</span>
                 </Td>
                 <Td isNumeric={true}>
                   <Checkbox
