@@ -49,6 +49,7 @@ export interface IMatch {
   jsonGameStatVersion: string;
   type: string;
   match_round_id: string;
+  teams: string;
 }
 
 export interface IMatchesAPIParams {

@@ -9,6 +9,7 @@ import {
   Tr,
   Th,
   Td,
+  Text
 } from "@chakra-ui/react";
 import { Link as reactLink } from "react-router-dom";
 import { formatDistance } from "date-fns";
@@ -53,7 +54,9 @@ export const GroupListContent: React.FC<{ data: IGroupResponse }> = ({ data }) =
                   {data[group].cached}
                 </Td>
                 <Td>
-                  { data[group].cached == "Yes" ? data[group].teams : "" }
+                  <span>{ data[group].cached == "Yes" ? data[group].teams.split(";")[0] : "" }</span>
+                  <br/>
+                  <span>{ data[group].cached == "Yes" ? data[group].teams.split(";")[1] : "" }</span>
                 </Td>
                 <Td>
                   {data[group].games}
@@ -68,6 +71,18 @@ export const GroupListContent: React.FC<{ data: IGroupResponse }> = ({ data }) =
                         new Date())} ago` 
                         : ""
                   }{" "}
+                  <Text color="gray.500" fontSize="xs">
+                    {dateStringToDate(data[group].finish_human).toLocaleString(
+                      [],
+                      {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      }
+                    )}
+                  </Text>
                 </Td>
               </Tr>
             ))}
