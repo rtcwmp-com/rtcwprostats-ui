@@ -17,12 +17,8 @@ export const MatchStatsPlayerTable: React.FC<{
   const { region, gametype } = rTypeContext; //region: 'na', gametype: '6'
 
   const { data, isLoading } = useQuery<IPlayerStats[]>(
-    ["stats", playerId],
-    () => StatsApi.Players.Stats(playerId)
-  );
-
-  const matchData = data?.filter(
-    (item) => item.type === `${region}#${gametype}`
+    ["stats", playerId, region, gametype],
+    () => StatsApi.Players.Stats(playerId, region, gametype)
   );
 
   const fetchMatchDetails = (e: MouseEvent) => {
@@ -44,7 +40,7 @@ export const MatchStatsPlayerTable: React.FC<{
   return (
     <Box w="100%" overflowX="auto">
       {isLoading && <Loading />}
-      {matchData && matchData.length > 0 ? (
+      {data && data.length > 0 ? (
         <Table variant="striped" size="sm">
           <Thead>
             <Tr>
@@ -57,7 +53,7 @@ export const MatchStatsPlayerTable: React.FC<{
             </Tr>
           </Thead>
           <Tbody>
-            {matchData.map((item) => (
+            {data.map((item) => (
               <Tr
                 key={item.match_id}
                 cursor="pointer"
