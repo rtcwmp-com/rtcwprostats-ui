@@ -29,9 +29,9 @@ export const createPlayersApi = (agent: AxiosInstance) => {
         .get<IPlayerSearchResult[]>(`/player/search/${partialName}`)
         .then(pickData);
     },
-    Stats: async (playerId: string) => {
+    Stats: async (playerId: string, region: string, gametype: string ) => {
       return agent
-        .get<IPlayerStats[]>(`/stats/player/${playerId}`)
+        .get<IPlayerStats[]>(`/stats/player/${playerId}/region/${region}/type/${gametype}`)
         .then(pickData);
     },
     EloProgress: async (playerId: string, region: string, gametype: string) => {
