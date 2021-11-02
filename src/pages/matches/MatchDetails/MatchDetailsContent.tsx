@@ -1,26 +1,26 @@
 import React from "react";
 
 import { TeamOverview } from "../../../components/TeamOverview/TeamOverview";
-import { ITeamOverviewData, iMatchSummary } from "../../../api/types";
+import { ITeamOverviewData } from "../../../api/types";
 import styles from "./MatchDetailsContent.module.css";
 
 export const MatchDetailsContent = ({
   data,
-  matchSummary,
-  reportDescription
+  map,
+  matchId,
 }: {
   data: ITeamOverviewData | null;
-  matchSummary : iMatchSummary;
-  reportDescription : string;
+  map: string;
+  matchId: string;
 }) => {
-
   if (!data) return <p>There was an error fetching match data.</p>;
   return (
     <>
       <div className={styles.subHeader}>
-        <span className={styles.matchId}>{reportDescription}</span>
+        <span className={styles.matchId}>{map}</span>
+        <span className={styles.matchId}>{matchId}</span>
       </div>
-      <TeamOverview matchSummary={matchSummary} data={data} />
+      <TeamOverview map={map} data={data} />
     </>
   );
 };

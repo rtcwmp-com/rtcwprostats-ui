@@ -34,12 +34,6 @@
   flex-direction: column;
 }
 
-.map {
-  display: flex;
-  flex-direction: column;
-  font-size: small;
-}
-
 .center {
   display: flex;
   align-items: center;
@@ -47,5 +41,5 @@
   height: 100%;
   font-size: 36px;
   z-index: 2;
-  width: 200px;
+  width: 50px;
 }
