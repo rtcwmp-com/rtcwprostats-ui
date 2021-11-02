@@ -37,7 +37,7 @@ export const TeamOverview: React.FC<TeamOverviewProps> = ({ data, matchSummary }
         {Object.entries(matchSummary.results).map(([matchId, result]) => (
             <span key={matchId}>
               {result.winnerAB == "TeamA" ? "<" : " " }
-              {result.map} ({result.round1.duration_nice}/{result.round2.duration_nice})
+              {result.map} ({result.round1 ? result.round1.duration_nice : "xx:xx" }/{result.round2 ? result.round2.duration_nice : "xx:xx"})
               {result.winnerAB == "TeamB" ? ">" : " " }
             </span>
           ))}
