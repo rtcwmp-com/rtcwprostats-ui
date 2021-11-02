@@ -11,9 +11,14 @@ import { MatchStats } from "../../../components/MatchStats";
 
 export const MatchDetails: React.FC = () => {
   const { matchId } = useParams<{ matchId: string }>();
+  const { groupId } = useParams<{ groupId: string }>();
+
+  const statsParam = matchId ? matchId : groupId;
+  const groupFlag = matchId ? false : true;
+
   const { data, isLoading } = useQuery<IStatsResponse>(
-    ["match-stats", matchId],
-    () => StatsApi.Matches.MatchStats(matchId)
+    ["match-stats", statsParam],
+    () => StatsApi.Matches.MatchStats(statsParam, groupFlag)
   );
   
   let map = "unknown";
