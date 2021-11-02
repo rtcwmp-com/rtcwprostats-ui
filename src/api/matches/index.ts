@@ -27,13 +27,8 @@ export const createMatchesApi = (agent: AxiosInstance) => {
         return agent.get<IMatch[]>("/matches/recent/6").then(pickData);
       }
     },
-    MatchStats: async (matchId: string, group: boolean) => {
-      if (group) {
-        return agent.get<IStatsResponse>(`/stats/group/${matchId}`).then(pickData);
-      }
-      else {
-        return agent.get<IStatsResponse>(`/stats/${matchId}`).then(pickData);
-      }
+    MatchStats: async (matchId: string) => {
+      return agent.get<IStatsResponse>(`/stats/${matchId}`).then(pickData);
     },
   };
 };

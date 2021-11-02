@@ -30,7 +30,9 @@ const MatchStatsTeamTable: React.FC<{ teamName: string; teamData: any[] }> = ({
           revives: player.categories.revives,
           accuracy: ( 
             <>
-              {(player.categories.hits/(player.categories.shots+(player.categories.shots == 0 ? 1 : 0))*100).toFixed(1)}% 
+              {player.categories.accuracy.toFixed(2)}%
+              <br />
+              ({player.categories.hits}/{player.categories.shots})
             </>
           ),
           headshots: player.categories.headshots,
@@ -171,6 +173,8 @@ const MatchStatsTeamTable: React.FC<{ teamName: string; teamData: any[] }> = ({
                     ) : (
                       cell.render("Cell")
                     )}
+
+                    {console.log(cell)}
                   </Td>
                 ))}
               </Tr>
