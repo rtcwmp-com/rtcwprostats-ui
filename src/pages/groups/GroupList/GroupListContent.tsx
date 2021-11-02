@@ -45,7 +45,7 @@ export const GroupListContent: React.FC<{ data: IGroupResponse }> = ({ data }) =
                 <Td>
                   <Link
                     as={reactLink}
-                    to={`/groups/${group}`}
+                    to={`/matches/${group}/group`} // for now... 
                   >
                     {group}
                   </Link>
