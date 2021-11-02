@@ -15,6 +15,8 @@ export const TeamOverview: React.FC<TeamOverviewProps> = ({ data, matchSummary }
     map = matchSummary.results[Object.keys(matchSummary.results)[0]].map;
   }
 
+  console.log(matchSummary);
+
   return (
     <div
       className={styles.wrapper}
