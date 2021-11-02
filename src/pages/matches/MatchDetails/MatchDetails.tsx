@@ -14,17 +14,13 @@ export const MatchDetails: React.FC = () => {
   const { groupId } = useParams<{ groupId: string }>();
 
   const statsParam = matchId ? matchId : groupId;
+  const statsParamType = matchId ? "match" : "group";
   const groupFlag = matchId ? false : true;
 
   const { data, isLoading } = useQuery<IStatsResponse>(
     ["match-stats", statsParam],
     () => StatsApi.Matches.MatchStats(statsParam, groupFlag)
   );
-  
-  let map = "unknown";
-  if (data && "match_summary" in data) {
-    map = data?.match_summary.results[Object.keys(data.match_summary.results)[0]].map;
-  }
 
   const actualData = useMemo(() => {
     if (!data) {
@@ -49,11 +45,11 @@ export const MatchDetails: React.FC = () => {
 
   return (
     <>
-      <PageTitle>Match Report</PageTitle>
+      <PageTitle>Report for {statsParamType + " " + statsParam}</PageTitle>
       {isLoading && <Loading />}
       {data && !("error" in data) && (
         <>
-          <MatchDetailsContent data={actualData} map={map} matchId={matchId} />
+          <MatchDetailsContent data={actualData} matchSummary={data.match_summary}/>
           <MatchStats data={actualData} />
         </>
       )}

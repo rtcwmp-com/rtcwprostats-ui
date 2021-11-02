@@ -13,7 +13,7 @@ export const TeamOverview: React.FC<TeamOverviewProps> = ({ data, map }) => {
     <div
       className={styles.wrapper}
       style={{
-        backgroundImage: `url(${(MAP_SOURCES as Record<string, string>)[map]})`,
+        backgroundImage: `url(${(MAP_SOURCES as Record<string, string>)[map.trim()]})`,
       }}
     >
       <div className={styles.overlay} />
