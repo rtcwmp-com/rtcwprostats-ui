@@ -1,14 +1,13 @@
 import React from "react";
-import { ITeamOverviewData } from "../../api/types";
+import { ITeamOverviewData, iMatchSummary } from "../../api/types";
 import { MAP_SOURCES } from "../../constants";
 import styles from "./TeamOverview.module.css";
 
 export type TeamOverviewProps = {
   data: ITeamOverviewData;
-  map: string;
+  matchSummary: iMatchSummary;
 };
 
-<<<<<<< HEAD
 export const TeamOverview: React.FC<TeamOverviewProps> = ({ data, matchSummary }) => {
   
   let map = "unknown";
@@ -16,14 +15,13 @@ export const TeamOverview: React.FC<TeamOverviewProps> = ({ data, matchSummary }
     map = matchSummary.results[Object.keys(matchSummary.results)[0]].map;
   }
 
-=======
-export const TeamOverview: React.FC<TeamOverviewProps> = ({ data, map }) => {
->>>>>>> 56bfd094374943e3bce319b30b0b769fba53acb5
+  console.log(matchSummary);
+
   return (
     <div
       className={styles.wrapper}
       style={{
-        backgroundImage: `url(${(MAP_SOURCES as Record<string, string>)[map]})`,
+        backgroundImage: `url(${(MAP_SOURCES as Record<string, string>)[map.trim()]})`,
       }}
     >
       <div className={styles.overlay} />
@@ -34,21 +32,17 @@ export const TeamOverview: React.FC<TeamOverviewProps> = ({ data, map }) => {
           ))}
         </div>
       </div>
-<<<<<<< HEAD
       <div className={styles.center}>
         <div className={styles.map}>
         {Object.entries(matchSummary.results).map(([matchId, result]) => (
             <span key={matchId}>
               {result.winnerAB == "TeamA" ? "<" : " " }
-              {result.map} ({result.round1 ? result.round1.duration_nice : "xx:xx" }/{result.round2 ? result.round2.duration_nice : "xx:xx"})
+              {result.map} ({result.round1.duration_nice}/{result.round2.duration_nice})
               {result.winnerAB == "TeamB" ? ">" : " " }
             </span>
           ))}
         </div>
       </div>
-=======
-      <div className={styles.center}>vs</div>
->>>>>>> 56bfd094374943e3bce319b30b0b769fba53acb5
       <div className={styles.side}>
         <div className={styles.textWrapper}>
           {data.b.map(({ alias }) => (
