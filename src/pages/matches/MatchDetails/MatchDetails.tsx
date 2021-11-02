@@ -14,8 +14,10 @@ export const MatchDetails: React.FC = () => {
   const { groupId } = useParams<{ groupId: string }>();
 
   const statsParam = matchId ? matchId : groupId;
-  const statsParamType = matchId ? "match" : "group";
+  const statsParamType = matchId ? "Match" : "Group";
   const groupFlag = matchId ? false : true;
+
+  const reportDescription = statsParamType + ": " + statsParam;
 
   const { data, isLoading } = useQuery<IStatsResponse>(
     ["match-stats", statsParam],
@@ -45,11 +47,11 @@ export const MatchDetails: React.FC = () => {
 
   return (
     <>
-      <PageTitle>Report for {statsParamType + " " + statsParam}</PageTitle>
+      <PageTitle>Match Report</PageTitle>
       {isLoading && <Loading />}
       {data && !("error" in data) && (
         <>
-          <MatchDetailsContent data={actualData} matchSummary={data.match_summary}/>
+          <MatchDetailsContent data={actualData} matchSummary={data.match_summary} reportDescription={reportDescription}/>
           <MatchStats data={actualData} />
         </>
       )}

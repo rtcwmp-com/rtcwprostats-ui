@@ -6,31 +6,21 @@ import styles from "./MatchDetailsContent.module.css";
 
 export const MatchDetailsContent = ({
   data,
-  matchSummary
+  matchSummary,
+  reportDescription
 }: {
   data: ITeamOverviewData | null;
-  matchSummary : iMatchSummary
+  matchSummary : iMatchSummary;
+  reportDescription : string;
 }) => {
-
-  let map = "unknown";
-
-  if (matchSummary){
-    map = "";
-    console
-    for ( const [matchId, result] of Object.entries(matchSummary.results)) {
-      if (!map.includes(result.map)) {
-        map += result.map + " ";
-      }
-    }
-  }
 
   if (!data) return <p>There was an error fetching match data.</p>;
   return (
     <>
       <div className={styles.subHeader}>
-        <span className={styles.matchId}>Maps: {map}</span>
+        <span className={styles.matchId}>{reportDescription}</span>
       </div>
-      <TeamOverview map={map} data={data} />
+      <TeamOverview matchSummary={matchSummary} data={data} />
     </>
   );
 };
