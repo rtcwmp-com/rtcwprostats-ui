@@ -14,6 +14,7 @@ import {
 } from "./pages/players/PlayerSearch";
 import { ServerList } from "./pages/servers/ServerList/ServerList";
 import { LeaderList } from "./pages/leaders/LeaderList/LeaderList";
+import { InformationPage } from "./pages/info/Information";
 import RegionTypeState from "./context/RegionTypeState";
 
 import theme from "./theme";
@@ -68,6 +69,7 @@ export const App: React.FC = () => {
                   <Route path="/player/:playerId" component={Player} />
                   <Route exact path="/servers" component={ServerList} />
                   <Route exact path="/leaders" component={LeaderList} />
+                  <Route exact path="/info" component={InformationPage} />
                 </Switch>
               </Box>
             </Stack>

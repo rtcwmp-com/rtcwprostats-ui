@@ -25,11 +25,6 @@ export const GroupList: React.FC = () => {
       <Box w="100%">
         <RegionTypePicker />
       </Box>
-      <br/>
-      <br/>
-      <p>[!][!][!]  This page is under construction and links lead nowhere. Standby.[!][!][!]</p> 
-      <br/>
-      <br/>
 
       <div>
         {isLoading && <Loading />}
