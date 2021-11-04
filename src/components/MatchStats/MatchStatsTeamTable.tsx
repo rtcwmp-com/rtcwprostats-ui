@@ -13,9 +13,10 @@ import {
 } from "@chakra-ui/react";
 import { IPlayerStats } from "../../api/types";
 
-const MatchStatsTeamTable: React.FC<{ teamName: string; teamData: any[] }> = ({
+const MatchStatsTeamTable: React.FC<{ teamName: string; teamData: any[], displayHeader: boolean }> = ({
   teamName,
   teamData,
+  displayHeader
 }) => {
   const data = React.useMemo(
     () =>
@@ -116,7 +117,7 @@ const MatchStatsTeamTable: React.FC<{ teamName: string; teamData: any[] }> = ({
   return (
     <>
       <Text m={2} mt={5} fontSize="2xl">
-        {teamName}
+        {displayHeader  && teamName}
       </Text>
       <Table
         size="sm"

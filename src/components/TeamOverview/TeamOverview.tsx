@@ -15,7 +15,12 @@ export const TeamOverview: React.FC<TeamOverviewProps> = ({ data, matchSummary }
     map = matchSummary.results[Object.keys(matchSummary.results)[0]].map;
   }
 
-  console.log(matchSummary);
+  let scoreA = 0
+  let scoreB = 0
+  for (let matchId in matchSummary.results) {
+    scoreA += ["TeamA","Draw"].includes(matchSummary.results[matchId].winnerAB) ? 1 : 0;
+    scoreB += ["TeamB","Draw"].includes(matchSummary.results[matchId].winnerAB) ? 1 : 0;
+  }
 
   return (
     <div
@@ -35,13 +40,17 @@ export const TeamOverview: React.FC<TeamOverviewProps> = ({ data, matchSummary }
       <div className={styles.center}>
         <div className={styles.map}>
         {Object.entries(matchSummary.results).map(([matchId, result]) => (
-            <span key={matchId}>
+            <div key={matchId}>
               {result.winnerAB == "TeamA" ? "<" : " " }
               {result.map} ({result.round1 ? result.round1.duration_nice : "xx:xx" }/{result.round2 ? result.round2.duration_nice : "xx:xx"})
               {result.winnerAB == "TeamB" ? ">" : " " }
-            </span>
+            </div>
           ))}
+          <div className={styles.score}>
+            {scoreA + ":" + scoreB }
+          </div>
         </div>
+        
       </div>
       <div className={styles.side}>
         <div className={styles.textWrapper}>

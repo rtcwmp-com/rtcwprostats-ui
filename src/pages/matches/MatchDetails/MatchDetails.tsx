@@ -33,10 +33,19 @@ export const MatchDetails: React.FC = () => {
       (acc, item) => {
         const player = item[Object.keys(item)[0]];
 
-        if (player.team === "Allied") {
+        const gametype = parseInt(data.type.split("#")[0]);
+        const displayLimit = gametype == 3 ? 7 : 15
+        const displayAllTeams = data.statsall.length < displayLimit;
+        
+        if (displayAllTeams) {
+          if (player.team === "Allied" || player.team === "TeamA") {
+            acc.a.push(player);
+          } else {
+            acc.b.push(player);
+          }
+        }
+        else {
           acc.a.push(player);
-        } else {
-          acc.b.push(player);
         }
 
         return acc;
@@ -51,8 +60,8 @@ export const MatchDetails: React.FC = () => {
       {isLoading && <Loading />}
       {data && !("error" in data) && (
         <>
-          <MatchDetailsContent data={actualData} matchSummary={data.match_summary} reportDescription={reportDescription}/>
-          <MatchStats data={actualData} />
+          <MatchDetailsContent data={actualData} matchSummary={data.match_summary} reportDescription={reportDescription} />
+          {actualData && <MatchStats data={actualData} displayHeader={actualData.b.length > 0 }/> }
         </>
       )}
     </>
