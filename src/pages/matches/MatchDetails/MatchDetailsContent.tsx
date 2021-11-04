@@ -20,7 +20,8 @@ export const MatchDetailsContent = ({
       <div className={styles.subHeader}>
         <span className={styles.matchId}>{reportDescription}</span>
       </div>
-      <TeamOverview matchSummary={matchSummary} data={data} />
+      { /* If all players are mingled in the same team (and the other one is empty), don't display match summaries as there can be too much irrelevant data. */ }
+      { data && data.b.length > 0 && <TeamOverview matchSummary={matchSummary} data={data} /> }
     </>
   );
 };

@@ -1,7 +1,7 @@
 .wrapper {
   background-color: var(--background-light);
   display: flex;
-  height: 230px;
+  height: 130px;
   margin: 12px 24px 0 0;
   position: relative;
   object-fit: cover;
@@ -16,7 +16,7 @@
   flex-direction: column;
   justify-content: center;
   flex: 1;
-  font-size: 24px;
+  font-size: small;
   z-index: 2;
 }
 
@@ -41,6 +41,16 @@
 }
 
 .center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 36px;
+  z-index: 2;
+  width: 200px;
+}
+
+.score {
   display: flex;
   align-items: center;
   justify-content: center;
