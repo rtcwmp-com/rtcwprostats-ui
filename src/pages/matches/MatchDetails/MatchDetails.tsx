@@ -3,7 +3,11 @@ import { useMemo } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { StatsApi } from "../../../api";
-import { IStatsResponse, ITeamOverviewData } from "../../../api/types";
+import {
+  IPlayerStatsWithId,
+  IStatsResponse,
+  ITeamOverviewData,
+} from "../../../api/types";
 import { Loading } from "../../../components/Loading";
 import { MatchDetailsContent } from "./MatchDetailsContent";
 import { PageTitle } from "../../../components/PageTitle";
@@ -31,20 +35,22 @@ export const MatchDetails: React.FC = () => {
 
     return data.statsall.reduce(
       (acc, item) => {
-        const player = item[Object.keys(item)[0]];
-
+        const playerId = Object.keys(item)[0];
+        const player: IPlayerStatsWithId = {
+          ...item[playerId],
+          playerId,
+        };
         const gametype = parseInt(data.type.split("#")[0]);
-        const displayLimit = gametype == 3 ? 7 : 15
+        const displayLimit = gametype === 3 ? 7 : 15;
         const displayAllTeams = data.statsall.length < displayLimit;
-        
+
         if (displayAllTeams) {
           if (player.team === "Allied" || player.team === "TeamA") {
             acc.a.push(player);
           } else {
             acc.b.push(player);
           }
-        }
-        else {
+        } else {
           acc.a.push(player);
         }
 
@@ -60,8 +66,17 @@ export const MatchDetails: React.FC = () => {
       {isLoading && <Loading />}
       {data && !("error" in data) && (
         <>
-          <MatchDetailsContent data={actualData} matchSummary={data.match_summary} reportDescription={reportDescription} />
-          {actualData && <MatchStats data={actualData} displayHeader={actualData.b.length > 0 }/> }
+          <MatchDetailsContent
+            data={actualData}
+            matchSummary={data.match_summary}
+            reportDescription={reportDescription}
+          />
+          {actualData && (
+            <MatchStats
+              data={actualData}
+              displayHeader={actualData.b.length > 0}
+            />
+          )}
         </>
       )}
     </>

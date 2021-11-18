@@ -282,19 +282,23 @@ export interface iGameResult {
   round2: {
     duration: number;
     duration_nice: string;
-  }
+  };
 }
 
+export type IPlayerStatsWithId = IPlayerStats & {
+  playerId: string;
+};
+
 export interface ITeamOverviewData {
-  a: IPlayerStats[];
-  b: IPlayerStats[];
+  a: IPlayerStatsWithId[];
+  b: IPlayerStatsWithId[];
 }
 
 export interface IGroupInput {
   group_name: string;
   matches: number[];
-  region: string,
-  type: string, 
+  region: string;
+  type: string;
 }
 
 export interface IGroup {
@@ -307,5 +311,5 @@ export interface IGroup {
 }
 
 export interface IGroupResponse {
-  [index:string]: IGroup;
+  [index: string]: IGroup;
 }

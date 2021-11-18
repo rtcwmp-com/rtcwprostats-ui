@@ -1,27 +1,23 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useTable, useSortBy } from "react-table";
 import { VscTriangleDown, VscTriangleUp } from "react-icons/vsc";
 
-import {
-  Text,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td 
-} from "@chakra-ui/react";
-import { IPlayerStats } from "../../api/types";
+import { Text, Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
+import { IPlayerStatsWithId } from "../../api/types";
+import { useHistory } from "react-router-dom";
+import styles from "./MatchStatsTeamTable.module.css";
 
-const MatchStatsTeamTable: React.FC<{ teamName: string; teamData: any[], displayHeader: boolean }> = ({
-  teamName,
-  teamData,
-  displayHeader
-}) => {
+const MatchStatsTeamTable: React.FC<{
+  teamName: string;
+  teamData: any[];
+  displayHeader: boolean;
+}> = ({ teamName, teamData, displayHeader }) => {
+  const history = useHistory();
   const data = React.useMemo(
     () =>
-      teamData.map((player: IPlayerStats) => {
+      teamData.map((player: IPlayerStatsWithId) => {
         const d: any = {
+          playerId: player.playerId,
           name: player.alias,
           kdr: (player.categories.kills / player.categories.deaths).toFixed(2),
           kills: player.categories.kills,
@@ -29,9 +25,15 @@ const MatchStatsTeamTable: React.FC<{ teamName: string; teamData: any[], display
           gibs: player.categories.gibs,
           suicides: player.categories.suicides,
           revives: player.categories.revives,
-          accuracy: ( 
+          accuracy: (
             <>
-              {(player.categories.hits/(player.categories.shots+(player.categories.shots == 0 ? 1 : 0))*100).toFixed(1)}% 
+              {(
+                (player.categories.hits /
+                  (player.categories.shots +
+                    (player.categories.shots === 0 ? 1 : 0))) *
+                100
+              ).toFixed(1)}
+              %
             </>
           ),
           headshots: player.categories.headshots,
@@ -41,7 +43,7 @@ const MatchStatsTeamTable: React.FC<{ teamName: string; teamData: any[], display
         };
         return d;
       }),
-    []
+    [teamData]
   );
 
   const columns = React.useMemo(
@@ -109,6 +111,13 @@ const MatchStatsTeamTable: React.FC<{ teamName: string; teamData: any[], display
     []
   );
 
+  const createGoToPlayerPage = useCallback(
+    (playerId: string) => () => {
+      history.push(`/player/${playerId}`);
+    },
+    [history]
+  );
+
   const sortBy = React.useMemo(() => [{ id: "kdr", desc: true }], []);
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
@@ -117,7 +126,7 @@ const MatchStatsTeamTable: React.FC<{ teamName: string; teamData: any[], display
   return (
     <>
       <Text m={2} mt={5} fontSize="2xl">
-        {displayHeader  && teamName}
+        {displayHeader && teamName}
       </Text>
       <Table
         size="sm"
@@ -156,22 +165,18 @@ const MatchStatsTeamTable: React.FC<{ teamName: string; teamData: any[], display
           {rows.map((row: any) => {
             prepareRow(row);
             return (
-              <Tr {...row.getRowProps()}>
+              <Tr
+                {...row.getRowProps()}
+                className={styles.tableRow}
+                onClick={createGoToPlayerPage(row.original.playerId)}
+              >
                 {row.cells.map((cell: any) => (
                   <Td
                     {...cell.getCellProps()}
                     isNumeric={cell.column.isNumeric}
                     width={cell.column.width}
                   >
-                    {cell.column.id === "kdr" ? (
-                      cell.value < 1 ? (
-                        <Text color="red.500">{cell.value}</Text>
-                      ) : (
-                        <Text color="green.500">{cell.value}</Text>
-                      )
-                    ) : (
-                      cell.render("Cell")
-                    )}
+                    {_renderCell(cell)}
                   </Td>
                 ))}
               </Tr>
@@ -184,3 +189,19 @@ const MatchStatsTeamTable: React.FC<{ teamName: string; teamData: any[], display
 };
 
 export default MatchStatsTeamTable;
+
+const _renderKdrCell = (cell: any) => {
+  if (cell.value < 1) {
+    return <Text color="red.500">{cell.value}</Text>;
+  }
+
+  return <Text color="green.500">{cell.value}</Text>;
+};
+
+const _renderCell = (cell: any) => {
+  if (cell.column.id === "kdr") {
+    return _renderKdrCell(cell);
+  }
+
+  return cell.render("Cell");
+};
