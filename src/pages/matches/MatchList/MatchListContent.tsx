@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import {
   Box,
   Button,
@@ -43,7 +43,7 @@ export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
     if (cbs.length) {
       setCheckBoxes(
         checkboxes.map((item) =>
-          item.id == id ? { ...item, status: !item.status } : item
+          item.id === id ? { ...item, status: !item.status } : item
         )
       );
     } else {
@@ -80,7 +80,9 @@ export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
               </Button>
               <MatchListContentModal
                 key={`modal-${modalKey}`}
-                matches={checkboxes.filter((item) => item.status).flatMap((item) => parseInt(item.id))}
+                matches={checkboxes
+                  .filter((item) => item.status)
+                  .flatMap((item) => parseInt(item.id))}
                 region={region}
                 gametype={gametype}
                 isOpen={isModalOpen}
@@ -135,9 +137,9 @@ export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
                   </Text>
                 </Td>
                 <Td>
-                    <span>{ match.teams ? match.teams.split(";")[0] : "" }</span>
-                    <br/>
-                    <span>{ match.teams ? match.teams.split(";")[1] : "" }</span>
+                  <span>{match.teams ? match.teams.split(";")[0] : ""}</span>
+                  <br />
+                  <span>{match.teams ? match.teams.split(";")[1] : ""}</span>
                 </Td>
                 <Td isNumeric={true}>
                   <Checkbox
