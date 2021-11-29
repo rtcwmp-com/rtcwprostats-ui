@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { StatsApi } from "../../../api";
+import { deriveAwardsfromStats } from "../../../util/awards-calc"
 import {
   IPlayerStatsWithId,
   IStatsResponse,
@@ -27,6 +28,11 @@ export const MatchDetails: React.FC = () => {
     ["match-stats", statsParam],
     () => StatsApi.Matches.MatchStats(statsParam, groupFlag)
   );
+
+  if (data) {
+    const awards = deriveAwardsfromStats(data);
+    console.log(awards);
+  }
 
   const actualData = useMemo(() => {
     if (!data) {

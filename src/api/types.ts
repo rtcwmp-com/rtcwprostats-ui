@@ -201,7 +201,7 @@ export interface IPlayerStats {
   jsonGameStatVersion: string;
 }
 
-interface IPlayerStatsDictionary {
+export interface IPlayerStatsDictionary {
   [playerId: string]: IPlayerStats;
 }
 
