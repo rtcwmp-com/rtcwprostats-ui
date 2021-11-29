@@ -2,7 +2,7 @@ import { IStatsResponse, IPlayerStatsDictionary, IPlayerStats } from "../api/typ
 
 
 /* How to extend this
-1. Create a function calc_something_values(players)
+1. Create a function like calc_something_values(players)
        return shoud be a dictionary of {alias:value, alias2:value2}
 2. Plug the returned dictionary into the metrics
        metrics["Something"] =  calc_terminator_values(players);
@@ -20,29 +20,28 @@ function convert_statsall_to_players(stats: IStatsResponse) {
     return players
 }
 
-function calc_best_medic_values(players) {
+function calc_best_medic_values(players: { [name: string]: any }) {
     let dict_: { [name: string]: any } = {};
 
-    for (const [alias, stat] of Object.entries(players)) {
+    for (const [alias, stat] of Object.entries(players) as any) {
         dict_[alias] = stat["categories"]['revives'] + stat["categories"]['healthgiven']/4 + stat["categories"]['kills']/3;
       }
     return dict_
 }
 
-function calc_best_engineer_values(players) {
+function calc_best_engineer_values(players: { [name: string]: any }) {
     let dict_: { [name: string]: any } = {};
 
-    for (const [alias, stat] of Object.entries(players)) {
+    for (const [alias, stat] of Object.entries(players) as any) {
         dict_[alias] = stat["categories"]["dyn_planted"] + stat["categories"]["dyn_defused"];
       }
     return dict_
 }
 
-
-function calc_terminator_values(players) {
+function calc_terminator_values(players: { [name: string]: any }) {
     let dict_: { [name: string]: any } = {};
 
-    for (const [alias, stat] of Object.entries(players)) {
+    for (const [alias, stat] of Object.entries(players) as any) {
         if (alias in dict_) {
             dict_[alias] += stat["categories"]["kills"];
         }
@@ -53,21 +52,21 @@ function calc_terminator_values(players) {
     return dict_
 }
 
-function biggest_values(metrics) {
+function biggest_values(metrics: { [name: string]: any }) {
     let max_values: { [name: string]: any } = {};
 
-    for (const [metric, dict_] of Object.entries(metrics)) {
-        max_values[metric] = Object.values(dict_).reduce((a, b) => Math.max(a, b));
+    for (const [metric, dict_] of Object.entries(metrics) as any) {
+        max_values[metric] = Object.values(dict_).reduce((a, b) => Math.max(a as number, b as number));
         // console.log(metric + " top value is " + Object.values(dict_).reduce((a, b) => Math.max(a, b)))
       }
     return max_values
 }
 
-function keys_of_biggest_values(metrics, max_values) {
+function keys_of_biggest_values(metrics: any, max_values: any) {
     let award_list: { [name: string]: any } = {};
-    for (const [metric, all_values] of Object.entries(metrics)) {
+    for (const [metric, all_values] of Object.entries(metrics) as any) {
         award_list[metric] = {}
-        for (const [alias, value] of Object.entries(all_values)) {
+        for (const [alias, value] of Object.entries(all_values) as any) {
             if (value == max_values[metric] && max_values[metric] > 0) {
                   award_list[metric][alias] = value;
             }
