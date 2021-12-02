@@ -30,8 +30,15 @@ export const MatchDetails: React.FC = () => {
   );
 
   if (data) {
-    const awards = deriveAwardsfromStats(data);
-    console.log(awards);
+    const awardsFromStats = deriveAwardsfromStats(data);
+    console.log("awardsFromStats");
+    console.log(awardsFromStats);
+
+    if ("awards" in data) {
+      const awardsFromGamelog = data.awards;
+      console.log("awardsFromGamelog");
+      console.log(awardsFromGamelog);
+    }
   }
 
   const actualData = useMemo(() => {
