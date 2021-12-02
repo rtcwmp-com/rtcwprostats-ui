@@ -257,6 +257,7 @@ export interface IStatsResponse {
   match_id: string;
   type: string;
   match_summary: iMatchSummary;
+  awards: IAwardSummary;
 }
 
 export interface iMatchSummary {
@@ -265,6 +266,14 @@ export interface iMatchSummary {
   finish_human: string;
   games: number;
   results: iGameResultsObject;
+}
+
+export interface IAwardSummary {
+  [awardName: string]: iAwardSingle;
+}
+
+export interface iAwardSingle {
+  [real_name: string]: number;
 }
 
 export interface iGameResultsObject {
