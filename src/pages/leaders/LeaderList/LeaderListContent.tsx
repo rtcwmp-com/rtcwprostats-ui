@@ -26,6 +26,9 @@ export const LeaderListContent: React.FC<{
             .sort((a, b) => {
               return b.value - a.value;
             })
+            .filter((leaderItem) => {
+              return leaderItem.games >= 16 || leaderItem.games <= 0;
+            })
             .map((leaderItem) => (
               <Tr key={leaderItem.guid}>
                 <Td>
@@ -33,8 +36,9 @@ export const LeaderListContent: React.FC<{
                     <span>{leaderItem.real_name || leaderItem.guid}</span>
                   </Link>
                 </Td>
-                <Td isNumeric>{leaderItem.value}</Td>
-                <Td isNumeric>{leaderItem.games}</Td>
+                {/* Player box is 48 units, assuming player hight is 1.8m , convert longest kill units to meters */}
+                <Td isNumeric>{category == "longest kill" ? (leaderItem.value/48*1.8).toFixed(1) + " m" : leaderItem.value}</Td>
+                <Td isNumeric>{leaderItem.games < 0.00001 ? "-" : leaderItem.games}</Td>
               </Tr>
             ))}
         </Tbody>
