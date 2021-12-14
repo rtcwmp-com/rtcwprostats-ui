@@ -51,7 +51,8 @@ export const CATEGORIES = [
   { id: "kdr", name: "KDR" },
   { id: "acc", name: "ACC" },
   { id: "killpeak", name: "KILLPEAK" },
-  { id: "longest kill", name: "LONGEST KILL" },
+  { id: "Longest Kill", name: "LONGEST KILL" },
+  { id: "MegaKill", name: "MEGAKILL" },
 ];
 
 export const NAV_LINKS = [
