@@ -137,9 +137,25 @@ export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
                   </Text>
                 </Td>
                 <Td>
-                  <span>{match.teams ? match.teams.split(";")[0] : ""}</span>
+                  <span>
+                    {match.teams
+                      ? match.teams
+                          .replace("TeamA:", "")
+                          .split(",")
+                          .join(", ")
+                          .split(";")[0]
+                      : ""}
+                  </span>
                   <br />
-                  <span>{match.teams ? match.teams.split(";")[1] : ""}</span>
+                  <span>
+                    {match.teams
+                      ? match.teams
+                          .replace("TeamA:", "")
+                          .split(",")
+                          .join(", ")
+                          .split(";")[1]
+                      : ""}
+                  </span>
                 </Td>
                 <Td isNumeric={true}>
                   <Checkbox

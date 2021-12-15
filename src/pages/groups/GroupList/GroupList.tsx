@@ -7,7 +7,6 @@ import { Loading } from "../../../components/Loading";
 import { GroupListContent } from "./GroupListContent";
 import { PageTitle } from "../../../components/PageTitle";
 import { RegionTypePicker } from "../../../components/Nav/RegionTypePicker";
-import { useParams } from "react-router-dom";
 import { RegionTypeContext } from "../../../context";
 
 export const GroupList: React.FC = () => {
@@ -26,12 +25,8 @@ export const GroupList: React.FC = () => {
         <RegionTypePicker />
       </Box>
 
-      <div>
-        {isLoading && <Loading />}
-        {data && !("error" in data) && (
-          <GroupListContent data={data} />
-        )}
-      </div>
+      {isLoading && <Loading />}
+      {data && !("error" in data) && <GroupListContent data={data} />}
     </>
   );
 };
