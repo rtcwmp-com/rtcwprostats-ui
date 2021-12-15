@@ -1,0 +1,46 @@
+.wrapper {
+  padding: 24px 24px 24px 0;
+  column-count: 5;
+  column-gap: 5px;
+}
+
+.awardTile {
+  border-left: rgb(76, 140, 204) solid thick;
+  flex-direction: column;
+  position: relative;
+  display: inline-block;
+  margin: 0 0 1em;
+  width: 100%;
+}
+
+.awardHeaderBg {
+  background-color: rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  height: 35px;
+  padding: 6px 12px 6px 12px;
+}
+
+.awardHeaderText {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.infoContainer {
+  background-color: var(--background-light);
+  display: flex;
+  flex-direction: row;
+  padding: 6px;
+  font-size: 13px;
+}
+
+.playerName {
+  padding: 0px 6px 0px 6px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.value {
+  padding: 0px 6px 0px 6px;
+  font-size: 14px;
+}
