@@ -1,51 +1,63 @@
 import React from "react";
 import { IAwardSummary } from "../../api/types";
-import styles from "./AwardsDisplay.module.css";
-import { Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import { unitsToMeters, getRandomColor } from "../../util";
 
-export const AwardsDisplay: React.FC<{data: IAwardSummary}> = ({data}) => {
-  
-  if  (false) {
-    data["A"] = {"Bek":2}
-    data["AFDS"] = {"Bean":2}
-    data["AFCD"] = {"Bear":2}
-    data["AAAA"] = {"Beat":2}
-    data["A34232"] = {"Battlestar gallactica":2.55555}
-    data["AFDS1"] = {"Bean":2}
-    data["AFCD1"] = {"Bear":2}
-    data["AAAA1"] = {"Beat":2}
-    data["AFDS1"] = {"Bean":2}
-    data["AFCD1"] = {"Bear":2}
-    data["AAAA1"] = {"Beat":2}
-  }
-
+export const AwardsDisplay: React.FC<{ data: IAwardSummary }> = ({ data }) => {
   let playerColors: any = {};
-  for (const [award, values] of Object.entries(data)) {
-    for (const [player, value] of Object.entries(values)) {
+  for (const [, values] of Object.entries(data)) {
+    for (const [player] of Object.entries(values)) {
       playerColors[player] = getRandomColor();
     }
   }
 
   return (
     <>
-    <Text ml={2} mt={5} fontSize="2xl">Awards</Text>
-    <div className={styles.wrapper}>
-          {Object.entries(data).map(([award, values]) => (
-              <div className={styles.awardTile} key={award}>
-                <div className={styles.awardHeaderBg}>
-                  <span className={styles.awardHeaderText}>{award}</span>
-                </div>
-                {
-                  Object.entries(values).map(([player, value]) => (
-                      <div className={styles.infoContainer} key={player}>
-                        <span className={styles.playerName}><span style={{color: playerColors[player]}}>{player}</span></span>: <span className={styles.value}>{award == "Longest Kill" ? unitsToMeters(value) + " m" : value}</span>
-                      </div>
-                  ))
-                }
-              </div>
+      <Text mt={5} fontSize="2xl">
+        Awards
+      </Text>
+      <Box>
+        {Object.entries(data).map(([award, values]) => (
+          <Box
+            width="200px"
+            display="inline-block"
+            verticalAlign="top"
+            my={4}
+            mr={4}
+            borderLeft="rgb(76, 140, 204) solid thick"
+            key={award}
+          >
+            <Box px={2} backgroundColor="rgba(0, 0, 0, 0.15)" w="100%">
+              <Text fontSize="16px" fontWeight="bold">
+                {award}
+              </Text>
+            </Box>
+            {Object.entries(values).map(([player, value]) => (
+              <Box
+                pl={2}
+                bgColor="var(--background-light)"
+                whiteSpace="nowrap"
+                key={player}
+                w="100%"
+              >
+                <Text
+                  fontWeight="bold"
+                  color={playerColors[player]}
+                  display="inline"
+                  fontSize="14px"
+                >
+                  {`${player}: `}{" "}
+                  <Box as="span" color="white" fontWeight="normal">
+                    {award === "Longest Kill"
+                      ? `${unitsToMeters(value)} m`
+                      : value}
+                  </Box>
+                </Text>
+              </Box>
             ))}
-     </div>
-  </>
+          </Box>
+        ))}
+      </Box>
+    </>
   );
 };
