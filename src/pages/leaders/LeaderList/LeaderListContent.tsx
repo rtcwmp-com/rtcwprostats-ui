@@ -4,6 +4,7 @@ import { Link as reactLink } from "react-router-dom";
 
 import { ILeaderItem } from "../../../api/types";
 import { CATEGORIES } from "../../../constants";
+import { unitsToMeters } from "../../../util";
 
 export const LeaderListContent: React.FC<{
   data: ILeaderItem[];
@@ -37,7 +38,7 @@ export const LeaderListContent: React.FC<{
                   </Link>
                 </Td>
                 {/* Player box is 48 units, assuming player hight is 1.8m , convert longest kill units to meters */}
-                <Td isNumeric>{category == "Longest Kill" ? (leaderItem.value/48*1.8).toFixed(1) + " m" : leaderItem.value}</Td>
+                <Td isNumeric>{category == "Longest Kill" ? unitsToMeters(leaderItem.value) + " m" : leaderItem.value}</Td>
                 <Td isNumeric>{leaderItem.games < 0.00001 ? "-" : leaderItem.games}</Td>
               </Tr>
             ))}

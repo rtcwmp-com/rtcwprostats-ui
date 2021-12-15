@@ -19,3 +19,12 @@ export const unixToDate = (input: string) => {
   const d = fromUnixTime(input_int);
   return d;
 };
+
+export const unitsToMeters = (distance: number ) => {
+  return (distance/48*1.8).toFixed(1);
+};
+
+export const getRandomColor = () => {
+  const randomColor = Math.floor(Math.random()*16777215).toString(16);
+  return "#" + randomColor;
+}

@@ -13,6 +13,7 @@ import { Loading } from "../../../components/Loading";
 import { MatchDetailsContent } from "./MatchDetailsContent";
 import { PageTitle } from "../../../components/PageTitle";
 import { MatchStats } from "../../../components/MatchStats";
+import { AwardsDisplay } from "../../../components/AwardsDisplay/AwardsDisplay";
 
 export const MatchDetails: React.FC = () => {
   const { matchId } = useParams<{ matchId: string }>();
@@ -28,17 +29,17 @@ export const MatchDetails: React.FC = () => {
     ["match-stats", statsParam],
     () => StatsApi.Matches.MatchStats(statsParam, groupFlag)
   );
-
+  
+  let awards = {};
   if (data) {
     const awardsFromStats = deriveAwardsfromStats(data);
-    console.log("awardsFromStats");
-    console.log(awardsFromStats);
-
+    
+    let awardsFromGamelog = {};
     if ("awards" in data) {
-      const awardsFromGamelog = data.awards;
-      console.log("awardsFromGamelog");
-      console.log(awardsFromGamelog);
+      awardsFromGamelog = data.awards;
     }
+
+    awards = {...awardsFromGamelog,...awardsFromStats}
   }
 
   const actualData = useMemo(() => {
@@ -90,6 +91,7 @@ export const MatchDetails: React.FC = () => {
               displayHeader={actualData.b.length > 0}
             />
           )}
+          {"match_summary" in data && (<AwardsDisplay data={awards} />)}
         </>
       )}
     </>
