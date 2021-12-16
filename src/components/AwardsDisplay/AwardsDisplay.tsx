@@ -1,7 +1,9 @@
 import React from "react";
 import { IAwardSummary } from "../../api/types";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, HStack, Text, Tooltip } from "@chakra-ui/react";
 import { unitsToMeters, getRandomColor } from "../../util";
+import { MdHelp } from "react-icons/md";
+import { AWARD_DESCRIPTIONS } from "../../constants";
 
 export const AwardsDisplay: React.FC<{ data: IAwardSummary }> = ({ data }) => {
   let playerColors: any = {};
@@ -28,9 +30,20 @@ export const AwardsDisplay: React.FC<{ data: IAwardSummary }> = ({ data }) => {
             key={award}
           >
             <Box px={2} backgroundColor="rgba(0, 0, 0, 0.15)" w="100%">
-              <Text fontSize="16px" fontWeight="bold">
-                {award}
-              </Text>
+              <HStack>
+                <Text fontSize="16px" fontWeight="bold" display="inline-block">
+                  {award}
+                </Text>
+                <Tooltip
+                  label={`${AWARD_DESCRIPTIONS[award]}`}
+                  aria-label={`${AWARD_DESCRIPTIONS[award]} tooltip`}
+                  placement="top"
+                >
+                  <Box>
+                    <MdHelp />
+                  </Box>
+                </Tooltip>
+              </HStack>
             </Box>
             {Object.entries(values).map(([player, value]) => (
               <Box

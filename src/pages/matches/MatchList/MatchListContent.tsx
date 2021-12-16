@@ -150,7 +150,7 @@ export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
                   <span>
                     {match.teams
                       ? match.teams
-                          .replace("TeamA:", "")
+                          .replace("TeamB:", "")
                           .split(",")
                           .join(", ")
                           .split(";")[1]
