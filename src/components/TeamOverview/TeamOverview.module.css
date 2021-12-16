@@ -3,11 +3,15 @@
   display: flex;
   height: 130px;
   margin: 12px 24px 0 0;
+  width: 100%;
   position: relative;
   object-fit: cover;
   object-position: center center;
   background-position: center center;
   background-size: cover;
+  text-overflow: clip;
+  overflow: hidden;
+  padding: 10px;
 }
 
 .side {
@@ -47,7 +51,7 @@
   height: 100%;
   font-size: 36px;
   z-index: 2;
-  width: 200px;
+  width: 150px;
 }
 
 .score {

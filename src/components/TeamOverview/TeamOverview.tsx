@@ -8,25 +8,33 @@ export type TeamOverviewProps = {
   matchSummary: iMatchSummary;
 };
 
-export const TeamOverview: React.FC<TeamOverviewProps> = ({ data, matchSummary }) => {
-  
+export const TeamOverview: React.FC<TeamOverviewProps> = ({
+  data,
+  matchSummary,
+}) => {
   let map = "unknown";
   if (matchSummary) {
     map = matchSummary.results[Object.keys(matchSummary.results)[0]].map;
   }
 
-  let scoreA = 0
-  let scoreB = 0
+  let scoreA = 0;
+  let scoreB = 0;
   for (let matchId in matchSummary.results) {
-    scoreA += ["TeamA","Draw"].includes(matchSummary.results[matchId].winnerAB) ? 1 : 0;
-    scoreB += ["TeamB","Draw"].includes(matchSummary.results[matchId].winnerAB) ? 1 : 0;
+    scoreA += ["TeamA", "Draw"].includes(matchSummary.results[matchId].winnerAB)
+      ? 1
+      : 0;
+    scoreB += ["TeamB", "Draw"].includes(matchSummary.results[matchId].winnerAB)
+      ? 1
+      : 0;
   }
 
   return (
     <div
       className={styles.wrapper}
       style={{
-        backgroundImage: `url(${(MAP_SOURCES as Record<string, string>)[map.trim()]})`,
+        backgroundImage: `url(${
+          (MAP_SOURCES as Record<string, string>)[map.trim()]
+        })`,
       }}
     >
       <div className={styles.overlay} />
@@ -39,18 +47,17 @@ export const TeamOverview: React.FC<TeamOverviewProps> = ({ data, matchSummary }
       </div>
       <div className={styles.center}>
         <div className={styles.map}>
-        {Object.entries(matchSummary.results).map(([matchId, result]) => (
+          {Object.entries(matchSummary.results).map(([matchId, result]) => (
             <div key={matchId}>
-              {result.winnerAB == "TeamA" ? "<" : " " }
-              {result.map} ({result.round1 ? result.round1.duration_nice : "xx:xx" }/{result.round2 ? result.round2.duration_nice : "xx:xx"})
-              {result.winnerAB == "TeamB" ? ">" : " " }
+              {result.winnerAB === "TeamA" ? "< " : " "}
+              {result.map} (
+              {result.round1 ? result.round1.duration_nice : "xx:xx"}/
+              {result.round2 ? result.round2.duration_nice : "xx:xx"})
+              {result.winnerAB === "TeamB" ? "> " : " "}
             </div>
           ))}
-          <div className={styles.score}>
-            {scoreA + ":" + scoreB }
-          </div>
+          <div className={styles.score}>{scoreA + ":" + scoreB}</div>
         </div>
-        
       </div>
       <div className={styles.side}>
         <div className={styles.textWrapper}>
