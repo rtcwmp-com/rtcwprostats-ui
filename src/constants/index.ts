@@ -53,7 +53,7 @@ export const CATEGORIES = [
   { id: "elo", name: "ELO" },
   { id: "kdr", name: "KDR" },
   { id: "acc", name: "ACC" },
-  { id: "killpeak", name: "KILLPEAK" },
+  { id: "Killpeak", name: "KILLPEAK" },
   { id: "Longest Kill", name: "LONGEST KILL" },
   { id: "MegaKill", name: "MEGAKILL" },
 ];
