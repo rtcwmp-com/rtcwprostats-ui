@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useTable, useSortBy } from "react-table";
 import { VscTriangleDown, VscTriangleUp } from "react-icons/vsc";
 
-import { Text, Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
+import { Box, Text, Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
 import { IPlayerStatsWithId } from "../../api/types";
 import { useHistory } from "react-router-dom";
 import styles from "./MatchStatsTeamTable.module.css";
@@ -128,62 +128,59 @@ const MatchStatsTeamTable: React.FC<{
       <Text m={2} mt={5} fontSize="2xl">
         {displayHeader && teamName}
       </Text>
-      <Table
-        size="sm"
-        variant="striped"
-        width="calc(100% - 24px);"
-        {...getTableProps()}
-      >
-        <Thead>
-          {headerGroups.map((headerGroup: any) => (
-            <Tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column: any) => (
-                <Th
-                  {...column.getHeaderProps(column.getSortByToggleProps())}
-                  isNumeric={column.isNumeric}
-                >
-                  {column.render("Header")}
-                  {column.isSorted ? (
-                    column.isSortedDesc ? (
-                      <VscTriangleDown
-                        style={{ display: "inline", paddingLeft: "3px" }}
-                        aria-label="sorted descending"
-                      />
-                    ) : (
-                      <VscTriangleUp
-                        style={{ display: "inline", paddingLeft: "3px" }}
-                        aria-label="sorted ascending"
-                      />
-                    )
-                  ) : null}
-                </Th>
-              ))}
-            </Tr>
-          ))}
-        </Thead>
-        <Tbody {...getTableBodyProps()}>
-          {rows.map((row: any) => {
-            prepareRow(row);
-            return (
-              <Tr
-                {...row.getRowProps()}
-                className={styles.tableRow}
-                onClick={createGoToPlayerPage(row.original.playerId)}
-              >
-                {row.cells.map((cell: any) => (
-                  <Td
-                    {...cell.getCellProps()}
-                    isNumeric={cell.column.isNumeric}
-                    width={cell.column.width}
+      <Box w="100%" overflowX={"auto"}>
+        <Table size="sm" variant="striped" {...getTableProps()}>
+          <Thead>
+            {headerGroups.map((headerGroup: any) => (
+              <Tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column: any) => (
+                  <Th
+                    {...column.getHeaderProps(column.getSortByToggleProps())}
+                    isNumeric={column.isNumeric}
                   >
-                    {_renderCell(cell)}
-                  </Td>
+                    {column.render("Header")}
+                    {column.isSorted ? (
+                      column.isSortedDesc ? (
+                        <VscTriangleDown
+                          style={{ display: "inline", paddingLeft: "3px" }}
+                          aria-label="sorted descending"
+                        />
+                      ) : (
+                        <VscTriangleUp
+                          style={{ display: "inline", paddingLeft: "3px" }}
+                          aria-label="sorted ascending"
+                        />
+                      )
+                    ) : null}
+                  </Th>
                 ))}
               </Tr>
-            );
-          })}
-        </Tbody>
-      </Table>
+            ))}
+          </Thead>
+          <Tbody {...getTableBodyProps()}>
+            {rows.map((row: any) => {
+              prepareRow(row);
+              return (
+                <Tr
+                  {...row.getRowProps()}
+                  className={styles.tableRow}
+                  onClick={createGoToPlayerPage(row.original.playerId)}
+                >
+                  {row.cells.map((cell: any) => (
+                    <Td
+                      {...cell.getCellProps()}
+                      isNumeric={cell.column.isNumeric}
+                      width={cell.column.width}
+                    >
+                      {_renderCell(cell)}
+                    </Td>
+                  ))}
+                </Tr>
+              );
+            })}
+          </Tbody>
+        </Table>
+      </Box>
     </>
   );
 };

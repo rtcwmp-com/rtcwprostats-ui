@@ -39,7 +39,7 @@ export const LeaderList: React.FC = () => {
             isActive={category === item.id}
             value={item.id}
             onClick={onClickCategory}
-            mx="5px"
+            m="0 5px 5px"
           >
             {item.name}
           </Button>

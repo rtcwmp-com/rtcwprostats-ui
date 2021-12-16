@@ -36,7 +36,7 @@ export const App: React.FC = () => {
               <Box w={["100%", "30%", "250px"]}>
                 <Nav />
               </Box>
-              <Box w={["100%", "70%", "100%"]}>
+              <Box w={["100%", "70%", "calc(100% - 250px)"]}>
                 <Flex justifyContent="flex-end">
                   <Box maxWidth={["100%", "350px"]} width="100%">
                     <PlayerSearch />
@@ -52,14 +52,8 @@ export const App: React.FC = () => {
                     path="/matches/server/:serverId"
                     component={MatchList}
                   />
-                  <Route
-                    path="/matches/:matchId"
-                    component={MatchDetails}
-                  />
-                  <Route
-                    path="/groups/:groupId"
-                    component={MatchDetails}
-                  />
+                  <Route path="/matches/:matchId" component={MatchDetails} />
+                  <Route path="/groups/:groupId" component={MatchDetails} />
                   <Route exact path="/players" component={PlayerList} />
                   <Route
                     exact
