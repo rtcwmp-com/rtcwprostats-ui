@@ -10,8 +10,11 @@ import ufoSrc from "../assets/maps/te_ufo.png";
 import subSrc from "../assets/maps/mp_sub.png";
 
 import { AiOutlineTrophy } from "react-icons/ai";
-import { IoLogoGameControllerB, IoIosInformationCircleOutline } from "react-icons/io";
-import { MdViewList } from 'react-icons/md';
+import {
+  IoLogoGameControllerB,
+  IoIosInformationCircleOutline,
+} from "react-icons/io";
+import { MdViewList } from "react-icons/md";
 import { VscAccount, VscServer } from "react-icons/vsc";
 
 export const COLORS = {
@@ -92,6 +95,21 @@ export const STAT_KEYS: Record<string, string> = {
   damagereceived: "Damage Received",
   shots: "Shots Fired",
   obj_destroyed: "Objective Destroyed",
+};
+
+export const AWARD_DESCRIPTIONS: Record<string, string> = {
+  "Best Engineer": "Most plants/defuses",
+  "Best Medic": "Most revives",
+  "Confirmed Kill": "Most gibs",
+  "Frag Stealer": "Least DMG per frag",
+  Frontliner: "First kill/death in a round",
+  "Internal Enemy": "Most TKs",
+  Killer: "Most kills",
+  "Longest Kill": "Longest kill by distance",
+  "Man of Steel": "Most DMR per death",
+  MegaKill: "Most kills in a short period of time",
+  "Slow Bleeder": "Most DMG per frag",
+  Terminator: "Highest KDR",
 };
 
 export const SET_REGION = "SET_REGION";
