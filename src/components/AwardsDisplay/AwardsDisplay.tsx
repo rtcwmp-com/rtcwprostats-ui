@@ -34,15 +34,17 @@ export const AwardsDisplay: React.FC<{ data: IAwardSummary }> = ({ data }) => {
                 <Text fontSize="16px" fontWeight="bold" display="inline-block">
                   {award}
                 </Text>
-                <Tooltip
-                  label={`${AWARD_DESCRIPTIONS[award]}`}
-                  aria-label={`${AWARD_DESCRIPTIONS[award]} tooltip`}
-                  placement="top"
-                >
-                  <Box>
-                    <MdHelp />
-                  </Box>
-                </Tooltip>
+                {AWARD_DESCRIPTIONS[award] && (
+                  <Tooltip
+                    label={`${AWARD_DESCRIPTIONS[award]}`}
+                    aria-label={`${AWARD_DESCRIPTIONS[award]} tooltip`}
+                    placement="top"
+                  >
+                    <Box>
+                      <MdHelp />
+                    </Box>
+                  </Tooltip>
+                )}
               </HStack>
             </Box>
             {Object.entries(values).map(([player, value]) => (
