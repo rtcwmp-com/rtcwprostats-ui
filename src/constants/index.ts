@@ -98,18 +98,18 @@ export const STAT_KEYS: Record<string, string> = {
 };
 
 export const AWARD_DESCRIPTIONS: Record<string, string> = {
-  "Best Engineer": "Most plants/defuses",
-  "Best Medic": "Most revives",
+  "Best Engineer": "Most plants + defuses",
+  "Best Medic": "Most revives + packs/4",
   "Confirmed Kill": "Most gibs",
   "Frag Stealer": "Least DMG per frag",
-  Frontliner: "First kill/death in a round",
+  "Frontliner": "First kill(2pt)/death(1pt) in a round",
   "Internal Enemy": "Most TKs",
-  Killer: "Most kills",
+  "Killer": "Most kills",
   "Longest Kill": "Longest kill by distance",
   "Man of Steel": "Most DMR per death",
-  MegaKill: "Most kills in a short period of time",
+  "MegaKill": "Most kills in 6 seconds",
   "Slow Bleeder": "Most DMG per frag",
-  Terminator: "Highest KDR",
+  "Terminator": "Highest KDR",
 };
 
 export const SET_REGION = "SET_REGION";
