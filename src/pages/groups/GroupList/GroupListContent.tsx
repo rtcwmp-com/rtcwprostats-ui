@@ -26,7 +26,7 @@ export const GroupListContent: React.FC<{ data: IGroupResponse }> = ({
   const { region, gametype } = rTypeContext; //region: 'na', gametype: '6'
   const regionTitle = REGIONS.find((item) => item.id === region)?.longName;
   const gameTypeTitle = GAME_TYPES.find((item) => item.id === gametype)?.name;
-  console.log(data);
+  // console.log(data);
   return (
     <Box overflowX="auto" my="10px">
       <Table variant="simple">
