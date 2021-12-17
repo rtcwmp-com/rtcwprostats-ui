@@ -1,7 +1,6 @@
 .wrapper {
   background-color: var(--background-light);
   display: flex;
-  height: 130px;
   margin: 12px 24px 0 0;
   width: 100%;
   position: relative;

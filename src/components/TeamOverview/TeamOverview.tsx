@@ -1,7 +1,10 @@
 import React from "react";
+import { Box, Text } from "@chakra-ui/react";
 import { ITeamOverviewData, iMatchSummary } from "../../api/types";
 import { MAP_SOURCES } from "../../constants";
 import styles from "./TeamOverview.module.css";
+
+import { BsArrowLeftShort, BsArrowRightShort } from "react-icons/bs";
 
 export type TeamOverviewProps = {
   data: ITeamOverviewData;
@@ -49,11 +52,33 @@ export const TeamOverview: React.FC<TeamOverviewProps> = ({
         <div className={styles.map}>
           {Object.entries(matchSummary.results).map(([matchId, result]) => (
             <div key={matchId}>
-              {result.winnerAB === "TeamA" ? "< " : " "}
-              {result.map} (
-              {result.round1 ? result.round1.duration_nice : "xx:xx"}/
-              {result.round2 ? result.round2.duration_nice : "xx:xx"})
-              {result.winnerAB === "TeamB" ? "> " : " "}
+              <Text textAlign="center">
+                {result.winnerAB === "TeamA" && (
+                  <Box
+                    as="span"
+                    display="inline-block"
+                    fontSize="18px"
+                    verticalAlign="middle"
+                  >
+                    <BsArrowLeftShort />
+                  </Box>
+                )}
+                {result.map}
+                {result.winnerAB === "TeamB" && (
+                  <Box
+                    as="span"
+                    display="inline-block"
+                    fontSize="18px"
+                    verticalAlign="middle"
+                  >
+                    <BsArrowRightShort />
+                  </Box>
+                )}
+              </Text>
+              <Text textAlign="center">
+                ({result.round1 ? result.round1.duration_nice : "xx:xx"}/
+                {result.round2 ? result.round2.duration_nice : "xx:xx"})
+              </Text>
             </div>
           ))}
           <div className={styles.score}>{scoreA + ":" + scoreB}</div>
