@@ -14,6 +14,7 @@ import { MatchDetailsContent } from "./MatchDetailsContent";
 import { PageTitle } from "../../../components/PageTitle";
 import { MatchStats } from "../../../components/MatchStats";
 import { AwardsDisplay } from "../../../components/AwardsDisplay/AwardsDisplay";
+import { FeudsDisplay } from "../../../components/FeudsDisplay/FeudsDisplay";
 
 export const MatchDetails: React.FC = () => {
   const { matchId } = useParams<{ matchId: string }>();
@@ -38,7 +39,6 @@ export const MatchDetails: React.FC = () => {
     if ("awards" in data) {
       awardsFromGamelog = data.awards;
     }
-
     awards = {...awardsFromGamelog,...awardsFromStats}
   }
 
@@ -92,6 +92,7 @@ export const MatchDetails: React.FC = () => {
             />
           )}
           {"match_summary" in data && (<AwardsDisplay data={awards} />)}
+          {"top_feuds" in data && (<FeudsDisplay feuds={data.top_feuds} />)}
         </>
       )}
     </>

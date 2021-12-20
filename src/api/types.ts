@@ -258,6 +258,7 @@ export interface IStatsResponse {
   type: string;
   match_summary: iMatchSummary;
   awards: IAwardSummary;
+  top_feuds: IFeud[];
 }
 
 export interface iMatchSummary {
@@ -274,6 +275,13 @@ export interface IAwardSummary {
 
 export interface iAwardSingle {
   [real_name: string]: number;
+}
+
+export interface IFeud {
+  0: string;
+  1: string;
+  2: number;
+  3: number;
 }
 
 export interface iGameResultsObject {
