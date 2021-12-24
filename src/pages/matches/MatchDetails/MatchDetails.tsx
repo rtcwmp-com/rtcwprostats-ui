@@ -8,6 +8,7 @@ import {
   IPlayerStatsWithId,
   IStatsResponse,
   ITeamOverviewData,
+  IElos
 } from "../../../api/types";
 import { Loading } from "../../../components/Loading";
 import { MatchDetailsContent } from "./MatchDetailsContent";
@@ -32,8 +33,11 @@ export const MatchDetails: React.FC = () => {
   );
   
   let awards = {};
+  let elos: any = null;
   if (data) {
-    const awardsFromStats = deriveAwardsfromStats(data);
+    elos = data.elos == null ? null : data.elos;
+    
+    const awardsFromStats = deriveAwardsfromStats(data, elos);
     
     let awardsFromGamelog = {};
     if ("awards" in data) {
@@ -89,6 +93,7 @@ export const MatchDetails: React.FC = () => {
             <MatchStats
               data={actualData}
               displayHeader={actualData.b.length > 0}
+              elos={elos}
             />
           )}
           {"match_summary" in data && (<AwardsDisplay data={awards} />)}

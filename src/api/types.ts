@@ -192,6 +192,8 @@ export interface IPlayerAlias {
 
 export interface IPlayerStats {
   alias: string;
+  realName: string;
+  elo: number;
   match_id: string;
   team: string;
   type: string;
@@ -242,21 +244,12 @@ export interface IServerSimple {
   IP: string;
 }
 
-/* 2021-09-14
-{
-server_name: "Virginia RtCWPro na",
-region: "na",
-last_submission: "2021-09-14 06:30:14",
-submissions: 479,
-IP: "3.235.76.221"
-},
-*/
-
 export interface IStatsResponse {
   statsall: IPlayerStatsDictionary[];
   match_id: string;
   type: string;
   match_summary: iMatchSummary;
+  elos: IElos;
   awards: IAwardSummary;
   top_feuds: IFeud[];
 }
@@ -267,6 +260,15 @@ export interface iMatchSummary {
   finish_human: string;
   games: number;
   results: iGameResultsObject;
+}
+
+export interface IElos {
+  [guid: string]: IPlayerNameElo;
+}
+
+export interface IPlayerNameElo {
+  0: string;
+  1: number;
 }
 
 export interface IAwardSummary {
