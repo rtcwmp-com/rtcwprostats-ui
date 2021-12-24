@@ -3,7 +3,7 @@ import { useTable, useSortBy } from "react-table";
 import { VscTriangleDown, VscTriangleUp } from "react-icons/vsc";
 
 import { Box, Text, Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
-import { IPlayerStatsWithId } from "../../api/types";
+import { IElos, IPlayerStatsWithId } from "../../api/types";
 import { useHistory } from "react-router-dom";
 import styles from "./MatchStatsTeamTable.module.css";
 
@@ -11,14 +11,15 @@ const MatchStatsTeamTable: React.FC<{
   teamName: string;
   teamData: any[];
   displayHeader: boolean;
-}> = ({ teamName, teamData, displayHeader }) => {
+  elos: IElos;
+}> = ({ teamName, teamData, displayHeader, elos }) => {
   const history = useHistory();
   const data = React.useMemo(
     () =>
       teamData.map((player: IPlayerStatsWithId) => {
         const d: any = {
           playerId: player.playerId,
-          name: player.alias,
+          name: elos != null && player.playerId in elos ? elos[player.playerId][0]: player.alias,
           kdr: (player.categories.kills / player.categories.deaths).toFixed(2),
           kills: player.categories.kills,
           deaths: player.categories.deaths,
@@ -40,6 +41,7 @@ const MatchStatsTeamTable: React.FC<{
           damagegiven: player.categories.damagegiven,
           damagereceived: player.categories.damagereceived,
           damageteam: player.categories.damageteam,
+          elo: elos != null && player.playerId in elos ? elos[player.playerId][1] : null,
         };
         return d;
       }),
@@ -47,7 +49,8 @@ const MatchStatsTeamTable: React.FC<{
   );
 
   const columns = React.useMemo(
-    () => [
+    () => {
+      let temp_col = [
       {
         Header: "Name",
         accessor: "name",
@@ -106,8 +109,20 @@ const MatchStatsTeamTable: React.FC<{
         Header: "DMG Team",
         accessor: "damageteam",
         isNumeric: true,
-      },
-    ],
+      }
+    ]
+    if (elos != null) {
+      temp_col.push(
+        {
+          Header: "elo",
+          accessor: "elo",
+          isNumeric: true,
+        }
+      )
+    }
+    return temp_col;
+  }
+  ,
     []
   );
 

@@ -1,4 +1,4 @@
-import { IStatsResponse, IPlayerStatsDictionary, IPlayerStats } from "../api/types";
+import { IStatsResponse, IPlayerStatsDictionary, IPlayerStats, IElos } from "../api/types";
 
 
 /* How to extend this
@@ -8,13 +8,13 @@ import { IStatsResponse, IPlayerStatsDictionary, IPlayerStats } from "../api/typ
        metrics["Something"] =  calc_terminator_values(players);
 */
 
-
-
-function convert_statsall_to_players(stats: IStatsResponse) {
+function convert_statsall_to_players(stats: IStatsResponse, elos: IElos) {
     let players: { [name: string]: any } = {};
     // console.log(stats);
     stats.statsall.map((player: IPlayerStatsDictionary) => {
         let alias = Object.values(player)[0].alias;
+        let guid = Object.keys(player)[0]
+        alias = elos != null && guid in elos ? elos[guid][0]: alias;
         players[alias] = Object.values(player)[0];  
     })
     return players
@@ -137,8 +137,8 @@ function keys_of_values(metrics: any, max_values: any) {
     return award_list;
 }
 
-export const deriveAwardsfromStats = (stats: IStatsResponse) => {
-    let players = convert_statsall_to_players(stats);
+export const deriveAwardsfromStats = (stats: IStatsResponse, elos: IElos) => {
+    let players = convert_statsall_to_players(stats, elos);
 
     //bigger - better
     let metrics: { [name: string]: any } = {};
