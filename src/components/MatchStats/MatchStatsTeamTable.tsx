@@ -112,7 +112,7 @@ const MatchStatsTeamTable: React.FC<{
       }
     ]
     if (elos != null) {
-      temp_col.push(
+      temp_col.splice(1,0,
         {
           Header: "elo",
           accessor: "elo",
