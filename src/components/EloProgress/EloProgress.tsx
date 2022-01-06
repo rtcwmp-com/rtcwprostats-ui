@@ -47,7 +47,8 @@ const EloProgress: React.FC<{
       }
     });
 
-    const serie: Serie[] = [{ id: data[0].real_name, data: progression }];
+    const realName = data[0].real_name == "" ? (data[data.length - 1].real_name == "" ? "NoRealName" : data[data.length - 1].real_name) : data[0].real_name;
+    const serie: Serie[] = [{ id: realName, data: progression }];
     return serie;
   }, [data]);
 
