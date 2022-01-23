@@ -18,15 +18,17 @@ import { dateStringToDate } from "../../../util";
 import { IGroupResponse } from "../../../api/types";
 
 import { REGIONS, GAME_TYPES } from "../../../constants";
+import { Loading } from "../../../components/Loading";
 
-export const GroupListContent: React.FC<{ data: IGroupResponse }> = ({
-  data,
-}) => {
+export const GroupListContent: React.FC<{
+  data: IGroupResponse;
+  shouldRefetch: boolean;
+}> = ({ data, shouldRefetch }) => {
   const rTypeContext = useContext(RegionTypeContext);
   const { region, gametype } = rTypeContext; //region: 'na', gametype: '6'
   const regionTitle = REGIONS.find((item) => item.id === region)?.longName;
   const gameTypeTitle = GAME_TYPES.find((item) => item.id === gametype)?.name;
-  // console.log(data);
+
   return (
     <Box overflowX="auto" my="10px">
       <Table variant="simple">
@@ -49,7 +51,13 @@ export const GroupListContent: React.FC<{ data: IGroupResponse }> = ({
                   {group.split("-").join(" ")}
                 </Link>
               </Td>
-              <Td>{data[group].cached}</Td>
+              <Td textAlign="center">
+                {data[group].cached === "No" && shouldRefetch ? (
+                  <Loading />
+                ) : (
+                  data[group].cached
+                )}
+              </Td>
               <Td>
                 <span>
                   {data[group].cached === "Yes"

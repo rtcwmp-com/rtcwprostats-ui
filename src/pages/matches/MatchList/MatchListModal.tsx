@@ -18,11 +18,10 @@ import {
   AlertTitle,
   Center,
   InputGroup,
-  InputLeftAddon,
-  InputRightAddon,
   Badge,
 } from "@chakra-ui/react";
 
+import { useHistory } from "react-router-dom";
 import { StatsApi } from "../../../api";
 import { IGroupInput } from "../../../api/types";
 import { RadioButtons } from "../../../components/RadioButtons";
@@ -42,6 +41,7 @@ export const MatchListContentModal: React.FC<{
     Math.round(new Date().getTime() / 1000).toString()
   );
   const { onClose } = useDisclosure();
+  const history = useHistory();
 
   const groupTypes: string[] = ["gather", "event", "public", "private"];
 
@@ -64,13 +64,18 @@ export const MatchListContentModal: React.FC<{
         : `${groupTypes[groupType]}-${timestamp}`,
     };
     try {
-      await StatsApi.Groups.CreateGroup( input );
+      await StatsApi.Groups.CreateGroup(input);
+      setTimeout(() => {
+        setIsSubmitting(false);
+        onClose();
+        history.push({
+          pathname: "/groups",
+          state: { shouldRefetch: true },
+        });
+      }, 2000);
+    } catch (err) {
       setIsSubmitting(false);
-      handleModalOnClose(true);
-      onClose();
-    } catch ( err ) {
-      setIsSubmitting(false);
-      setErrorMessage( "An error has occurred." );
+      setErrorMessage("An error has occurred.");
     }
   };
 
@@ -89,10 +94,10 @@ export const MatchListContentModal: React.FC<{
         <ModalContent>
           <ModalHeader>Create group</ModalHeader>
           <ModalCloseButton />
-          <ModalBody >
+          <ModalBody>
             <Text mb={2} align="center">
               {matches.map((matchId: number, idx: number) => (
-                <Badge key={`match-${idx}`} ml="1" >
+                <Badge key={`match-${idx}`} ml="1">
                   {matchId.toString()}
                 </Badge>
               ))}
