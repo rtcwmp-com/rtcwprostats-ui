@@ -22,8 +22,8 @@ import { Loading } from "../../../components/Loading";
 
 export const GroupListContent: React.FC<{
   data: IGroupResponse;
-  shouldRefetch: boolean;
-}> = ({ data, shouldRefetch }) => {
+  shouldRefetchGroup: string | undefined;
+}> = ({ data, shouldRefetchGroup }) => {
   const rTypeContext = useContext(RegionTypeContext);
   const { region, gametype } = rTypeContext; //region: 'na', gametype: '6'
   const regionTitle = REGIONS.find((item) => item.id === region)?.longName;
@@ -52,7 +52,7 @@ export const GroupListContent: React.FC<{
                 </Link>
               </Td>
               <Td textAlign="center">
-                {data[group].cached === "No" && shouldRefetch ? (
+                {data[group].cached === "No" && shouldRefetchGroup ? (
                   <Loading />
                 ) : (
                   data[group].cached

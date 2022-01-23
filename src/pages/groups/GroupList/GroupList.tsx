@@ -11,7 +11,7 @@ import { RegionTypePicker } from "../../../components/Nav/RegionTypePicker";
 import { RegionTypeContext } from "../../../context";
 
 interface stateType {
-  shouldRefetch: boolean;
+  shouldRefetchGroup: string | undefined;
 }
 
 export const GroupList: React.FC = () => {
@@ -26,11 +26,11 @@ export const GroupList: React.FC = () => {
     StatsApi.Groups.RegionType
   );
 
-  const { shouldRefetch } = state;
+  const { shouldRefetchGroup } = state || {};
 
   useEffect(() => {
-    if (shouldRefetch && data) {
-      if (data[Object.keys(data)[0]]["cached"] === "No" && retryCount <= 3) {
+    if (shouldRefetchGroup && data) {
+      if (data[shouldRefetchGroup]["cached"] === "No" && retryCount <= 3) {
         setTimeout(() => {
           refetch();
           setRetryCount(retryCount + 1);
@@ -40,7 +40,7 @@ export const GroupList: React.FC = () => {
         history.replace({ state: undefined });
       }
     }
-  }, [refetch, history, shouldRefetch, setRetryCount, retryCount, data]);
+  }, [refetch, history, shouldRefetchGroup, setRetryCount, retryCount, data]);
 
   return (
     <>
@@ -51,7 +51,7 @@ export const GroupList: React.FC = () => {
 
       {isLoading && <Loading />}
       {data && !("error" in data) && (
-        <GroupListContent data={data} shouldRefetch={shouldRefetch} />
+        <GroupListContent data={data} shouldRefetchGroup={shouldRefetchGroup} />
       )}
     </>
   );

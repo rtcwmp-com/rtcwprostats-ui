@@ -64,13 +64,18 @@ export const MatchListContentModal: React.FC<{
         : `${groupTypes[groupType]}-${timestamp}`,
     };
     try {
-      await StatsApi.Groups.CreateGroup(input);
+      const ret = await StatsApi.Groups.CreateGroup(input);
       setTimeout(() => {
         setIsSubmitting(false);
         onClose();
         history.push({
           pathname: "/groups",
-          state: { shouldRefetch: true },
+          state: {
+            shouldRefetchGroup: ret.response?.replace(
+              "Matches added to group ",
+              ""
+            ),
+          },
         });
       }, 2000);
     } catch (err) {
