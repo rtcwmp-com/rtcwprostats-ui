@@ -110,6 +110,8 @@ export const AWARD_DESCRIPTIONS: Record<string, string> = {
   "MegaKill": "Most kills in 6 seconds",
   "Slow Bleeder": "Most DMG per frag",
   "Terminator": "Highest KDR",
+  "Chicken": "Dying while not looking at the enemy (avg degrees)",
+  "Backstabber": "Killing while enemy is looking the other way (avg degrees)",
 };
 
 export const SET_REGION = "SET_REGION";
