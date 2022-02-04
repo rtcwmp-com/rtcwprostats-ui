@@ -222,8 +222,8 @@ const _renderKdrCell = (cell: any) => {
   return <Text color="green.500">{cell.value}</Text>;
 };
 
-const _renderPlayerClassCell = (cell: any) => {
-  const PlayerClassIcon = CLASS_ICONS[cell.value];
+const _renderPlayerClassCell = (iconType: string) => {
+  const PlayerClassIcon = CLASS_ICONS[iconType];
   return <PlayerClassIcon className={styles.linkIcon}/>;
 };
 
@@ -232,7 +232,7 @@ const _renderCell = (cell: any) => {
     return _renderKdrCell(cell);
   }
   if (cell.column.id === "class") {
-    return _renderPlayerClassCell(cell);
+    return _renderPlayerClassCell(cell.value);
   }
 
   return cell.render("Cell");

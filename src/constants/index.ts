@@ -69,7 +69,7 @@ export const NAV_LINKS = [
   { id: "info", name: "Info", component: IoIosInformationCircleOutline },
 ];
 
-export const CLASS_ICONS = {
+export const CLASS_ICONS: Record<string, any> = {
    "Sniper": GiCrosshair,
    "LT": GiRank3,
    "Medic": GiMedicalPack,
