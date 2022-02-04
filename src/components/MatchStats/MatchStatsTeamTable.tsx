@@ -3,16 +3,18 @@ import { useTable, useSortBy } from "react-table";
 import { VscTriangleDown, VscTriangleUp } from "react-icons/vsc";
 
 import { Box, Text, Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
-import { IElos, IPlayerStatsWithId } from "../../api/types";
+import { IElos, IPlayerStatsWithId, IClasses } from "../../api/types";
 import { useHistory } from "react-router-dom";
 import styles from "./MatchStatsTeamTable.module.css";
+import { CLASS_ICONS } from "../../constants";
 
 const MatchStatsTeamTable: React.FC<{
   teamName: string;
   teamData: any[];
   displayHeader: boolean;
   elos: IElos;
-}> = ({ teamName, teamData, displayHeader, elos }) => {
+  classes: IClasses;
+}> = ({ teamName, teamData, displayHeader, elos, classes }) => {
   const history = useHistory();
   const data = React.useMemo(
     () =>
@@ -42,6 +44,7 @@ const MatchStatsTeamTable: React.FC<{
           damagereceived: player.categories.damagereceived,
           damageteam: player.categories.damageteam,
           elo: elos != null && player.playerId in elos ? elos[player.playerId][1] : null,
+          class: classes != null && player.playerId in classes ? classes[player.playerId] : null,
         };
         return d;
       }),
@@ -117,6 +120,15 @@ const MatchStatsTeamTable: React.FC<{
           Header: "elo",
           accessor: "elo",
           isNumeric: true,
+        }
+      )
+    }
+    if (classes != null) {
+      temp_col.splice(1,0,
+        {
+          Header: "Class",
+          accessor: "class",
+          isNumeric: false,
         }
       )
     }
@@ -210,9 +222,17 @@ const _renderKdrCell = (cell: any) => {
   return <Text color="green.500">{cell.value}</Text>;
 };
 
+const _renderPlayerClassCell = (cell: any) => {
+  const PlayerClassIcon = CLASS_ICONS[cell.value];
+  return <PlayerClassIcon className={styles.linkIcon}/>;
+};
+
 const _renderCell = (cell: any) => {
   if (cell.column.id === "kdr") {
     return _renderKdrCell(cell);
+  }
+  if (cell.column.id === "class") {
+    return _renderPlayerClassCell(cell);
   }
 
   return cell.render("Cell");

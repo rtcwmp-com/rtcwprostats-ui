@@ -250,6 +250,7 @@ export interface IStatsResponse {
   type: string;
   match_summary: iMatchSummary;
   elos: IElos;
+  classes: IClasses;
   awards: IAwardSummary;
   top_feuds: IFeud[];
 }
@@ -264,6 +265,10 @@ export interface iMatchSummary {
 
 export interface IElos {
   [guid: string]: IPlayerNameElo;
+}
+
+export interface IClasses {
+  [guid: string]: string;
 }
 
 export interface IPlayerNameElo {

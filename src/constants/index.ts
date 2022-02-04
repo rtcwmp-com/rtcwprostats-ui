@@ -10,6 +10,8 @@ import ufoSrc from "../assets/maps/te_ufo.png";
 import subSrc from "../assets/maps/mp_sub.png";
 
 import { AiOutlineTrophy } from "react-icons/ai";
+import { GiRocket, GiMedicalPack, GiCrosshair, GiRank3 } from "react-icons/gi";
+import { BsQuestion } from "react-icons/bs";
 import {
   IoLogoGameControllerB,
   IoIosInformationCircleOutline,
@@ -66,6 +68,15 @@ export const NAV_LINKS = [
   { id: "servers", name: "Servers", component: VscServer },
   { id: "info", name: "Info", component: IoIosInformationCircleOutline },
 ];
+
+export const CLASS_ICONS = {
+   "Sniper": GiCrosshair,
+   "LT": GiRank3,
+   "Medic": GiMedicalPack,
+   "Panzer": GiRocket,
+   "Mixed": BsQuestion,
+   "Unknown": BsQuestion
+};
 
 export const STAT_KEYS: Record<string, string> = {
   kills: "Kills",

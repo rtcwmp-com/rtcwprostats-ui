@@ -8,7 +8,8 @@ import {
   IPlayerStatsWithId,
   IStatsResponse,
   ITeamOverviewData,
-  IElos
+  IElos,
+  IClasses
 } from "../../../api/types";
 import { Loading } from "../../../components/Loading";
 import { MatchDetailsContent } from "./MatchDetailsContent";
@@ -34,8 +35,10 @@ export const MatchDetails: React.FC = () => {
   
   let awards = {};
   let elos: any = null;
+  let classes: any = null;
   if (data) {
     elos = data.elos == null ? null : data.elos;
+    classes = data.classes == null ? null : data.classes;
     
     const awardsFromStats = deriveAwardsfromStats(data, elos);
     
@@ -94,6 +97,7 @@ export const MatchDetails: React.FC = () => {
               data={actualData}
               displayHeader={actualData.b.length > 0}
               elos={elos}
+              classes={classes}
             />
           )}
           {"match_summary" in data && (<AwardsDisplay data={awards} />)}
