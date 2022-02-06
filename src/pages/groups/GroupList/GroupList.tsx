@@ -29,7 +29,7 @@ export const GroupList: React.FC = () => {
   const { shouldRefetchGroup } = state || {};
 
   useEffect(() => {
-    if (shouldRefetchGroup && data) {
+    if (shouldRefetchGroup && data && data[shouldRefetchGroup]) {
       if (data[shouldRefetchGroup]["cached"] === "No" && retryCount <= 3) {
         setTimeout(() => {
           refetch();
