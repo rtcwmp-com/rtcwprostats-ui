@@ -10,7 +10,7 @@ import ufoSrc from "../assets/maps/te_ufo.png";
 import subSrc from "../assets/maps/mp_sub.png";
 
 import { AiOutlineTrophy } from "react-icons/ai";
-import { GiRocket, GiMedicalPack, GiCrosshair, GiRank3, GiMineExplosion } from "react-icons/gi";
+import { GiRocket, GiMedicalPack, GiCrosshair, GiRank3, GiMineExplosion, GiCondorEmblem } from "react-icons/gi";
 import { FaBinoculars, FaMountain } from "react-icons/fa";
 import { BsQuestion } from "react-icons/bs";
 import {
@@ -59,6 +59,7 @@ export const CATEGORIES = [
   { id: "Killpeak", name: "KILLPEAK" },
   { id: "Longest Kill", name: "LONGEST KILL" },
   { id: "MegaKill", name: "MEGAKILL" },
+  { id: "Kills Per Game", name: "KILLS/GAME" },
 ];
 
 export const NAV_LINKS = [
@@ -83,6 +84,7 @@ export const ACHIEVEMENT_DESCRIPTIONS: Record<string, any> = {
   "Killpeak": { description: "Kills achieved during one life.", icon: FaMountain, degrees: [8,10,12] },
   "Longest Kill": { description: "Farthest kill by distance between a killer and a victim.", icon: FaBinoculars, degrees: [3000,4000,5000] },
   "MegaKill": { description: "Number of kills in a 6s period.", icon: GiMineExplosion, degrees: [4,5,6] },
+  "Kills Per Game": { description: "Number of kills in a AB match.", icon: GiCondorEmblem, degrees: [20,26,32] },
 };
 
 export const STAT_KEYS: Record<string, string> = {
