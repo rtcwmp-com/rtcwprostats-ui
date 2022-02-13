@@ -101,6 +101,7 @@ export interface IRecentPlayer {
 
 export interface IPlayerDetails {
   elos: Record<string, IElo>;
+  achievements: IAchievements;
   kdr: Record<string, number>;
   acc: Record<string, number>;
   real_name: string;
@@ -173,6 +174,10 @@ export interface IPlayerDetails {
     };
   };
   player_guid: string;
+}
+
+export interface IAchievements {
+  [achievement: string]: number;
 }
 
 export interface IPlayerSearchResult {

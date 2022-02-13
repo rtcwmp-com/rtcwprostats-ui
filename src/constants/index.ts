@@ -10,7 +10,8 @@ import ufoSrc from "../assets/maps/te_ufo.png";
 import subSrc from "../assets/maps/mp_sub.png";
 
 import { AiOutlineTrophy } from "react-icons/ai";
-import { GiRocket, GiMedicalPack, GiCrosshair, GiRank3 } from "react-icons/gi";
+import { GiRocket, GiMedicalPack, GiCrosshair, GiRank3, GiMineExplosion } from "react-icons/gi";
+import { FaBinoculars, FaMountain } from "react-icons/fa";
 import { BsQuestion } from "react-icons/bs";
 import {
   IoLogoGameControllerB,
@@ -76,6 +77,12 @@ export const CLASS_ICONS: Record<string, any> = {
    "Panzer": GiRocket,
    "Mixed": BsQuestion,
    "Unknown": BsQuestion
+};
+
+export const ACHIEVEMENT_DESCRIPTIONS: Record<string, any> = {
+  "Killpeak": { description: "Kills achieved during one life.", icon: FaMountain, degrees: [8,10,12] },
+  "Longest Kill": { description: "Farthest kill by distance between a killer and a victim.", icon: FaBinoculars, degrees: [3000,4000,5000] },
+  "MegaKill": { description: "Number of kills in a 6s period.", icon: GiMineExplosion, degrees: [4,5,6] },
 };
 
 export const STAT_KEYS: Record<string, string> = {
