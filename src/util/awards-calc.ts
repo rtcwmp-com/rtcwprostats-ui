@@ -77,29 +77,29 @@ function calc_terminator_values(players: { [name: string]: any }) {
     return dict_
 }
 
-function calc_killer_values(players: { [name: string]: any }) {
+function calc_flag_values(players: { [name: string]: any }) {
     let dict_: { [name: string]: any } = {};
 
     for (const [alias, stat] of Object.entries(players) as any) {
-        dict_[alias] = stat["categories"]["kills"];
+        dict_[alias] = stat["categories"]["obj_protectflag"] + stat["categories"]["obj_checkpoint"];
       }
     return dict_
 }
 
-function calc_confirmed_kill_values(players: { [name: string]: any }) {
+function calc_objectives_values(players: { [name: string]: any }) {
     let dict_: { [name: string]: any } = {};
 
     for (const [alias, stat] of Object.entries(players) as any) {
-        dict_[alias] = stat["categories"]["gibs"];
+        dict_[alias] = stat["categories"]["obj_taken"] + stat["categories"]["obj_captured"]*2;
       }
     return dict_
 }
 
-function calc_internal_enemy_values(players: { [name: string]: any }) {
+function calc_single_metric(players: { [name: string]: any }, metric: string) {
     let dict_: { [name: string]: any } = {};
 
     for (const [alias, stat] of Object.entries(players) as any) {
-            dict_[alias] = stat["categories"]["teamkills"];
+            dict_[alias] = stat["categories"][metric];
       }
     return dict_
 }
@@ -147,9 +147,13 @@ export const deriveAwardsfromStats = (stats: IStatsResponse, elos: IElos) => {
     metrics["Terminator"] =  calc_terminator_values(players);
     metrics["Slow Bleeder"] =  calc_slow_bleeder_values(players);
     metrics["Man of Steel"] =  calc_man_of_steel_values(players);
-    metrics["Internal Enemy"] =  calc_internal_enemy_values(players);
-    metrics["Killer"] =  calc_killer_values(players);
-    metrics["Confirmed Kill"] =  calc_confirmed_kill_values(players);
+    metrics["Internal Enemy"] =  calc_single_metric(players, "teamkills");
+    metrics["Killer"] =  calc_single_metric(players, "kills");
+    metrics["Confirmed Kill"] =  calc_single_metric(players, "gibs");
+    metrics["Melon Farmer"] =  calc_single_metric(players, "headshots");
+    metrics["Standard bearer"] =  calc_flag_values(players);
+    metrics["On a Mission"] = calc_objectives_values(players);
+    metrics["Bounty Hunter"] =  calc_single_metric(players, "obj_returned");
     
 
     let maxValues = biggest_values(metrics);

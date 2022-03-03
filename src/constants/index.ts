@@ -132,6 +132,10 @@ export const AWARD_DESCRIPTIONS: Record<string, string> = {
   "Terminator": "Highest KDR",
   "Chicken": "Dying while not looking at the enemy (avg degrees)",
   "Backstabber": "Killing while enemy is looking the other way (avg degrees)",
+  "Melon Farmer": "Most headshots",
+  "On a Mission": "Objective taken + captured*2",
+  "Standard bearer": "Flag captures and returns",
+  "Bounty Hunter": "Objective returns"
 };
 
 export const SET_REGION = "SET_REGION";
