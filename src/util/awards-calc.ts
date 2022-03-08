@@ -90,7 +90,7 @@ function calc_objectives_values(players: { [name: string]: any }) {
     let dict_: { [name: string]: any } = {};
 
     for (const [alias, stat] of Object.entries(players) as any) {
-        dict_[alias] = stat["categories"]["obj_taken"] + stat["categories"]["obj_captured"]*2;
+        dict_[alias] = stat["categories"]["obj_taken"] + stat["categories"]["obj_destroyed"] + stat["categories"]["obj_captured"]*2;
       }
     return dict_
 }

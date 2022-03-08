@@ -133,7 +133,7 @@ export const AWARD_DESCRIPTIONS: Record<string, string> = {
   "Chicken": "Dying while not looking at the enemy (avg degrees)",
   "Backstabber": "Killing while enemy is looking the other way (avg degrees)",
   "Melon Farmer": "Most headshots",
-  "On a Mission": "Objective taken + captured*2",
+  "On a Mission": "Objective taken + destroyed + captured*2",
   "Standard bearer": "Flag captures and returns",
   "Bounty Hunter": "Objective returns"
 };

@@ -25,6 +25,9 @@ interface ICategories {
   obj_destroyed: number;
   obj_returned: number;
   obj_taken: number;
+  obj_protectflag: number;
+  obj_killcarrier: number;
+  obj_checkpoint: number;
 }
 
 export interface ILeaderItem {
@@ -89,6 +92,9 @@ interface IAggStats {
   damagereceived: number;
   shots: number;
   obj_destroyed: number;
+  obj_protectflag: number;
+  obj_killcarrier: number;
+  obj_checkpoint: number;
 }
 
 export interface IRecentPlayer {
