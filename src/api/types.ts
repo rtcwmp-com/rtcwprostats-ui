@@ -64,6 +64,7 @@ interface IElo {
   games: number;
 }
 
+//don't think this is used anywhere 4/1/2022
 interface IAggStats {
   kills: number;
   killpeak: number;

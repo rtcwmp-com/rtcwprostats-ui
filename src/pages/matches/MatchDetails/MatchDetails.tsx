@@ -26,8 +26,6 @@ export const MatchDetails: React.FC = () => {
   const statsParamType = matchId ? "Match" : "Group";
   const groupFlag = matchId ? false : true;
 
-  const reportDescription = statsParamType + ": " + statsParam;
-
   const { data, isLoading } = useQuery<IStatsResponse>(
     ["match-stats", statsParam],
     () => StatsApi.Matches.MatchStats(statsParam, groupFlag)
@@ -92,7 +90,8 @@ export const MatchDetails: React.FC = () => {
           <MatchDetailsContent
             data={actualData}
             matchSummary={data.match_summary}
-            reportDescription={reportDescription}
+            statsParamType={statsParamType}
+            statsParam={statsParam}
           />
           {actualData && (
             <MatchStats
