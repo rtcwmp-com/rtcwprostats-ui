@@ -45,6 +45,11 @@ const MatchStatsTeamTable: React.FC<{
           damageteam: player.categories.damageteam,
           elo: elos != null && player.playerId in elos ? elos[player.playerId][1] : null,
           class: classes != null && player.playerId in classes ? classes[player.playerId] : null,
+          obj_captured: player.categories.obj_captured,
+          obj_returned: player.categories.obj_returned,
+          obj_killcarrier: player.categories.obj_killcarrier,
+          obj_taken: player.categories.obj_taken,
+          obj_destroyed: player.categories.obj_destroyed,
         };
         return d;
       }),
@@ -111,6 +116,31 @@ const MatchStatsTeamTable: React.FC<{
       {
         Header: "DMG Team",
         accessor: "damageteam",
+        isNumeric: true,
+      },
+      {
+        Header: "OBJECTIVE TAKEN",
+        accessor: "obj_taken",
+        isNumeric: true,
+      },
+      {
+        Header: "OBJECTIVE CAPTURED",
+        accessor: "obj_captured",
+        isNumeric: true,
+      },
+      {
+        Header: "OBJECTIVE KILLCARRIER",
+        accessor: "obj_killcarrier",
+        isNumeric: true,
+      },
+      {
+        Header: "OBJECTIVE RETURNED",
+        accessor: "obj_returned",
+        isNumeric: true,
+      },
+      {
+        Header: "OBJECTIVE DESTROYED",
+        accessor: "obj_destroyed",
         isNumeric: true,
       }
     ]
