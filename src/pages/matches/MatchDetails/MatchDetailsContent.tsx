@@ -26,12 +26,12 @@ export const MatchDetailsContent = ({
         <span className={styles.matchId}>{reportDescription}</span>
         { statsParamType == "Match" && 
           <span className={styles.matchId}>
-            <Link className={styles.matchId} href={API_BASE_URL + `/matches/16485172781`} isExternal><span>r1</span></Link>
-            <Link className={styles.matchId} href={API_BASE_URL + `/matches/16485172782`} isExternal><span>r2</span></Link>
-            <Link className={styles.matchId} href={API_BASE_URL + `/gamelogs/16485172781`} isExternal><span>g1</span></Link>
-            <Link className={styles.matchId} href={API_BASE_URL + `/gamelogs/16485172782`} isExternal><span>g2</span></Link>
-            <Link className={styles.matchId} href={API_BASE_URL + `/stats/1648517278`} isExternal><span>s</span></Link>
-            <Link className={styles.matchId} href={API_BASE_URL + `/wstats/1648517278`} isExternal><span>w</span></Link>
+            <Link className={styles.matchId} href={API_BASE_URL + `/matches/` + statsParam + `1`} isExternal><span>r1</span></Link>
+            <Link className={styles.matchId} href={API_BASE_URL + `/matches/` + statsParam + `2`} isExternal><span>r2</span></Link>
+            <Link className={styles.matchId} href={API_BASE_URL + `/gamelogs/` + statsParam + `1`} isExternal><span>g1</span></Link>
+            <Link className={styles.matchId} href={API_BASE_URL + `/gamelogs/` + statsParam + `2`} isExternal><span>g2</span></Link>
+            <Link className={styles.matchId} href={API_BASE_URL + `/stats/` + statsParam} isExternal><span>s</span></Link>
+            <Link className={styles.matchId} href={API_BASE_URL + `/wstats/` + statsParam} isExternal><span>w</span></Link>
           </span>
         }
       </div>
