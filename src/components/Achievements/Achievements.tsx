@@ -29,7 +29,7 @@ export const Achievements: React.FC<{ achievements: IAchievements; }> = ({ achie
                 {_renderIcon(achievement.replace(`#${regionKey}`,""), value)}
                 <Text> 
                   {achievement.replace(`#${regionKey}`,"")}
-                  ({_renderValue(achievement.replace(`#${regionKey}`,""), value)})
+                  <span style={{fontSize: "1.2em", fontWeight: "bold"}}> {_renderValue(achievement.replace(`#${regionKey}`,""), value)} </span>
                   : {ACHIEVEMENT_DESCRIPTIONS[achievement.replace(`#${regionKey}`,"")].description}
                 </Text>
               </HStack>
