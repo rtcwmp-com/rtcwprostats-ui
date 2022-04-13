@@ -35,6 +35,7 @@ export interface ILeaderItem {
   value: number;
   guid: string;
   games: number;
+  match_id: number;
 }
 
 export interface IMatch {
