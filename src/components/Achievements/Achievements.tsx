@@ -50,8 +50,6 @@ const _renderIcon= (achievement: string, value: number) => {
   achievementInfo.degrees.forEach(function (degree: number, i: number) {
     // console.log('%d: %s', i, degree);
     if(value >= degree) {
-      //console.log(achievement + " is bigger than " + degree + " at index " + i);
-      //somehow switch was not working...
       if (i == 0) {
           iconStyle = styles.IconBronze;
       }
