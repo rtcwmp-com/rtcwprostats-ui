@@ -62,7 +62,7 @@ export const CATEGORIES = [
   { id: "Kills Per Game", name: "KILLS/GAME" },
   { id: "Combat Medic", name: "COMBAT MEDIC" },
   { id: "Combat Engineer", name: "COMBAT ENGINEER" },
-  { id: "Lieutenant Colonel", name: "LIEUTeNANT COLONEL" },
+  { id: "Lieutenant Colonel", name: "LIEUTENANT COLONEL" },
 ];
 
 export const NAV_LINKS = [
