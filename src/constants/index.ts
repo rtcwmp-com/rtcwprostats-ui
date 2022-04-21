@@ -10,7 +10,7 @@ import ufoSrc from "../assets/maps/te_ufo.png";
 import subSrc from "../assets/maps/mp_sub.png";
 
 import { AiOutlineTrophy } from "react-icons/ai";
-import { GiRocket, GiMedicalPack, GiCrosshair, GiRank3, GiMineExplosion, GiCondorEmblem, GiSkullWithSyringe, GiGearHammer } from "react-icons/gi";
+import { GiRocket, GiMedicalPack, GiCrosshair, GiRank3, GiMineExplosion, GiCondorEmblem, GiSkullWithSyringe, GiGearHammer, GiStarSkull } from "react-icons/gi";
 import { FaBinoculars, FaMountain } from "react-icons/fa";
 import { BsQuestion } from "react-icons/bs";
 import {
@@ -62,6 +62,7 @@ export const CATEGORIES = [
   { id: "Kills Per Game", name: "KILLS/GAME" },
   { id: "Combat Medic", name: "COMBAT MEDIC" },
   { id: "Combat Engineer", name: "COMBAT ENGINEER" },
+  { id: "Lieutenant Colonel", name: "LIEUTeNANT COLONEL" },
 ];
 
 export const NAV_LINKS = [
@@ -89,6 +90,7 @@ export const ACHIEVEMENT_DESCRIPTIONS: Record<string, any> = {
   "Kills Per Game": { description: "Number of kills in a AB match.", icon: GiCondorEmblem, degrees: [20,26,32] },
   "Combat Medic": { description: "Outstanding achievement in kills+gibs+revives.", icon: GiSkullWithSyringe, degrees: [5,6,7] },
   "Combat Engineer": { description: "Outstanding achievement in plants+kills+objectives.", icon: GiGearHammer, degrees: [5,6,7] },
+  "Lieutenant Colonel": { description: "Outstanding achievement in kills+airsupport+ammo given.", icon: GiStarSkull, degrees: [5,6,7] },
 };
 
 export const STAT_KEYS: Record<string, string> = {
