@@ -11,6 +11,7 @@ import subSrc from "../assets/maps/mp_sub.png";
 
 import { AiOutlineTrophy } from "react-icons/ai";
 import { GiRocket, GiMedicalPack, GiCrosshair, GiRank3, GiMineExplosion, GiCondorEmblem, GiSkullWithSyringe, GiGearHammer, GiStarSkull } from "react-icons/gi";
+import { GoFileBinary } from "react-icons/go";
 import { FaBinoculars, FaMountain } from "react-icons/fa";
 import { BsQuestion } from "react-icons/bs";
 import {
@@ -72,6 +73,7 @@ export const NAV_LINKS = [
   { id: "groups", name: "Groups", component: MdViewList },
   { id: "servers", name: "Servers", component: VscServer },
   { id: "info", name: "Info", component: IoIosInformationCircleOutline },
+  { id: "clientstats", name: "Client Stats", component: GoFileBinary },
 ];
 
 export const CLASS_ICONS: Record<string, any> = {
