@@ -16,7 +16,6 @@ export const ClientStats: React.FC = () => {
   const [customText, setCustomText] = useState<string>("");
   const [region, setRegion] = useState<string>("");
   const [gametype, setGametype] = useState<string>("");
-  const [uploadOK, setUploadOK] = useState<boolean>(false);
   const [uploaded, setUploaded] = useState<boolean>(false);
   const [uploadMessage, setUploadMessage] = useState<string>("Select a file");
   const [newFileName, setNewFileName] = useState<string>("");
@@ -52,7 +51,6 @@ export const ClientStats: React.FC = () => {
         }
       }
       ).then(response => setUploadMessage(response.data.statusCode == 200 ? "Uploaded!!!" : "Did not upload. Code " + response.data.statusCode));
-      setUploadOK(false);
       setUploaded(true);
     }
 	};
@@ -101,9 +99,7 @@ export const ClientStats: React.FC = () => {
   }
 
 	const fileData = () => {
-	
     if (selectedFile) {
-      setUploadOK(true);
       return (
         <>
         <div>
@@ -148,7 +144,7 @@ export const ClientStats: React.FC = () => {
       <br/>
       <br/>
       <Text fontSize="s">
-        (Optional) give it a shot name. It will look like 2022-05-13-22-30-53-yourtext.
+        (Optional) give it a short name. It will look like 2022-05-13-22-30-53-yourtext.
       </Text>
       <Input
             width='20rem'
