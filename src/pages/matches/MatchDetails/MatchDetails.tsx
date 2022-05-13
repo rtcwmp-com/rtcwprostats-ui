@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { StatsApi } from "../../../api";
-import { deriveAwardsfromStats } from "../../../util/awards-calc"
+import { deriveAwardsfromStats } from "../../../util/awards-calc";
 import {
   IPlayerStatsWithId,
   IStatsResponse,
