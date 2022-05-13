@@ -17,8 +17,7 @@ export const EventListContent: React.FC<{data: IEventItem[];}> = ({ data }) => {
         </Thead>
         <Tbody>
           {data
-              .sort()
-              .reverse()
+              .sort((a, b) => b.timestamp.localeCompare(a.timestamp))
               .map((eventItem) => (
               <Tr key={eventItem.timestamp}>
                 <Td>{isoDateStringToDateTime(eventItem.timestamp)}</Td>
