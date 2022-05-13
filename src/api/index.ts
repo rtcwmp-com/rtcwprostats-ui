@@ -5,6 +5,7 @@ import { createPlayersApi } from "./players";
 import { createServersApi } from "./servers";
 import { createLeadersApi } from "./leaders";
 import { createGroupsApi } from "./groups";
+import { createEventsApi } from "./events";
 
 const createStatsApi = () => {
   const agent = axios.create({ baseURL: API_BASE_URL });
@@ -15,6 +16,7 @@ const createStatsApi = () => {
     Servers: createServersApi(agent),
     Leaders: createLeadersApi(agent),
     Groups: createGroupsApi(agent),
+    Events: createEventsApi(agent),
   };
 };
 

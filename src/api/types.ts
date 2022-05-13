@@ -38,6 +38,12 @@ export interface ILeaderItem {
   match_id: number;
 }
 
+export interface IEventItem {
+  eventtype: string;
+  eventdesc: string;
+  timestamp: string;
+}
+
 export interface IMatch {
   match_id: string;
   round: string;

@@ -14,6 +14,19 @@ export const dateStringISOToDate = (input: string) => {
   return d;
 };
 
+export const isoDateStringToDateTime = (input: string) => {
+  const d = parseISO(input);
+  return d.toLocaleString(
+    [],
+    {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+};
+
 export const unixToDate = (input: string) => {
   const input_int = parseInt(input);
   const d = fromUnixTime(input_int);
