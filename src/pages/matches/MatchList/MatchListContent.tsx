@@ -109,6 +109,8 @@ export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
                 <Td>
                   <Link as={reactLink} to={`/matches/${match.match_id}`}>
                     {match.match_id}
+                    { data.findIndex((currMatch) => currMatch.match_round_id == match.match_id + "1") == -1 ? <span>&#x274C;</span> : <span>&#x2705;</span>}
+                    { data.findIndex((currMatch) => currMatch.match_round_id == match.match_id + "2") == -1 ? <span>&#x274C;</span> : <span>&#x2705;</span>}
                   </Link>
                 </Td>
                 <Td>
