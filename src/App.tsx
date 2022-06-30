@@ -15,6 +15,7 @@ import {
 import { ServerList } from "./pages/servers/ServerList/ServerList";
 import { LeaderList } from "./pages/leaders/LeaderList/LeaderList";
 import { EventList } from "./pages/events/EventList";
+import { HealthSheet } from "./pages/health/HealthSheet"
 import { ClientStats } from "./pages/clientstats/ClientStats";
 import { InformationPage } from "./pages/info/Information";
 import RegionTypeState from "./context/RegionTypeState";
@@ -66,6 +67,7 @@ export const App: React.FC = () => {
                   <Route exact path="/servers" component={ServerList} />
                   <Route exact path="/leaders" component={LeaderList} />
                   <Route exact path="/events" component={EventList} />
+                  <Route exact path="/health" component={HealthSheet} />
                   <Route exact path="/info" component={InformationPage} />
                   <Route exact path="/clientstats" component={ClientStats} />
                 </Switch>

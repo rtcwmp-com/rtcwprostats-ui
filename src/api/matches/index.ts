@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import { pickData } from "../util";
-import { IMatch, IServersAPIParams, IStatsResponse } from "../types";
+import { IMatch, IServersAPIParams, IStatsResponse, IMatchHealthResponse } from "../types";
 
 export const createMatchesApi = (agent: AxiosInstance) => {
   return {
@@ -35,5 +35,8 @@ export const createMatchesApi = (agent: AxiosInstance) => {
         return agent.get<IStatsResponse>(`/stats/${matchId}`).then(pickData);
       }
     },
+    MatchHealthAPI: async (region: string, gametype: string) => {
+      return agent.get<IMatchHealthResponse>(`/matches/health/${region}/${gametype}`).then(pickData);
+    }
   };
 };

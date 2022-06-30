@@ -11,7 +11,7 @@ import subSrc from "../assets/maps/mp_sub.png";
 
 import { AiOutlineTrophy } from "react-icons/ai";
 import { GiRocket, GiMedicalPack, GiCrosshair, GiRank3, GiMineExplosion, GiCondorEmblem, GiSkullWithSyringe, GiGearHammer, GiStarSkull } from "react-icons/gi";
-import { GoFileBinary } from "react-icons/go";
+import { GoFileBinary, GoPulse } from "react-icons/go";
 import { FaBinoculars, FaMountain, FaBell } from "react-icons/fa";
 import { BsQuestion } from "react-icons/bs";
 import {
@@ -72,6 +72,7 @@ export const NAV_LINKS = [
   { id: "matches", name: "Matches", component: IoLogoGameControllerB },
   { id: "groups", name: "Groups", component: MdViewList },
   { id: "servers", name: "Servers", component: VscServer },
+  { id: "health", name: "Activity", component: GoPulse },
   { id: "events", name: "Events", component: FaBell },
   { id: "info", name: "Info", component: IoIosInformationCircleOutline },
   { id: "clientstats", name: "Client Stats", component: GoFileBinary },

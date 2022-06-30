@@ -27,6 +27,35 @@ export const isoDateStringToDateTime = (input: string) => {
     });
 };
 
+export const isoDateStringToHour= (input: string) => {
+  const input_int = parseInt(input);
+  const d = fromUnixTime(input_int);
+  return d.toLocaleString(
+    [],
+    {
+      hour: "2-digit",
+      hour12: false
+    });
+};
+
+export const isoDateStringToDayOfWeek= (input: string) => {
+  const input_int = parseInt(input);
+  const d = fromUnixTime(input_int);
+  d.setHours(d.getHours() - 4); // to account for late night/next morning games
+  return d.toLocaleString(
+    [],
+    {
+      weekday: 'long'
+    });
+};
+
+export const isoDateStringToDayBack = (input: string, daysOffset: number) => {
+  const now = Date.now();
+  const diffTime = Math.abs(now - parseInt(input.slice(0,-1))*1000); // because match ID is date + round id
+  const diffDays = 28 - Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + daysOffset;
+  return diffDays;
+};
+
 export const unixToDate = (input: string) => {
   const input_int = parseInt(input);
   const d = fromUnixTime(input_int);

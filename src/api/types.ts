@@ -274,6 +274,17 @@ export interface IStatsResponse {
   top_feuds: IFeud[];
 }
 
+export interface IMatchHealthResponse {
+  current: string[],
+  last_month: string[],
+  last_year_month: string[],
+  current_maps: IMapsResponse
+}
+
+export interface IMapsResponse {
+  [map: string]: number;
+}
+
 export interface iMatchSummary {
   duration: number;
   duration_nice: string;
