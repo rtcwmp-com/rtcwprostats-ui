@@ -30,7 +30,7 @@ const EloProgress: React.FC<{
   }, [playerId, region, gametype]);
 
   const nivoData = useMemo(() => {
-    if (!data || "error" in data) {
+    if (!data || "error" in data || data.length === 0) {
       return null;
     }
 
