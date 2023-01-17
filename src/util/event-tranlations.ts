@@ -7,6 +7,9 @@ export const eventTranslations = (eventType: string, eventDetail: string ) => {
           if (eventDetail.split("#")[0] == "Longest Kill") {
             achValue = unitsToMeters(parseInt(eventDetail.split("#")[1])) + " m";
           }
+          else if (eventDetail.split("#")[0] == "Sharpshooter") {
+            achValue = parseFloat(eventDetail.split("#")[1]).toFixed(1) + "%";
+          }
           else {
             achValue = parseInt(eventDetail.split("#")[1]).toFixed(0);
           }

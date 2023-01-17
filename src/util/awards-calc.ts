@@ -77,6 +77,16 @@ function calc_terminator_values(players: { [name: string]: any }) {
     return dict_
 }
 
+function calc_headshot_ratio_values(players: { [name: string]: any }) {
+    let dict_: { [name: string]: any } = {};
+
+    for (const [alias, stat] of Object.entries(players) as any) {
+        const hits = stat["categories"]["hits"] == 0 ? 1 : stat["categories"]["hits"];
+        dict_[alias] = Number((stat["categories"]["headshots"]/hits).toFixed(2));
+      }
+    return dict_
+}
+
 function calc_flag_values(players: { [name: string]: any }) {
     let dict_: { [name: string]: any } = {};
 
@@ -145,6 +155,7 @@ export const deriveAwardsfromStats = (stats: IStatsResponse, elos: IElos) => {
     metrics["Best Medic"] = calc_best_medic_values(players);
     metrics["Best Engineer"] =  calc_best_engineer_values(players);
     metrics["Terminator"] =  calc_terminator_values(players);
+    metrics["Sharpshooter"] =  calc_headshot_ratio_values(players);
     metrics["Slow Bleeder"] =  calc_slow_bleeder_values(players);
     metrics["Man of Steel"] =  calc_man_of_steel_values(players);
     metrics["Internal Enemy"] =  calc_single_metric(players, "teamkills");

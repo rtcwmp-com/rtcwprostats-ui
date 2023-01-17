@@ -63,9 +63,9 @@ export const AwardsDisplay: React.FC<{ data: IAwardSummary }> = ({ data }) => {
                 >
                   {`${player}: `}{" "}
                   <Box as="span" color="white" fontWeight="normal">
-                    {award === "Longest Kill"
-                      ? `${unitsToMeters(value)} m`
-                      : value}
+                    {award === "Longest Kill" ? `${unitsToMeters(value)} m`
+                      : award === "Sharpshooter" ? `${value.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:1})}`
+                        : value}
                   </Box>
                 </Text>
               </Box>

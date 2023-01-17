@@ -64,6 +64,7 @@ export const CATEGORIES = [
   { id: "Combat Medic", name: "COMBAT MEDIC" },
   { id: "Combat Engineer", name: "COMBAT ENGINEER" },
   { id: "Lieutenant Colonel", name: "LIEUTENANT COLONEL" },
+  { id: "Sharpshooter", name: "SHARPSHOOTER" },
 ];
 
 export const NAV_LINKS = [
@@ -136,6 +137,7 @@ export const AWARD_DESCRIPTIONS: Record<string, string> = {
   "Internal Enemy": "Most TKs",
   "Killer": "Most kills",
   "Longest Kill": "Longest kill by distance",
+  "Sharpshooter": "Highest headshot/hits ratio",
   "Man of Steel": "Most DMR per death",
   "MegaKill": "Most kills in 6 seconds",
   "Slow Bleeder": "Most DMG per frag",
