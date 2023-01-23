@@ -82,7 +82,7 @@ function calc_headshot_ratio_values(players: { [name: string]: any }) {
 
     for (const [alias, stat] of Object.entries(players) as any) {
         const hits = stat["categories"]["hits"] == 0 ? 1 : stat["categories"]["hits"];
-        dict_[alias] = Number((stat["categories"]["headshots"]/hits).toFixed(2));
+        dict_[alias] = Number((stat["categories"]["headshots"]/hits).toFixed(4));
       }
     return dict_
 }
