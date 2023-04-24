@@ -32,10 +32,12 @@ const PlayerStats: React.FC<{
   const { region, gametype } = rTypeContext; //region: 'na', gametype: '6'
   const regionKey = `${region}#${gametype}`;
 
-  const { elos = {}, aggstats = {}, kdr = {} } = data;
+  const { elos = {}, aggstats = {}, kdr = {}, acc = {} } = data;
   const { [regionKey]: eloRegion } = elos;
   const { [regionKey]: aggStatsRegion = {} } = aggstats;
   const { [regionKey]: kdrRegion } = kdr;
+  const { [regionKey]: accRegion } = acc;
+  console.log(accRegion);
 
   const regionTitle = REGIONS.find((item) => item.id === region)?.name;
   const gameTypeTitle = GAME_TYPES.find((item) => item.id === gametype)?.name;
@@ -46,11 +48,7 @@ const PlayerStats: React.FC<{
       )}%`
     : "N/A";
 
-  const accuracy = aggStatsRegion["hits"]
-    ? `${((aggStatsRegion["hits"] / aggStatsRegion["shots"]) * 100).toFixed(
-        2
-      )}%`
-    : "N/A";
+  const accuracy = accRegion ? `${accRegion}%` : "N/A";
 
   const objectivePerGame = aggStatsRegion["obj_captured"]
     ? `${(
