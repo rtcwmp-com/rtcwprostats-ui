@@ -37,7 +37,6 @@ const PlayerStats: React.FC<{
   const { [regionKey]: aggStatsRegion = {} } = aggstats;
   const { [regionKey]: kdrRegion } = kdr;
   const { [regionKey]: accRegion } = acc;
-  console.log(accRegion);
 
   const regionTitle = REGIONS.find((item) => item.id === region)?.name;
   const gameTypeTitle = GAME_TYPES.find((item) => item.id === gametype)?.name;

@@ -265,6 +265,7 @@ export interface IServerSimple {
 
 export interface IStatsResponse {
   statsall: IPlayerStatsDictionary[];
+  wstatsall: IPlayerWStatsDictionary[];
   match_id: string;
   type: string;
   match_summary: iMatchSummary;
@@ -272,6 +273,24 @@ export interface IStatsResponse {
   classes: IClasses;
   awards: IAwardSummary;
   top_feuds: IFeud[];
+}
+
+// export interface IWStatsResponse {
+//   wstatsall: IPlayerWStatsDictionary[];
+//   match_id: string;
+// }
+
+export interface IPlayerWStatsDictionary {
+  [playerId: string]: IPlayerWeapon[];
+}
+
+export interface IPlayerWeapon {
+  weapon: string,
+  kills: number,
+  deaths: number,
+  headshots: number,
+  hits: number,
+  shots: number
 }
 
 export interface IMatchHealthResponse {

@@ -1,0 +1,7 @@
+.tableRow:hover {
+  cursor: pointer;
+}
+
+.tableRow:hover td:first-child {
+  text-decoration: underline;
+}
