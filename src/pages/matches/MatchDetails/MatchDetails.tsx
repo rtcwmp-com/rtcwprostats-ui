@@ -19,6 +19,7 @@ import { PageTitle } from "../../../components/PageTitle";
 import { MatchStats } from "../../../components/MatchStats";
 import { MatchWeaponStats } from "../../../components/MatchWeaponStats";
 import { AwardsDisplay } from "../../../components/AwardsDisplay/AwardsDisplay";
+import { GamelogFeed } from "../../../components/GamelogFeed/GamelogFeed";
 import { FeudsDisplay } from "../../../components/FeudsDisplay/FeudsDisplay";
 import { Button } from "@chakra-ui/react";
 
@@ -38,16 +39,24 @@ export const MatchDetails: React.FC = () => {
   
   let awards = {};
   let elos: any = null;
+  let gamelog: any = null;
   let classes: any = null;
   let names: any = {};
+  let names_colored: any = {};
   let wstatsall: any = null;
   if (data) {
     elos = data.elos == null ? null : data.elos;
+    gamelog = data.gamelog == null ? null : data.gamelog;
     classes = data.classes == null ? null : data.classes;
     data.statsall.map((player: IPlayerStatsDictionary) => {
       const guid = Object.keys(player)[0];
       const alias = player[guid].alias;
+      let alias_colored = player[guid].alias_colored;
+      if (alias_colored == null) {
+        alias_colored = alias;
+      }
       names[guid] = alias;
+      names_colored[guid] = alias_colored;
     });
     wstatsall = data.wstatsall;
     
@@ -150,6 +159,7 @@ export const MatchDetails: React.FC = () => {
           )}
           {statsType == "stats" && "match_summary" in data && (<AwardsDisplay data={awards} />)}
           {statsType == "stats" && "top_feuds" in data && (<FeudsDisplay feuds={data.top_feuds} />)}
+          {statsType == "stats" && "gamelog" in data && (<GamelogFeed data={gamelog} names={names_colored}/>)}
         </>
       )}
     </>
