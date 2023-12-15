@@ -12,7 +12,11 @@ function convert_statsall_to_players(stats: IStatsResponse, elos: IElos) {
     let players: { [name: string]: any } = {};
     // console.log(stats);
     stats.statsall.map((player: IPlayerStatsDictionary) => {
-        let alias = Object.values(player)[0].alias;
+        //let alias = Object.values(player)[0].alias;
+        let alias = Object.values(player)[0].alias_colored;
+        if (alias == null) {
+            alias = Object.values(player)[0].alias;
+        }
         let guid = Object.keys(player)[0]
         alias = elos != null && guid in elos ? elos[guid][0]: alias;
         players[alias] = Object.values(player)[0];  

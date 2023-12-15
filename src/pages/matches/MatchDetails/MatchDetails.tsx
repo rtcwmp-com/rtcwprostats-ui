@@ -92,6 +92,11 @@ export const MatchDetails: React.FC = () => {
         if (displayAllTeams) {
           //mindfk: in a single match, the team that starts as allies is always team A
           //so by the end of round AB it's team Axis. So Axis is really A to begin with.
+
+          if (player.alias_colored == null){
+            player.alias_colored = player.alias
+          }
+
           if (player.team === "Axis" || player.team === "TeamA") {
             acc.a.push(player);
           } else {

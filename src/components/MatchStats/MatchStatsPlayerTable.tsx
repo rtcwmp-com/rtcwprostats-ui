@@ -60,7 +60,7 @@ export const MatchStatsPlayerTable: React.FC<{
                 onClick={fetchMatchDetails}
                 data-match-id={item.match_id}
               >
-                <Td>{item.alias}</Td>
+                <Td>{item.alias_colored}</Td>
                 <Td>
                   <span>{item.match_id}</span>
                 </Td>

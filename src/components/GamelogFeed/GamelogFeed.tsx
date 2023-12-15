@@ -1,6 +1,8 @@
 import React from "react";
 import { IGamelogGictionary, IGamelogItem } from "../../api/types";
-import { Box } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
+import { rtcwColorsMiddleWare } from "../../util/colors";
+import { RTCWColorText } from "../../components/RTCWColorText/RTCWColorText"
 
 
 export const GamelogFeed: React.FC<{ data: IGamelogGictionary, names: any }> = ({ data, names }) => {
@@ -18,6 +20,7 @@ export const GamelogFeed: React.FC<{ data: IGamelogGictionary, names: any }> = (
   simpleEventText["ObjReturned"] = " returned objective";
   simpleEventText["ObjKilledCarrier"] = " killed objective carrier";
   simpleEventText["ObjCapture"] = " captured the objective";
+  simpleEventText["ObjProtectFlag"] = " protected flag";
 
   function spawnMessage(line: IGamelogItem) {
     const diff: number = parseInt(line.Axis) - parseInt(line.Allied);
@@ -41,9 +44,9 @@ export const GamelogFeed: React.FC<{ data: IGamelogGictionary, names: any }> = (
     if (line.label === "kill") {
       return (
         <>
-          <Box fontSize="14px">
+          <Box fontSize="14px" key={line.unixtime}>
             <Box as="span" color="white" fontWeight="bold">
-              {names[line.agent]}
+             <RTCWColorText coloredString={names[line.agent]}/>
             </Box>
                    
             <Box as="span" color="white" fontWeight="normal">
@@ -51,7 +54,7 @@ export const GamelogFeed: React.FC<{ data: IGamelogGictionary, names: any }> = (
             </Box>
 
             <Box as="span" color="white" fontWeight="bold">
-              {names[line.other]}
+              <RTCWColorText coloredString={names[line.other]}/>
             </Box>
           </Box>
         </>
@@ -60,9 +63,9 @@ export const GamelogFeed: React.FC<{ data: IGamelogGictionary, names: any }> = (
     else if (line.label === "revive") {
       return (
         <>
-          <Box fontSize="14px">
+          <Box fontSize="14px" key={line.unixtime}>
             <Box as="span" color="white" fontWeight="bold">
-              {names[line.agent]}
+              <RTCWColorText coloredString={names[line.agent]}/>
             </Box>
                    
             <Box as="span" color="orange" fontWeight="normal">
@@ -70,7 +73,7 @@ export const GamelogFeed: React.FC<{ data: IGamelogGictionary, names: any }> = (
             </Box>
 
             <Box as="span" color="white" fontWeight="bold">
-              {names[line.other]}
+              <RTCWColorText coloredString={names[line.other]}/>
             </Box>
           </Box>
         </>
@@ -79,9 +82,9 @@ export const GamelogFeed: React.FC<{ data: IGamelogGictionary, names: any }> = (
     else if (line.label === "teamkill") {
       return (
         <>
-          <Box fontSize="14px">
+          <Box fontSize="14px" key={line.unixtime}>
             <Box as="span" color="white" fontWeight="bold">
-              {names[line.agent]}
+              <RTCWColorText coloredString={names[line.agent]}/>
             </Box>
                    
             <Box as="span" color="red" fontWeight="normal">
@@ -89,7 +92,7 @@ export const GamelogFeed: React.FC<{ data: IGamelogGictionary, names: any }> = (
             </Box>
 
             <Box as="span" color="white" fontWeight="bold">
-              {names[line.other]}
+              <RTCWColorText coloredString={names[line.other]}/>
             </Box>
           </Box>
         </>
@@ -98,9 +101,9 @@ export const GamelogFeed: React.FC<{ data: IGamelogGictionary, names: any }> = (
     else if (line.label === "global_chat") {
       return (
         <>
-          <Box fontSize="14px">
+          <Box fontSize="14px" key={line.unixtime}>
             <Box as="span" color="white" fontWeight="bold">
-              {names[line.agent]}
+              <RTCWColorText coloredString={names[line.agent]}/>
             </Box>
                    
             <Box as="span" color="white" fontWeight="normal">
@@ -108,7 +111,7 @@ export const GamelogFeed: React.FC<{ data: IGamelogGictionary, names: any }> = (
             </Box>
 
             <Box as="span" color="green" fontWeight="bold">
-              {line.text}
+              <RTCWColorText coloredString={line.text}/>
             </Box>
           </Box>
         </>
@@ -117,9 +120,9 @@ export const GamelogFeed: React.FC<{ data: IGamelogGictionary, names: any }> = (
     else if (line.label === "class_change") {
       return (
         <>
-          <Box fontSize="14px">
+          <Box fontSize="14px" key={line.unixtime}>
             <Box as="span" color="white" fontWeight="bold">
-              {names[line.agent]}
+              <RTCWColorText coloredString={names[line.agent]}/>
             </Box>
                    
             <Box as="span" color="white" fontWeight="normal">
@@ -136,7 +139,7 @@ export const GamelogFeed: React.FC<{ data: IGamelogGictionary, names: any }> = (
     else if (line.label === "round_start") {
       return (
         <>
-          <Box fontSize="16px">
+          <Box fontSize="16px" key={line.unixtime}>
             <Box as="span" color="Yellow" fontWeight="bold">
               { "Match " + line.match_id + " started. Round " + line.round_id}
             </Box>
@@ -147,7 +150,7 @@ export const GamelogFeed: React.FC<{ data: IGamelogGictionary, names: any }> = (
     else if (line.label === "round_end") {
       return (
         <>
-          <Box fontSize="16px">
+          <Box fontSize="16px" key={line.unixtime}>
             <Box as="span" color="Yellow" fontWeight="bold">
               { "Match " + line.match_id + " Round " + line.round_id + " ended."}
             </Box>
@@ -158,7 +161,7 @@ export const GamelogFeed: React.FC<{ data: IGamelogGictionary, names: any }> = (
     else if (line.label === "firstRespawn") {
       return (
         <>
-          <Box fontSize="14px">
+          <Box fontSize="14px" key={line.unixtime}>
             <Box as="span" color="white" fontWeight="bold">
               { spawnMessage(line) }
             </Box>
@@ -175,12 +178,13 @@ export const GamelogFeed: React.FC<{ data: IGamelogGictionary, names: any }> = (
             || line.label === "ObjReturned"
             || line.label === "ObjKilledCarrier"
             || line.label === "ObjCapture"
+            || line.label === "ObjProtectFlag"
             ) {
       return (
         <>
-          <Box fontSize="14px">
+          <Box fontSize="14px" key={line.unixtime}>
             <Box as="span" color="white" fontWeight="bold">
-              {names[line.agent]}
+              <RTCWColorText coloredString={names[line.agent]}/>
             </Box>
                    
             <Box as="span" color="white" fontWeight="normal">
@@ -193,7 +197,7 @@ export const GamelogFeed: React.FC<{ data: IGamelogGictionary, names: any }> = (
     else {
       return (
         <>
-          <Box fontSize="14px">
+          <Box fontSize="14px" key={line.unixtime}>
             <Box as="span" color="white" fontWeight="bold">
               {"----->>>" + line.label}
             </Box>

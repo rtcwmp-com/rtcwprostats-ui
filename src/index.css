@@ -19,3 +19,49 @@ body,
   margin: 0;
   padding: 0;
 }
+
+.c0 { font-weight:bold;color:#000000 }
+.c1 { font-weight:bold;color:#DA0120 }
+.c2 { font-weight:bold;color:#00B906 }
+.c3 { font-weight:bold;color:#d8da00;} /* d0d719 #E8FF19 */
+.c4 { font-weight:bold;color:#170BDB }
+.c5 { font-weight:bold;color:#23C2C6 }
+.c6 { font-weight:bold;color:#E201DB }
+.c7 { font-weight:bold;color:#999999 } /*FFFFFF*/
+.c8 { font-weight:bold;color:#CA7C27 }
+.c9 { font-weight:bold;color:#757575 }
+.ca { font-weight:bold;color:#EB9F53 }
+.cb { font-weight:bold;color:#106F59 }
+.cc { font-weight:bold;color:#5A134F }
+.cd { font-weight:bold;color:#035AFF }
+.ce { font-weight:bold;color:#681EA7 }
+.cf { font-weight:bold;color:#5097C1 }
+.cg { font-weight:bold;color:#BEDAC4 }
+.ch { font-weight:bold;color:#024D2C }
+.ci { font-weight:bold;color:#7D081B }
+.cj { font-weight:bold;color:#90243E }
+.ck { font-weight:bold;color:#743313 }
+.cl { font-weight:bold;color:#A7905E }
+.cm { font-weight:bold;color:#555C26 }
+.cn { font-weight:bold;color:#AEAC97 }
+.co { font-weight:bold;color:#C0BF7F }
+.cp { font-weight:bold;color:#000000 }
+.cq { font-weight:bold;color:#DA0120 }
+.cr { font-weight:bold;color:#00B906 }
+.cs { font-weight:bold;color:#d8da00 } /* E8FF19 */
+.ct { font-weight:bold;color:#170BDB }
+.cu { font-weight:bold;color:#23C2C6 }
+.cv { font-weight:bold;color:#E201DB }
+.cw { font-weight:bold;color:#CCCCCC } /*FFFFFF*/
+.cx { font-weight:bold;color:#CA7C27 }
+.cy { font-weight:bold;color:#757575 }
+.cz { font-weight:bold;color:#CC8034 }
+.ccr { font-weight:bold;color:#000000 }
+.csl { font-weight:bold;color:#DBDF70 } /* / */
+.cst { font-weight:bold;color:#BBBBBB } /* * */
+.cmi { font-weight:bold;color:#747228 } /* - */
+.cpl { font-weight:bold;color:#993400 } /* + */
+.cqu { font-weight:bold;color:#670504 } /* ? */
+.cat { font-weight:bold;color:#623307 } /* @ */
+.cmt { font-weight:bold;color:#170BDB }
+.clt { font-weight:bold;color:#170BDB }
