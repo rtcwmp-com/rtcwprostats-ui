@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Box, Button, ButtonGroup } from "@chakra-ui/react";
+import { HStack, Box, Button, ButtonGroup } from "@chakra-ui/react";
 import { useQuery } from "react-query";
 import { StatsApi } from "../../../api";
 import { ILeaderItem } from "../../../api/types";
@@ -25,6 +25,8 @@ export const LeaderList: React.FC = () => {
     setCategory(element.value);
   };
 
+  const continuous_metrics = ["elo", "kdr", "acc", "Caps per Game", "Caps per Taken", "HS Ratio"]
+
   return (
     <>
       <PageTitle>Leaders</PageTitle>
@@ -32,18 +34,49 @@ export const LeaderList: React.FC = () => {
         <RegionTypePicker />
       </Box>
       <Box my="10px">
-        {CATEGORIES.map((item) => (
-          <Button
-            key={item.id}
-            size="sm"
-            isActive={category === item.id}
-            value={item.id}
-            onClick={onClickCategory}
-            m="0 5px 5px"
-          >
-            {item.name}
-          </Button>
-        ))}
+        <HStack>
+          <Box w='100px'>
+            {"Continuous"}
+          </Box>
+          <Box>
+            {CATEGORIES.map((item) => (
+              continuous_metrics.includes(item.id) && 
+                <Button
+                  key={item.id}
+                  size="sm"
+                  isActive={category === item.id}
+                  value={item.id}
+                  onClick={onClickCategory}
+                  m="0 5px 5px"
+                >
+                  {item.name}
+                </Button>
+              
+            ))}
+          </Box>
+          </HStack>
+      </Box>
+      <Box my="10px">
+        <HStack>
+          <Box w='100px'>
+            {"Achievements"}
+          </Box>
+          <Box>
+            {CATEGORIES.map((item) => (
+              !continuous_metrics.includes(item.id) &&
+              <Button
+                key={item.id}
+                size="sm"
+                isActive={category === item.id}
+                value={item.id}
+                onClick={onClickCategory}
+                m="0 5px 5px"
+              >
+                {item.name}
+              </Button>
+            ))}
+          </Box>
+        </HStack>
       </Box>
 
       <div>

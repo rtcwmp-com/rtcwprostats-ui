@@ -12,7 +12,7 @@ export const LeaderListContent: React.FC<{
   data: ILeaderItem[];
   category: string;
 }> = ({ data, category }) => {
-  const proratedGameMetrics = ["acc","kdr","elo", "Sharpshooter"];
+  const proratedGameMetrics = ["acc","kdr","elo", "Sharpshooter", "Caps per Taken", "Caps per Game", "HS Ratio"];
   const categoryTitle =
     CATEGORIES.find((item) => item.id === category)?.name || "Value";
   return (

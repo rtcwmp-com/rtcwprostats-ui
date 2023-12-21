@@ -65,6 +65,9 @@ export const CATEGORIES = [
   { id: "Combat Engineer", name: "COMBAT ENGINEER" },
   { id: "Lieutenant Colonel", name: "LIEUTENANT COLONEL" },
   { id: "Sharpshooter", name: "SHARPSHOOTER" },
+  // { id: "Caps per Game", name: "Caps per Game" },
+  // { id: "Caps per Taken", name: "Caps per Taken" },
+  { id: "HS Ratio", name: "HS Ratio" },
 ];
 
 export const NAV_LINKS = [
