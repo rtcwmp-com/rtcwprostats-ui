@@ -38,6 +38,13 @@ export interface ILeaderItem {
   match_id: number;
 }
 
+export interface ISeason {
+  end_date: string;
+  season_prefix: string;
+  season_name: string;
+  player_number: number;
+}
+
 export interface IEventItem {
   eventtype: string;
   eventdesc: string;
