@@ -1,6 +1,9 @@
 export const rtcwColorsMiddleWare = (alias_colored: string) => {
     // alias_colored = "^7do^1nka"
     alias_colored.replace("^^","^~"); //special case for double carrot
+    if (alias_colored.charAt(0) != "^") {
+        alias_colored = "^7" + alias_colored;
+    }
     const nameTokens = alias_colored.split("^");
     const middleOutput : string[][] = [];
     if (nameTokens.length > 1) {
