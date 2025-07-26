@@ -1,7 +1,7 @@
 import React from "react";
 import { ChakraProvider, Box, Flex, Stack } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Nav } from "./components/Nav/Nav";
 import { MatchDetails } from "./pages/matches/MatchDetails/MatchDetails";
 import { MatchList } from "./pages/matches/MatchList/MatchList";
@@ -19,6 +19,7 @@ import { HealthSheet } from "./pages/health/HealthSheet"
 import { ClientStats } from "./pages/clientstats/ClientStats";
 import { InformationPage } from "./pages/info/Information";
 import RegionTypeState from "./context/RegionTypeState";
+import FrontPage from "./pages/frontpage/FrontPage";
 
 import theme from "./theme";
 
@@ -47,8 +48,9 @@ export const App: React.FC = () => {
                 </Flex>
                 <Switch>
                   <Route exact path="/">
-                    <Redirect to="/leaders" />
+                    <FrontPage />
                   </Route>{" "}
+                  <Route exact path="/frontpage" component={FrontPage} />
                   <Route exact path="/matches" component={MatchList} />
                   <Route exact path="/groups" component={GroupList} />
                   <Route

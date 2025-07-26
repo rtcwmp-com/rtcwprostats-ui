@@ -35,6 +35,9 @@ export const createMatchesApi = (agent: AxiosInstance) => {
         return agent.get<IStatsResponse>(`/stats/${matchId}`).then(pickData);
       }
     },
+    MatchRecentDays: async (days: number) => {
+        return agent.get<IMatch[]>(`/matches/recent/${days}`).then(pickData);
+    },
     MatchHealthAPI: async (region: string, gametype: string) => {
       return agent.get<IMatchHealthResponse>(`/matches/health/${region}/${gametype}`).then(pickData);
     }

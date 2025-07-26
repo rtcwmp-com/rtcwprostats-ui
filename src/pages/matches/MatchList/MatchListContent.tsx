@@ -27,7 +27,7 @@ interface IMatchCheckbox {
   status: boolean;
 }
 
-export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
+export const MatchListContent: React.FC<{ data: IMatch[]; compact?: boolean }> = ({ data, compact }) => {
   const [checkboxes, setCheckBoxes] = React.useState<IMatchCheckbox[]>([]);
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
 
@@ -66,29 +66,30 @@ export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
   return (
     <Box overflowX="auto" my="10px">
       <Table variant="simple">
-        <TableCaption>{`${regionTitle} - ${gameTypeTitle} - Recent Matches`}</TableCaption>
         <Thead>
           <Tr>
-            <Th>Server Name</Th>
+            {!compact && <Th>Server Name</Th>}
             <Th>Match ID</Th>
             <Th>Map</Th>
             <Th>Started</Th>
             <Th>Teams</Th>
-            <Th isNumeric={true}>
-              <Button size="xs" onClick={onCreateGroupClick}>
-                Create group
-              </Button>
-              <MatchListContentModal
-                key={`modal-${modalKey}`}
-                matches={checkboxes
-                  .filter((item) => item.status)
-                  .flatMap((item) => parseInt(item.id))}
-                region={region}
-                gametype={gametype}
-                isOpen={isModalOpen}
-                handleModalOnClose={handleModalOnClose}
-              />
-            </Th>
+            {!compact && (
+              <Th isNumeric={true}>
+                <Button size="xs" onClick={onCreateGroupClick}>
+                  Create group
+                </Button>
+                <MatchListContentModal
+                  key={`modal-${modalKey}`}
+                  matches={checkboxes
+                    .filter((item) => item.status)
+                    .flatMap((item) => parseInt(item.id))}
+                  region={region}
+                  gametype={gametype}
+                  isOpen={isModalOpen}
+                  handleModalOnClose={handleModalOnClose}
+                />
+              </Th>
+            )}
           </Tr>
         </Thead>
         <Tbody>
@@ -101,11 +102,13 @@ export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
             )
             .map((match, idx) => (
               <Tr key={match.match_id}>
-                <Td>
-                  <Link as={reactLink} to={`/matches/${match.match_id}`}>
-                    {match.server_name}
-                  </Link>
-                </Td>
+                {!compact && (
+                  <Td>
+                    <Link as={reactLink} to={`/matches/${match.match_id}`}>
+                      {match.server_name}
+                    </Link>
+                  </Td>
+                )}
                 <Td>
                   <Link as={reactLink} to={`/matches/${match.match_id}`}>
                     {match.match_id}
@@ -161,17 +164,19 @@ export const MatchListContent: React.FC<{ data: IMatch[] }> = ({ data }) => {
                       : ""}
                   </span>
                 </Td>
-                <Td isNumeric={true}>
-                  <Checkbox
-                    size="lg"
-                    colorScheme="gray"
-                    onChange={() => onCheckBoxChange(match.match_id)}
-                    isChecked={
-                      checkboxes.filter((item) => item.id === match.match_id)[0]
-                        ?.status || false
-                    }
-                  />
-                </Td>
+                {!compact && (
+                  <Td isNumeric={true}>
+                    <Checkbox
+                      size="lg"
+                      colorScheme="gray"
+                      onChange={() => onCheckBoxChange(match.match_id)}
+                      isChecked={
+                        checkboxes.filter((item) => item.id === match.match_id)[0]
+                          ?.status || false
+                      }
+                    />
+                  </Td>
+                )}
               </Tr>
             ))}
         </Tbody>

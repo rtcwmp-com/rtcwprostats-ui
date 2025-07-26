@@ -13,7 +13,7 @@ import { AiOutlineTrophy } from "react-icons/ai";
 import { GiRocket, GiMedicalPack, GiCrosshair, GiRank3, GiMineExplosion, GiCondorEmblem, GiSkullWithSyringe, GiGearHammer, GiStarSkull } from "react-icons/gi";
 import { GoFileBinary, GoPulse } from "react-icons/go";
 import { FaBinoculars, FaMountain, FaBell } from "react-icons/fa";
-import { BsQuestion } from "react-icons/bs";
+import { BsQuestion, BsBullseye  } from "react-icons/bs";
 import {
   IoLogoGameControllerB,
   IoIosInformationCircleOutline,
@@ -68,6 +68,7 @@ export const CATEGORIES = [
 ];
 
 export const NAV_LINKS = [
+  { id: "frontpage", name: "Front Page", component: BsBullseye },
   { id: "leaders", name: "Leaders", component: AiOutlineTrophy },
   { id: "players", name: "Players", component: VscAccount },
   { id: "matches", name: "Matches", component: IoLogoGameControllerB },

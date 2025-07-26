@@ -28,7 +28,7 @@ export const MatchList: React.FC = () => {
         <RegionTypePicker />
       </Box>
       {isLoading && <Loading />}
-      {data && <MatchListContent data={data} />}
+      {data && <MatchListContent data={data} compact={false} />}
     </>
   );
 };

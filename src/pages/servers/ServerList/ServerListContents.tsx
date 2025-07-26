@@ -28,7 +28,6 @@ export const ServerListContents = ({ data }: { data: IServerSimple[] }) => {
   return (
     <Box overflowX="auto" my="10px">
       <Table variant="simple">
-        <TableCaption>{`${regionTitle} - Active Servers`}</TableCaption>
         <Thead>
           <Tr>
             <Th></Th>
