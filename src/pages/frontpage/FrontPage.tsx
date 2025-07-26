@@ -136,7 +136,7 @@ const FrontPage: React.FC = () => {
             </Box>
             <Box textAlign="left">
                <Box mb={2}>
-                 <img src="/src/assets/network-internet-web-svgrepo-com.svg" alt="Facebook" style={{ width: '64px', height: '64px' }} />
+                 <img src="/src/assets/network-internet-web-svgrepo-com.svg" alt="Internet" style={{ width: '64px', height: '64px' }} />
                </Box>
             </Box>
             <Box textAlign="left" flex={1} ml={8}>
