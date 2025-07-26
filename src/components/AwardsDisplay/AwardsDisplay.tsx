@@ -4,6 +4,7 @@ import { Box, HStack, Text, Tooltip } from "@chakra-ui/react";
 import { unitsToMeters, getRandomColor } from "../../util";
 import { MdHelp } from "react-icons/md";
 import { AWARD_DESCRIPTIONS } from "../../constants";
+import { RTCWColorText } from "../../components/RTCWColorText/RTCWColorText"
 
 export const AwardsDisplay: React.FC<{ data: IAwardSummary }> = ({ data }) => {
   let playerColors: any = {};
@@ -61,7 +62,7 @@ export const AwardsDisplay: React.FC<{ data: IAwardSummary }> = ({ data }) => {
                   display="inline"
                   fontSize="14px"
                 >
-                  {`${player}: `}{" "}
+                  <RTCWColorText coloredString={player}/>:{" "}
                   <Box as="span" color="white" fontWeight="normal">
                     {award === "Longest Kill" ? `${unitsToMeters(value)} m`
                       : award === "Sharpshooter" ? `${value.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:1})}`

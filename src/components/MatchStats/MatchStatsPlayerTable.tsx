@@ -8,6 +8,7 @@ import { RegionTypeContext } from "../../context";
 import { StatsApi } from "../../api";
 import { IPlayerStats } from "../../api/types";
 import { unixToDate } from "../../util";
+import { RTCWColorText } from "../../components/RTCWColorText/RTCWColorText"
 
 export const MatchStatsPlayerTable: React.FC<{
   playerId: string;
@@ -60,7 +61,7 @@ export const MatchStatsPlayerTable: React.FC<{
                 onClick={fetchMatchDetails}
                 data-match-id={item.match_id}
               >
-                <Td>{item.alias}</Td>
+                <Td><RTCWColorText coloredString={item.alias_colored == null ? item.alias : item.alias_colored}/></Td>
                 <Td>
                   <span>{item.match_id}</span>
                 </Td>

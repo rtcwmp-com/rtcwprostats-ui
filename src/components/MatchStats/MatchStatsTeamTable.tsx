@@ -7,6 +7,7 @@ import { IElos, IPlayerStatsWithId, IClasses } from "../../api/types";
 import { useHistory } from "react-router-dom";
 import styles from "./MatchStatsTeamTable.module.css";
 import { CLASS_ICONS } from "../../constants";
+import { RTCWColorText } from "../../components/RTCWColorText/RTCWColorText"
 
 const MatchStatsTeamTable: React.FC<{
   teamName: string;
@@ -21,7 +22,7 @@ const MatchStatsTeamTable: React.FC<{
       teamData.map((player: IPlayerStatsWithId) => {
         const d: any = {
           playerId: player.playerId,
-          name: elos != null && player.playerId in elos ? elos[player.playerId][0]: player.alias,
+          name: elos != null && player.playerId in elos ? elos[player.playerId][0]: (player.alias_colored == null ? player.alias : player.alias_colored),
           kdr: (player.categories.kills / player.categories.deaths).toFixed(2),
           kills: player.categories.kills,
           deaths: player.categories.deaths,
@@ -292,9 +293,16 @@ const _renderPlayerClassCell = (iconType: string) => {
   return <PlayerClassIcon className={styles.linkIcon}/>;
 };
 
+const _renderPlayerName = (aliasColored: string) => {
+  return <RTCWColorText coloredString={aliasColored}/>;
+};
+
 const _renderCell = (cell: any) => {
   if (cell.column.id === "kdr") {
     return _renderKdrCell(cell);
+  }
+  if (cell.column.id === "name") {
+    return _renderPlayerName(cell.value);
   }
   if (cell.column.id === "class") {
     return _renderPlayerClassCell(cell.value);

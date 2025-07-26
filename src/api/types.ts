@@ -38,6 +38,13 @@ export interface ILeaderItem {
   match_id: number;
 }
 
+export interface ISeason {
+  end_date: string;
+  season_prefix: string;
+  season_name: string;
+  player_number: number;
+}
+
 export interface IEventItem {
   eventtype: string;
   eventdesc: string;
@@ -211,6 +218,7 @@ export interface IPlayerAlias {
 
 export interface IPlayerStats {
   alias: string;
+  alias_colored: string;
   realName: string;
   elo: number;
   match_id: string;
@@ -273,6 +281,7 @@ export interface IStatsResponse {
   classes: IClasses;
   awards: IAwardSummary;
   top_feuds: IFeud[];
+  gamelog: IGamelogGictionary;
 }
 
 // export interface IWStatsResponse {
@@ -282,6 +291,10 @@ export interface IStatsResponse {
 
 export interface IPlayerWStatsDictionary {
   [playerId: string]: IPlayerWeapon[];
+}
+
+export interface IGamelogGictionary {
+  [matchId: string]: IGamelogItem[];
 }
 
 export interface IPlayerWeapon {
@@ -310,6 +323,28 @@ export interface iMatchSummary {
   finish_human: string;
   games: number;
   results: iGameResultsObject;
+}
+
+export interface IGamelogItem {
+  match_id: string;
+  round_id: string;
+  unixtime: string;
+  group: string;
+  label: string;
+  Axis: string;
+  Allied: string;
+  agent: string;
+  other: string;
+  weapon: string;
+  agent_health: number;
+  agent_pos: string;
+  agent_angle: string;
+  other_pos: string;
+  other_angle: string;
+  allies_alive: string;
+  axis_alive: string;
+  other_health: string;
+  text: string;
 }
 
 export interface IElos {

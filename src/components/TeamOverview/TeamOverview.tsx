@@ -3,6 +3,7 @@ import { Box, Text } from "@chakra-ui/react";
 import { ITeamOverviewData, iMatchSummary } from "../../api/types";
 import { MAP_SOURCES } from "../../constants";
 import styles from "./TeamOverview.module.css";
+import { RTCWColorText } from "../../components/RTCWColorText/RTCWColorText"
 
 import { BsArrowLeftShort, BsArrowRightShort } from "react-icons/bs";
 
@@ -43,8 +44,8 @@ export const TeamOverview: React.FC<TeamOverviewProps> = ({
       <div className={styles.overlay} />
       <div className={styles.side}>
         <div className={styles.textWrapper}>
-          {data.a.map(({ alias }) => (
-            <span key={alias}>{alias}</span>
+          {data.a.map(({ alias_colored }) => (
+            <span key={alias_colored}><RTCWColorText coloredString={alias_colored}/></span>
           ))}
         </div>
       </div>
@@ -86,8 +87,8 @@ export const TeamOverview: React.FC<TeamOverviewProps> = ({
       </div>
       <div className={styles.side}>
         <div className={styles.textWrapper}>
-          {data.b.map(({ alias }) => (
-            <span key={alias}>{alias}</span>
+          {data.b.map(({ alias_colored }) => (
+            <span key={alias_colored}><RTCWColorText coloredString={alias_colored}/></span>
           ))}
         </div>
       </div>
