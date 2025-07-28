@@ -9,6 +9,10 @@ import iceSrc from "../assets/maps/mp_ice.png";
 import ufoSrc from "../assets/maps/te_ufo.png";
 import subSrc from "../assets/maps/mp_sub.png";
 
+import discordSrc from "../assets/Discord-Symbol-Blurple.svg";
+import facebookSrc from "../assets/Facebook_Logo_Primary.png";
+import internetSrc from "../assets/network-internet-web-svgrepo-com.svg";
+
 import { AiOutlineTrophy } from "react-icons/ai";
 import { GiRocket, GiMedicalPack, GiCrosshair, GiRank3, GiMineExplosion, GiCondorEmblem, GiSkullWithSyringe, GiGearHammer, GiStarSkull } from "react-icons/gi";
 import { GoFileBinary, GoPulse } from "react-icons/go";
@@ -40,6 +44,12 @@ export const MAP_SOURCES = {
   mp_ice: iceSrc,
   mp_sub: subSrc,
   te_ufo: ufoSrc,
+};
+
+export const BRAND_ICONS = {
+  discord_logo: discordSrc,
+  facebook_logo: facebookSrc,
+  internet_logo: internetSrc
 };
 
 export const REGIONS = [

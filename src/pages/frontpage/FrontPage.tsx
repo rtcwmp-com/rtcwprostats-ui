@@ -9,6 +9,7 @@ import { ServerListContents } from "../servers/ServerList/ServerListContents";
 import { IServerSimple } from "../../api/types";
 import { IMatch } from "../../api/types";
 import { MatchListContent } from "../matches/MatchList/MatchListContent";
+import { BRAND_ICONS } from "../../constants";
 
 
 const FrontPage: React.FC = () => {
@@ -86,7 +87,7 @@ const FrontPage: React.FC = () => {
           <Flex justify="space-between" mt={8} alignItems="center">
             <Box textAlign="left">
                <Box mb={2}>
-                 <img src="/src/assets/Discord-Symbol-Blurple.svg" alt="Discord" style={{ width: '64px', height: '64px' }} />
+                 <img src={BRAND_ICONS.discord_logo} alt="Discord" style={{ width: '64px', height: '64px' }} />
                </Box>
             </Box>
             <Box textAlign="left" flex={1} ml={8}>
@@ -111,7 +112,7 @@ const FrontPage: React.FC = () => {
             </Box>
             <Box textAlign="left">
                <Box mb={2}>
-                 <img src="/src/assets/Facebook_Logo_Primary.png" alt="Facebook" style={{ width: '64px', height: '64px' }} />
+                 <img src={BRAND_ICONS.facebook_logo} alt="Facebook" style={{ width: '64px', height: '64px' }} />
                </Box>
             </Box>
             <Box textAlign="left" flex={1} ml={8}>
@@ -136,7 +137,7 @@ const FrontPage: React.FC = () => {
             </Box>
             <Box textAlign="left">
                <Box mb={2}>
-                 <img src="/src/assets/network-internet-web-svgrepo-com.svg" alt="Internet" style={{ width: '64px', height: '64px' }} />
+                 <img src={BRAND_ICONS.internet_logo} alt="Internet" style={{ width: '64px', height: '64px' }} />
                </Box>
             </Box>
             <Box textAlign="left" flex={1} ml={8}>
@@ -201,7 +202,7 @@ const FrontPage: React.FC = () => {
         <h2 style={{ textAlign: 'center', fontSize: '16px', marginBottom: 8 }}>Active Servers (All Regions)</h2>
         {(isLoadingServersNA || isLoadingServersEU || isLoadingServersSA) && <Loading />}
         {dataServersAll.length > 0 && (
-          <Box fontSize="12px">
+          <Box maxWidth="800px" mx="auto" mt={8}>
             <ServerListContents data={dataServersAll} />
           </Box>
         )}
@@ -209,7 +210,7 @@ const FrontPage: React.FC = () => {
 
       <Box p={8}>
         <Flex direction={{ base: "column", md: "row" }} gap={8} justify="center">
-          <Box flex={1} minW={0} fontSize="12px">
+          <Box maxWidth="1200px" mx="auto" mt={8} flex={1} minW={0}>
             <h2 style={{ textAlign: 'center', fontSize: '16px', marginBottom: 8 }}>Latest 10 matches from this week</h2>
             {dataMatchesRecent && !("error" in dataMatchesRecent) && (
               <MatchListContent
@@ -226,16 +227,16 @@ const FrontPage: React.FC = () => {
       </Box>
       
       <Box p={8}>
-        <Flex direction={{ base: "column", md: "row" }} gap={8} justify="center">
-          <Box flex={1} minW={0} fontSize="12px">
+        <Flex direction={{ base: "column", md: "row" }} gap={8} justify="center" maxWidth="1200px" mx="auto" mt={8}>
+          <Box flex={1} minW={0}>
             <h2 style={{ textAlign: 'center', fontSize: '16px', marginBottom: '8px' }}>Leaders By ELO in North America</h2>
             {dataNA && !("error" in dataNA) && (<LeaderListContent data={dataNA} category={"elo"} />)}
           </Box>
-          <Box flex={1} minW={0} fontSize="12px" borderLeft={{ md: "1px solid #ccc" }} pl={{ md: 4 }}>
+          <Box flex={1} minW={0} borderLeft={{ md: "1px solid #ccc" }} pl={{ md: 4 }}>
             <h2 style={{ textAlign: 'center', fontSize: '16px', marginBottom: '8px' }}>Leaders By ELO in Europe</h2>
             {dataEU && !("error" in dataEU) && (<LeaderListContent data={dataEU} category={"elo"} />)}
           </Box>
-          <Box flex={1} minW={0} fontSize="12px" borderLeft={{ md: "1px solid #ccc" }} pl={{ md: 4 }}>
+          <Box flex={1} minW={0} borderLeft={{ md: "1px solid #ccc" }} pl={{ md: 4 }}>
             <h2 style={{ textAlign: 'center', fontSize: '16px', marginBottom: '8px' }}>Leaders By ELO in South America</h2>
             {dataSA && !("error" in dataSA) && (<LeaderListContent data={dataSA} category={"elo"} />)}
           </Box>
