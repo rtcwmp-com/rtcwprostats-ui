@@ -33,16 +33,20 @@ const HourChart: React.FC<{
     let hourSeries: BarDatum[] = [];
     Object.keys(hourBuckets).map((hour: string) => {
       try {
+        if (parseInt(hour) == 0){
+          hour = "24";
+        }
         const map: BarDatum = {
           hour: hour,
-          games: hourBuckets[hour],
+          games: String(hourBuckets[hour]),
         };
         hourSeries.push(map);
       } catch (err) {
         console.error(err);
       }
     });
-    
+
+    console.debug(hourSeries);
     return hourSeries;
   }, [data]);
 

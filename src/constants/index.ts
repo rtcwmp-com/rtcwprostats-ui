@@ -8,6 +8,12 @@ import beachSrc from "../assets/maps/mp_beach.png";
 import iceSrc from "../assets/maps/mp_ice.png";
 import ufoSrc from "../assets/maps/te_ufo.png";
 import subSrc from "../assets/maps/mp_sub.png";
+import escapeSrc from "../assets/maps/te_escape2.avif";
+import cipherSrc from "../assets/maps/te_cipher_b5.avif";
+import villageSrc from "../assets/maps/mp_village.avif";
+import adlernestSrc from "../assets/maps/te_adlernest_b1.avif";
+import baseSrc from "../assets/maps/mp_base.avif";
+import tram2Src from "../assets/maps/tram2_b5.avif";
 
 import discordSrc from "../assets/Discord-Symbol-Blurple.svg";
 import facebookSrc from "../assets/Facebook_Logo_Primary.png";
@@ -24,6 +30,7 @@ import {
 } from "react-icons/io";
 import { MdViewList } from "react-icons/md";
 import { VscAccount, VscServer } from "react-icons/vsc";
+import { MdMap, MdPlayArrow } from "react-icons/md";
 
 export const COLORS = {
   background: "#12161D",
@@ -44,6 +51,12 @@ export const MAP_SOURCES = {
   mp_ice: iceSrc,
   mp_sub: subSrc,
   te_ufo: ufoSrc,
+  te_escape2: escapeSrc,
+  te_cipher_b5: cipherSrc,
+  mp_village: villageSrc,
+  te_adlernest_b1: adlernestSrc,
+  mp_base: baseSrc,
+  tram2_b5: tram2Src
 };
 
 export const BRAND_ICONS = {
@@ -87,10 +100,12 @@ export const NAV_LINKS = [
   { id: "matches", name: "Matches", component: IoLogoGameControllerB },
   { id: "groups", name: "Groups", component: MdViewList },
   { id: "servers", name: "Servers", component: VscServer },
+  // { id: "maps", name: "Maps", component: MdMap },
   { id: "health", name: "Activity", component: GoPulse },
   { id: "events", name: "Events", component: FaBell },
   { id: "info", name: "Info", component: IoIosInformationCircleOutline },
   { id: "clientstats", name: "Client Stats", component: GoFileBinary },
+  { id: "serverondemand", name: "On Demand", component: MdPlayArrow },
 ];
 
 export const CLASS_ICONS: Record<string, any> = {

@@ -18,6 +18,8 @@ import { EventList } from "./pages/events/EventList";
 import { HealthSheet } from "./pages/health/HealthSheet"
 import { ClientStats } from "./pages/clientstats/ClientStats";
 import { InformationPage } from "./pages/info/Information";
+import { MapsPage } from "./pages/maps/Maps";
+import OnDemand from "./pages/ondemand/OnDemand";
 import RegionTypeState from "./context/RegionTypeState";
 import FrontPage from "./pages/frontpage/FrontPage";
 
@@ -70,8 +72,10 @@ export const App: React.FC = () => {
                   <Route exact path="/leaders" component={LeaderList} />
                   <Route exact path="/events" component={EventList} />
                   <Route exact path="/health" component={HealthSheet} />
+                  <Route exact path="/maps" component={MapsPage} />
                   <Route exact path="/info" component={InformationPage} />
                   <Route exact path="/clientstats" component={ClientStats} />
+                  <Route exact path="/serverondemand" component={OnDemand} />
                 </Switch>
               </Box>
             </Stack>

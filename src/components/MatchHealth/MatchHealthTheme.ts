@@ -1,6 +1,6 @@
 export const theme = {
   fontSize: 11,
-  textColor: "#FFF",
+  textColor: "#000",
   grid: {
     line: {
       stroke: "#333",

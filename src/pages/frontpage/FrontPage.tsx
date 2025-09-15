@@ -155,7 +155,7 @@ const FrontPage: React.FC = () => {
               </Box>
               <Box fontSize="lg" fontWeight="semibold" mb={2}>
                 Youtube Shorts
-              <a href="https://www.facebook.com/groups/2368569340" target="_blank" rel="noopener noreferrer" style={{ color: '#5865F2', textDecoration: 'underline', marginLeft: '8px' }}>
+              <a href="https://www.youtube.com/@NARTCW" target="_blank" rel="noopener noreferrer" style={{ color: '#5865F2', textDecoration: 'underline', marginLeft: '8px' }}>
                   @NARTCW
                   </a>
               </Box>
