@@ -65,6 +65,64 @@ export const BRAND_ICONS = {
   internet_logo: internetSrc
 };
 
+interface MapInfo {
+  id: string;
+  name: string;
+  displayName: string;
+  description: string;
+  type: "objective" | "destroy";
+  players: string;
+  pace: "slow" | "medium" | "fast";
+}
+
+export const MAPS_DATA: MapInfo[] = [
+  {
+    id: "mp_beach",
+    name: "mp_beach",
+    displayName: "Beach",
+    description: "A coastal assault map featuring a beach landing with bunkers and coastal defenses. Players must navigate the shoreline while avoiding enemy fire from fortified positions.",
+    type: "objective",
+    players: "6v6",
+    pace: "medium"
+  },
+  {
+    id: "mp_ice",
+    name: "mp_ice",
+    displayName: "Ice",
+    description: "A frozen landscape with ice caves and snow-covered terrain. The map features tight corridors and open areas with limited visibility due to snow conditions.",
+    type: "objective",
+    players: "6v6",
+    pace: "slow"
+  },
+  {
+    id: "mp_sub",
+    name: "mp_sub",
+    displayName: "Submarine",
+    description: "A submarine base map with tight corridors and multiple levels. Players navigate through the submarine's interior with limited space and strategic chokepoints.",
+    type: "destroy",
+    players: "6v6",
+    pace: "fast"
+  },
+  {
+    id: "te_frostbite",
+    name: "te_frostbite",
+    displayName: "Frostbite",
+    description: "A team elimination map set in an arctic environment. Features open areas and cover points for tactical team-based combat.",
+    type: "objective",
+    players: "3v3",
+    pace: "fast"
+  },
+  {
+    id: "te_ufo",
+    name: "te_ufo",
+    displayName: "UFO",
+    description: "A unique team elimination map with alien architecture and technology. Features multiple levels and strategic positions for team combat.",
+    type: "objective",
+    players: "6v6",
+    pace: "slow"
+  }
+];
+
 export const REGIONS = [
   { id: "na", name: "NA", longName: "North America" },
   { id: "eu", name: "EU", longName: "Europe" },
@@ -100,7 +158,7 @@ export const NAV_LINKS = [
   { id: "matches", name: "Matches", component: IoLogoGameControllerB },
   { id: "groups", name: "Groups", component: MdViewList },
   { id: "servers", name: "Servers", component: VscServer },
-  // { id: "maps", name: "Maps", component: MdMap },
+  { id: "maps", name: "Maps", component: MdMap },
   { id: "health", name: "Activity", component: GoPulse },
   { id: "events", name: "Events", component: FaBell },
   { id: "info", name: "Info", component: IoIosInformationCircleOutline },

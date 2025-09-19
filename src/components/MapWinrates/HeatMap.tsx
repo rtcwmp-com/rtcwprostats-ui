@@ -2,89 +2,71 @@ import React, { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
 import { ResponsiveHeatMap } from "@nivo/heatmap";
+import { BasicTooltip } from "@nivo/tooltip";
 import { theme } from "./HeatMapTheme";
+import { IMapsAllItem, IMapStats } from "../../api/types";
+
 
 const HeatMap: React.FC<{
   data: any
 }> = ({ data }) => {
   const history = useHistory();
 
+  interface HeatmapPoint {
+    x: string;
+    y: number;
+    wins: number;
+    games: number;
+  }
+
+  interface HeatmapData {
+    id: string;
+    name: string;
+    data: HeatmapPoint[];
+  }
+
+  function convertToNivoHeatmap(gameData: IMapsAllItem[]): HeatmapData[] {
+    let heatMapData: any = gameData.map((player) => ({
+      id: player.real_name + "/" + player.id.substring(0,2),
+      data: player.data.map((mapStats) => ({
+        x: mapStats.map,
+        y: parseFloat((mapStats.wins / mapStats.games).toFixed(2)),
+        wins: mapStats.wins,
+        games: mapStats.games
+      }))
+    }));
+    return heatMapData.sort((a: any, b: any) => a.id.localeCompare(b.id));
+  }
+
   const nivoData = useMemo(() => {
     if (!data || "error" in data) {
       return null;
     }
-    let mapSeries: any = [
-        {
-          "id": "donkz",
-          "data": [
-            {
-              "x": "beach",
-              "y": 0.43
-            },
-            {
-              "x": "sub",
-              "y": 0.63
-            },
-            {
-                "x": "base",
-                "y": 0.8
-              }
-          ]
-        },
-        {
-          "id": "ponker",
-          "data": [
-            {
-              "x": "beach",
-              "y": 0.75
-            },
-            {
-              "x": "sub",
-              "y": 0.15
-            },
-            {
-                "x": "base",
-                "y": 0.3
-              }
-          ]
-        },
-        {
-            "id": "goo",
-            "data": [
-              {
-                "x": "beach",
-                "y": 0.5
-              },
-              {
-                "x": "sub",
-                "y": 0.65
-              },
-              {
-                  "x": "base",
-                  "y": 0.3
-                }
-            ]
-          }
-        
-      ];
+    let mapSeries: any = convertToNivoHeatmap(data);
     return mapSeries;
   }, [data]);
 
-  console.log(nivoData);
+  //console.log(nivoData);
+
+  interface HeatMapDatum {
+    x: string;
+    y: number;
+    wins: number;
+    games: number;
+  }
 
   return (
     <>
       {data && "error" in data && <>N/A</>}
       {data && nivoData && (
-        <Box h={500}>
-            <ResponsiveHeatMap 
+        <Box h={2500}>
+            <ResponsiveHeatMap<HeatMapDatum>
                 theme={theme}
                 data={nivoData}
                 margin={{ top: 60, right: 90, bottom: 60, left: 90 }}
-                valueFormat=" >-.1%"
-                axisTop={{ legend: 'Maps', tickRotation: -45, legendOffset: -50 }}
-                axisRight={{ legend: 'Players', legendOffset: 70 }}
-                axisLeft={{ legend: 'Players', legendOffset: -72 }}
+                valueFormat=" >-.0%"
+                axisTop={{ tickRotation: -45, legendOffset: -50 }}
+
                 colors={{
                     type: 'diverging',
                     scheme: 'red_blue',
@@ -109,8 +91,24 @@ const HeatMap: React.FC<{
                         title: 'Value →',
                         titleAlign: 'start',
                         titleOffset: 4
-                    }
+                    }     
                 ]}
+                tooltip={({ cell }) => (
+                  <div
+                    style={{
+                      background: 'white',
+                      padding: '5px 10px',
+                      border: '1px solid #ccc',
+                      borderRadius: '3px',
+                      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                      color: 'black'
+                    }}
+                  >
+                    <div style={{ fontFamily: 'monospace' }}>Map  : {cell.data.x}</div>
+                    <div style={{ fontFamily: 'monospace' }}>Wins : {cell.data.wins}</div>
+                    <div style={{ fontFamily: 'monospace' }}>Games: {cell.data.games}</div>
+                  </div>
+                )}
 
             />
         </Box>

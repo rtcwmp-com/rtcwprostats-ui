@@ -47,9 +47,9 @@ const FrontPage: React.FC = () => {
   );
   
   const dataServersAll: IServerSimple[] = [
-    ...(dataServersNA || []),
-    ...(dataServersEU || []),
-    ...(dataServersSA || [])
+    ...(Array.isArray(dataServersNA) ? dataServersNA : []),
+    ...(Array.isArray(dataServersEU) ? dataServersEU : []),
+    ...(Array.isArray(dataServersSA) ? dataServersSA : [])
   ];
   
   const recentMatchDays = 7;

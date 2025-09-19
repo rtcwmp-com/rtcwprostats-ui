@@ -30,6 +30,18 @@ interface ICategories {
   obj_checkpoint: number;
 }
 
+export interface IMapStats {
+  map: string;
+  games: number;
+  wins: number;
+}
+
+export interface IMapsAllItem {
+  id: string;
+  real_name: string;
+  data: IMapStats[];
+}
+
 export interface ILeaderItem {
   real_name: string;
   value: number;
