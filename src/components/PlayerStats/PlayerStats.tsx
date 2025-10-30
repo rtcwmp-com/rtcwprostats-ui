@@ -23,6 +23,8 @@ import { IPlayerDetails, IPlayerStats } from "../../api/types";
 import { REGIONS, GAME_TYPES } from "../../constants";
 import { EloProgress } from "../EloProgress";
 import { Achievements } from "../Achievements/Achievements";
+import { PlayerMapWinRates } from "../PlayerMapWinRates/PlayerMapWinRates";
+
 
 const PlayerStats: React.FC<{
   data: IPlayerDetails;
@@ -128,6 +130,12 @@ const PlayerStats: React.FC<{
           Match History
         </Heading>
         <MatchStatsPlayerTable playerId={playerId} />
+      </Box>
+      <Box w="100%">
+        <Heading as="h4" size="md" mt="20px" mb="10px">
+          Map Stats (under constructon)
+        </Heading>
+        <PlayerMapWinRates data={[]}/>
       </Box>
     </Box>
   );
