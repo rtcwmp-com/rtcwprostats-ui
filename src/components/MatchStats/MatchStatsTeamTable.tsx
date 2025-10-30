@@ -43,6 +43,7 @@ const MatchStatsTeamTable: React.FC<{
           headshots: player.categories.headshots,
           damagegiven: player.categories.damagegiven,
           damagereceived: player.categories.damagereceived,
+          dmgratio: (player.categories.damagereceived == 0 ? 0 : player.categories.damagegiven/player.categories.damagereceived).toFixed(1),
           damageteam: player.categories.damageteam,
           elo: elos != null && player.playerId in elos ? elos[player.playerId][1] : null,
           class: classes != null && player.playerId in classes ? classes[player.playerId] : null,
@@ -132,6 +133,12 @@ const MatchStatsTeamTable: React.FC<{
         accessor: "damagereceived",
         isNumeric: true,
         Footer: _footerSum(data, "damagereceived")
+      },
+      {
+        Header: "DMG Ratio",
+        accessor: "dmgratio",
+        isNumeric: true,
+        Footer: _footerDamageRatio(data)
       },
       {
         Header: "DMG Team",
@@ -288,6 +295,14 @@ const _renderKdrCell = (cell: any) => {
   return <Text color="green.500">{cell.value}</Text>;
 };
 
+const _renderDmgRatioCell = (cell: any) => {
+  if (cell.value < 1) {
+    return <Text color="red.500">{cell.value}</Text>;
+  }
+
+  return <Text color="green.500">{cell.value}</Text>;
+};
+
 const _renderPlayerClassCell = (iconType: string) => {
   const PlayerClassIcon = CLASS_ICONS[iconType];
   return <PlayerClassIcon className={styles.linkIcon}/>;
@@ -300,6 +315,9 @@ const _renderPlayerName = (aliasColored: string) => {
 const _renderCell = (cell: any) => {
   if (cell.column.id === "kdr") {
     return _renderKdrCell(cell);
+  }
+  if (cell.column.id === "dmgratio") {
+    return _renderDmgRatioCell(cell);
   }
   if (cell.column.id === "name") {
     return _renderPlayerName(cell.value);
@@ -331,4 +349,15 @@ const _footerKdr = (data: any) => {
     return <Text color="red.500">{kdrString}</Text>;
   }
   return <Text color="green.500">{kdrString}</Text>;
+};
+
+const _footerDamageRatio = (data: any) => {
+  const totalDmg: number = data.reduce((sum:number, row:any) => row.damagegiven + sum, 0)
+  const totalDmr: number = data.reduce((sum:number, row:any) => row.damagereceived + sum, 0)
+  const totalDmgRatio: number = totalDmg/totalDmr;
+  const totalDmgRatioString: string = totalDmgRatio.toFixed(1);
+  if (totalDmgRatio < 1) {
+    return <Text color="red.500">{totalDmgRatioString}</Text>;
+  }
+  return <Text color="green.500">{totalDmgRatioString}</Text>;
 };
